@@ -982,7 +982,7 @@ public final class Functions
         int newRow = clamp(view.viewport.row + rowDelta, 0,
                            view.world.numRows - view.viewport.numRows);
 
-        shift(view.viewport, newCol, newRow);
+        view.viewport.shift( newCol, newRow);
     }
 
     public static void drawBackground(WorldView view) {
