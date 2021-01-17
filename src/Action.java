@@ -19,4 +19,5 @@ public final class Action
         this.imageStore = imageStore;
         this.repeatCount = repeatCount;
     }
+
 }

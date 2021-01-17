@@ -964,46 +964,12 @@ public final class Functions
         return Math.min(high, Math.max(value, low));
     }
 
-    public static void shiftView(WorldView view, int colDelta, int rowDelta) {
-        int newCol = clamp(view.viewport.getCol() + colDelta, 0,
-                           view.world.numCols - view.viewport.getNumCols());
-        int newRow = clamp(view.viewport.getRow() + rowDelta, 0,
-                           view.world.numRows - view.viewport.getNumRows());
 
-        view.viewport.shift( newCol, newRow);
-    }
 
-    public static void drawBackground(WorldView view) {
-        for (int row = 0; row < view.viewport.getNumRows(); row++) {
-            for (int col = 0; col < view.viewport.getNumCols(); col++) {
-                Point worldPoint = view.viewport.viewportToWorld( col, row);
-                Optional<PImage> image =
-                        getBackgroundImage(view.world, worldPoint);
-                if (image.isPresent()) {
-                    view.screen.image(image.get(), col * view.tileWidth,
-                                      row * view.tileHeight);
-                }
-            }
-        }
-    }
 
-    public static void drawEntities(WorldView view) {
-        for (Entity entity : view.world.entities) {
-            Point pos = entity.position;
 
-            if (view.viewport.contains(pos)) {
-                Point viewPoint = view.viewport.worldToViewport(pos.x, pos.y);
-                view.screen.image(getCurrentImage(entity),
-                                  viewPoint.x * view.tileWidth,
-                                  viewPoint.y * view.tileHeight);
-            }
-        }
-    }
 
-    public static void drawViewport(WorldView view) {
-        drawBackground(view);
-        drawEntities(view);
-    }
+
 
     public static Action createAnimationAction(Entity entity, int repeatCount) {
         return new Action(ActionKind.ANIMATION, entity, null, null,
