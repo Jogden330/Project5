@@ -906,32 +906,6 @@ public final class Functions
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public static int clamp(int value, int low, int high) {
-        return Math.min(high, Math.max(value, low));
-    }
-
-
-
-
-
-
-
-
     public static Action createAnimationAction(Entity entity, int repeatCount) {
         return new Action(ActionKind.ANIMATION, entity, null, null,
                           repeatCount);
