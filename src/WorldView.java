@@ -40,7 +40,7 @@ public final class WorldView
         this.drawEntities();
     }
 
-    public void drawEntities() {
+    private void drawEntities() {
         for (Entity entity : this.world.entities) {
             Point pos = entity.position;
 
@@ -53,12 +53,12 @@ public final class WorldView
         }
     }
 
-    public  void drawBackground() {
+    private void drawBackground() {
         for (int row = 0; row < this.viewport.getNumRows(); row++) {
             for (int col = 0; col < this.viewport.getNumCols(); col++) {
                 Point worldPoint = this.viewport.viewportToWorld( col, row);
                 Optional<PImage> image =
-                        Functions.getBackgroundImage(this.world, worldPoint);
+                        world.getBackgroundImage( worldPoint);
                 if (image.isPresent()) {
                     this.screen.image(image.get(), col * this.tileWidth,
                             row * this.tileHeight);
