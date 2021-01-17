@@ -5,11 +5,11 @@ import java.util.Optional;
 
 public final class WorldView
 {
-    public PApplet screen;
-    public WorldModel world;
-    public int tileWidth;
-    public int tileHeight;
-    public Viewport viewport;
+    private PApplet screen;
+    private WorldModel world;
+    private int tileWidth;
+    private int tileHeight;
+    private Viewport viewport;
 
     public WorldView(
             int numRows,
@@ -45,7 +45,7 @@ public final class WorldView
             Point pos = entity.position;
 
             if (this.viewport.contains(pos)) {
-                Point viewPoint = this.viewport.worldToViewport(pos.x, pos.y);
+                Point viewPoint = viewport.worldToViewport(pos.x, pos.y);
                 this.screen.image(Functions.getCurrentImage(entity),
                         viewPoint.x * this.tileWidth,
                         viewPoint.y * this.tileHeight);
@@ -66,5 +66,7 @@ public final class WorldView
             }
         }
     }
+
+
 
 }
