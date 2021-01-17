@@ -664,15 +664,8 @@ public final class Functions
         img.updatePixels();
     }
 
-    public static void shift(Viewport viewport, int col, int row) {
-        viewport.col = col;
-        viewport.row = row;
-    }
 
-    public static boolean contains(Viewport viewport, Point p) {
-        return p.y >= viewport.row && p.y < viewport.row + viewport.numRows
-                && p.x >= viewport.col && p.x < viewport.col + viewport.numCols;
-    }
+
 
     public static void load(
             Scanner in, WorldModel world, ImageStore imageStore)
@@ -964,31 +957,26 @@ public final class Functions
         world.background[pos.y][pos.x] = background;
     }
 
-    public static Point viewportToWorld(Viewport viewport, int col, int row) {
-        return new Point(col + viewport.col, row + viewport.row);
-    }
 
-    public static Point worldToViewport(Viewport viewport, int col, int row) {
-        return new Point(col - viewport.col, row - viewport.row);
-    }
+
 
     public static int clamp(int value, int low, int high) {
         return Math.min(high, Math.max(value, low));
     }
 
     public static void shiftView(WorldView view, int colDelta, int rowDelta) {
-        int newCol = clamp(view.viewport.col + colDelta, 0,
-                           view.world.numCols - view.viewport.numCols);
-        int newRow = clamp(view.viewport.row + rowDelta, 0,
-                           view.world.numRows - view.viewport.numRows);
+        int newCol = clamp(view.viewport.getCol() + colDelta, 0,
+                           view.world.numCols - view.viewport.getNumCols());
+        int newRow = clamp(view.viewport.getRow() + rowDelta, 0,
+                           view.world.numRows - view.viewport.getNumRows());
 
         view.viewport.shift( newCol, newRow);
     }
 
     public static void drawBackground(WorldView view) {
-        for (int row = 0; row < view.viewport.numRows; row++) {
-            for (int col = 0; col < view.viewport.numCols; col++) {
-                Point worldPoint = viewportToWorld(view.viewport, col, row);
+        for (int row = 0; row < view.viewport.getNumRows(); row++) {
+            for (int col = 0; col < view.viewport.getNumCols(); col++) {
+                Point worldPoint = view.viewport.viewportToWorld( col, row);
                 Optional<PImage> image =
                         getBackgroundImage(view.world, worldPoint);
                 if (image.isPresent()) {
@@ -1003,8 +991,8 @@ public final class Functions
         for (Entity entity : view.world.entities) {
             Point pos = entity.position;
 
-            if (contains(view.viewport, pos)) {
-                Point viewPoint = worldToViewport(view.viewport, pos.x, pos.y);
+            if (view.viewport.contains(pos)) {
+                Point viewPoint = view.viewport.worldToViewport(pos.x, pos.y);
                 view.screen.image(getCurrentImage(entity),
                                   viewPoint.x * view.tileWidth,
                                   viewPoint.y * view.tileHeight);
