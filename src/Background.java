@@ -4,6 +4,12 @@ import processing.core.PImage;
 
 public final class Background
 {
+    public static final String BGND_KEY = "background";
+    public static final int BGND_NUM_PROPERTIES = 4;
+    public static final int BGND_ID = 1;
+    public static final int BGND_COL = 2;
+    public static final int BGND_ROW = 3;
+
     public String id;
     public List<PImage> images;
     public int imageIndex;

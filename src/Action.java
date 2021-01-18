@@ -118,12 +118,12 @@ public final class Action
         Functions.removeEntity(world, entity);
         Functions.unscheduleAllEvents(scheduler, entity);
 
-        Entity blob = Functions.createOreBlob(entity.id + Functions.BLOB_ID_SUFFIX, pos,
-                entity.actionPeriod / Functions.BLOB_PERIOD_SCALE,
-                Functions.BLOB_ANIMATION_MIN + Functions.rand.nextInt(
-                        Functions.BLOB_ANIMATION_MAX
-                                - Functions.BLOB_ANIMATION_MIN),
-                Functions.getImageList(imageStore, Functions.BLOB_KEY));
+        Entity blob = Functions.createOreBlob(entity.id + Entity.BLOB_ID_SUFFIX, pos,
+                entity.actionPeriod / Entity.BLOB_PERIOD_SCALE,
+                Entity.BLOB_ANIMATION_MIN + Functions.rand.nextInt(
+                        Entity.BLOB_ANIMATION_MAX
+                                - Entity.BLOB_ANIMATION_MIN),
+                Functions.getImageList(imageStore, Entity.BLOB_KEY));
 
         Functions.addEntity(world, blob);
         Functions.scheduleActions(blob, scheduler, world, imageStore);
@@ -140,7 +140,7 @@ public final class Action
 
             if (Functions.moveToOreBlob(entity, world, blobTarget.get(), scheduler)) {
                 Entity quake = Functions.createQuake(tgtPos,
-                        Functions.getImageList(imageStore, Functions.QUAKE_KEY));
+                        Functions.getImageList(imageStore, Entity.QUAKE_KEY));
 
                 Functions.addEntity(world, quake);
                 nextPeriod += entity.actionPeriod;
@@ -164,10 +164,10 @@ public final class Action
         Optional<Point> openPt =Functions.findOpenAround(world, entity.position);
 
         if (openPt.isPresent()) {
-            Entity ore = Functions.createOre(Functions.ORE_ID_PREFIX + entity.id, openPt.get(),
-                    Functions.ORE_CORRUPT_MIN + Functions.rand.nextInt(
-                            Functions.ORE_CORRUPT_MAX - Functions.ORE_CORRUPT_MIN),
-                    Functions.getImageList(imageStore, Functions.ORE_KEY));
+            Entity ore = Functions.createOre(Entity.ORE_ID_PREFIX + entity.id, openPt.get(),
+                    Entity.ORE_CORRUPT_MIN + Functions.rand.nextInt(
+                            Entity.ORE_CORRUPT_MAX - Entity.ORE_CORRUPT_MIN),
+                    Functions.getImageList(imageStore, Entity.ORE_KEY));
             Functions.addEntity(world, ore);
             Functions.scheduleActions(ore, scheduler, world, imageStore);
         }
@@ -178,7 +178,7 @@ public final class Action
     }
 
 
-    public  Optional<Entity> findNearest( EntityKind kind)
+    private  Optional<Entity> findNearest( EntityKind kind)
     {
         List<Entity> ofType = new LinkedList<>();
         for (Entity entity : world.entities) {
