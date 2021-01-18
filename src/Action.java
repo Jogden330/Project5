@@ -74,7 +74,7 @@ public final class Action
         entity.nextImage();
 
         if (repeatCount != 1) {
-            scheduler.scheduleEvent( entity, Functions.createAnimationAction(entity,  Math.max(repeatCount - 1, 0)),  entity.getAnimationPeriod());
+            scheduler.scheduleEvent( entity, createAnimationAction(entity,  Math.max(repeatCount - 1, 0)),  entity.getAnimationPeriod());
         }
     }
 
@@ -188,5 +188,10 @@ public final class Action
         }
 
         return Functions.nearestEntity(ofType, entity.position);
+    }
+
+    public static Action createAnimationAction(Entity entity, int repeatCount) {
+        return new Action(ActionKind.ANIMATION, entity, null, null,
+                repeatCount);
     }
 }

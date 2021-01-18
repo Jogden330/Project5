@@ -52,7 +52,7 @@ public final class EventScheduler
                         Functions.createActivityAction(entity, world, imageStore),
                         entity.actionPeriod);
                scheduleEvent( entity,
-                        Functions.createAnimationAction(entity, 0),
+                        Action.createAnimationAction(entity, 0),
                         entity.getAnimationPeriod());
                 break;
 
@@ -61,7 +61,7 @@ public final class EventScheduler
                         Functions.createActivityAction(entity, world, imageStore),
                         entity.actionPeriod);
                 scheduleEvent( entity,
-                        Functions.createAnimationAction(entity, 0),
+                        Action.createAnimationAction(entity, 0),
                         entity.getAnimationPeriod());
                 break;
 
@@ -76,7 +76,7 @@ public final class EventScheduler
                         Functions.createActivityAction(entity, world, imageStore),
                         entity.actionPeriod);
                 scheduleEvent( entity,
-                        Functions.createAnimationAction(entity, 0),
+                        Action.createAnimationAction(entity, 0),
                         entity.getAnimationPeriod());
                 break;
 
@@ -85,7 +85,7 @@ public final class EventScheduler
                         Functions.createActivityAction(entity, world, imageStore),
                         entity.actionPeriod);
                 scheduleEvent(entity,
-                        Functions.createAnimationAction(entity,
+                        Action.createAnimationAction(entity,
                         Entity.QUAKE_ANIMATION_REPEAT_COUNT),
                         entity.getAnimationPeriod());
                 break;
