@@ -115,7 +115,7 @@ public final class Action
     {
         Point pos = entity.position;
 
-        Functions.removeEntity(world, entity);
+        entity.removeEntity(world);
         scheduler.unscheduleAllEvents( entity);
 
         Entity blob = Functions.createOreBlob(entity.id + Entity.BLOB_ID_SUFFIX, pos,
@@ -125,7 +125,7 @@ public final class Action
                                 - Entity.BLOB_ANIMATION_MIN),
                 Functions.getImageList(imageStore, Entity.BLOB_KEY));
 
-        Functions.addEntity(world, blob);
+        blob.addEntity(world);
         scheduler.scheduleActions(blob,  world, imageStore);
     }
 
@@ -142,7 +142,7 @@ public final class Action
                 Entity quake = Functions.createQuake(tgtPos,
                         Functions.getImageList(imageStore, Entity.QUAKE_KEY));
 
-                Functions.addEntity(world, quake);
+                quake.addEntity(world);
                 nextPeriod += entity.actionPeriod;
                 scheduler.scheduleActions(quake, world, imageStore);
             }
@@ -156,7 +156,7 @@ public final class Action
     private void executeQuakeActivity(EventScheduler scheduler)
     {
         scheduler.unscheduleAllEvents(entity);
-        Functions.removeEntity(world, entity);
+        entity.removeEntity(world);
     }
 
     private void executeVeinActivity(EventScheduler scheduler)
@@ -168,7 +168,7 @@ public final class Action
                     Entity.ORE_CORRUPT_MIN + Functions.rand.nextInt(
                             Entity.ORE_CORRUPT_MAX - Entity.ORE_CORRUPT_MIN),
                     Functions.getImageList(imageStore, Entity.ORE_KEY));
-            Functions.addEntity(world, ore);
+            ore.addEntity(world);
             scheduler.scheduleActions(ore,  world, imageStore);
         }
 

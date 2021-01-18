@@ -42,10 +42,10 @@ public final class Functions
                                            entity.animationPeriod,
                                            entity.images);
 
-            removeEntity(world, entity);
+            entity.removeEntity(world);
             scheduler.unscheduleAllEvents(entity);
 
-            addEntity(world, miner);
+            miner.addEntity(world);
             scheduler.scheduleActions(miner,  world, imageStore);
 
             return true;
@@ -65,10 +65,10 @@ public final class Functions
                                           entity.animationPeriod,
                                           entity.images);
 
-        removeEntity(world, entity);
+        entity.removeEntity(world);
         scheduler.unscheduleAllEvents(entity);
 
-        addEntity(world, miner);
+        miner.addEntity(world);
         scheduler.scheduleActions(miner, world, imageStore);
     }
 
@@ -80,7 +80,7 @@ public final class Functions
     {
         if (adjacent(miner.position, target.position)) {
             miner.resourceCount += 1;
-            removeEntity(world, target);
+            target.removeEntity(world);
             scheduler.unscheduleAllEvents( target);
 
             return true;
@@ -94,7 +94,7 @@ public final class Functions
                     scheduler.unscheduleAllEvents( occupant.get());
                 }
 
-                moveEntity(world, miner, nextPos);
+                miner.moveEntity(world,  nextPos);
             }
             return false;
         }
@@ -118,7 +118,7 @@ public final class Functions
                     scheduler.unscheduleAllEvents(occupant.get());
                 }
 
-                moveEntity(world, miner, nextPos);
+                miner.moveEntity(world, nextPos);
             }
             return false;
         }
@@ -131,7 +131,7 @@ public final class Functions
             EventScheduler scheduler)
     {
         if (adjacent(blob.position, target.position)) {
-            removeEntity(world, target);
+            target.removeEntity(world);
             scheduler.unscheduleAllEvents(target);
             return true;
         }
@@ -144,7 +144,7 @@ public final class Functions
                     scheduler.unscheduleAllEvents( occupant.get());
                 }
 
-                moveEntity(world, blob, nextPos);
+                blob.moveEntity(world,  nextPos);
             }
             return false;
         }
@@ -434,7 +434,7 @@ public final class Functions
             throw new IllegalArgumentException("position occupied");
         }
 
-        addEntity(world, entity);
+        entity.addEntity(world);
     }
 
 
@@ -478,38 +478,7 @@ public final class Functions
        Assumes that there is no entity currently occupying the
        intended destination cell.
     */
-    public static void addEntity(WorldModel world, Entity entity) {
-        if (world.withinBounds(entity.position)) {
-            world.setOccupancyCell( entity.position, entity);
-            world.entities.add(entity);
-        }
-    }
 
-    public static void moveEntity(WorldModel world, Entity entity, Point pos) {
-        Point oldPos = entity.position;
-        if (world.withinBounds( pos) && !pos.equals(oldPos)) {
-            world.setOccupancyCell(oldPos, null);
-            removeEntityAt(world, pos);
-            world.setOccupancyCell(pos, entity);
-            entity.position = pos;
-        }
-    }
-
-    public static void removeEntity(WorldModel world, Entity entity) {
-        removeEntityAt(world, entity.position);
-    }
-
-    public static void removeEntityAt(WorldModel world, Point pos) {
-        if (world.withinBounds( pos) && world.getOccupancyCell( pos) != null) {
-            Entity entity = world.getOccupancyCell( pos);
-
-            /* This moves the entity just outside of the grid for
-             * debugging purposes. */
-            entity.position = new Point(-1, -1);
-            world.entities.remove(entity);
-            world.setOccupancyCell( pos, null);
-        }
-    }
 
     public static Action createAnimationAction(Entity entity, int repeatCount) {
         return new Action(ActionKind.ANIMATION, entity, null, null,

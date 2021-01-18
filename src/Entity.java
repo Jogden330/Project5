@@ -114,6 +114,39 @@ public final class Entity
     public void nextImage() {
         imageIndex = (imageIndex + 1) % images.size();
     }
+    public void addEntity(WorldModel world) {
+        if (world.withinBounds(position)) {
+            world.setOccupancyCell( position, this);
+            world.entities.add(this);
+        }
+    }
+
+    public  void moveEntity(WorldModel world,  Point pos) {
+        Point oldPos = position;
+        if (world.withinBounds( pos) && !pos.equals(oldPos)) {
+            world.setOccupancyCell(oldPos, null);
+            removeEntityAt(world, pos);
+            world.setOccupancyCell(pos,this);
+            position = pos;
+        }
+    }
+
+    public  void removeEntity(WorldModel world ) {
+        removeEntityAt(world, position);
+    }
+
+    private void removeEntityAt(WorldModel world, Point pos) {
+        if (world.withinBounds( pos) && world.getOccupancyCell( pos) != null) {
+            Entity entity = world.getOccupancyCell( pos);
+
+            /* This moves the entity just outside of the grid for
+             * debugging purposes. */
+            entity.position = new Point(-1, -1);
+            world.entities.remove(entity);
+            world.setOccupancyCell( pos, null);
+        }
+    }
+
 
 
 }
