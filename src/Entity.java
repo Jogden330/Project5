@@ -34,4 +34,6 @@ public final class Entity
         this.actionPeriod = actionPeriod;
         this.animationPeriod = animationPeriod;
     }
+
+
 }

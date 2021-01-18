@@ -177,6 +177,7 @@
 -tileHeight: int
 -viewport: Viewport</y:AttributeLabel>
             <y:MethodLabel xml:space="preserve">+shiftView():
+-clamp():
 +drawViewport():
 -drawEntities():
 -drawBackground():
@@ -347,7 +348,6 @@
 +moveEntity()                                &lt;&lt;static&gt;&gt;
 +removeEntity()                              &lt;&lt;static&gt;&gt;
 +removeEntityAt()                            &lt;&lt;static&gt;&gt;
-+clamp()                                      &lt;&lt;static&gt;&gt;
 +createAnimationAction(): Action             &lt;&lt;static&gt;&gt;
 +createActivityAction(): Action              &lt;&lt;static&gt;&gt;
 +createBlacksmith(): Entity                  &lt;&lt;static&gt;&gt;

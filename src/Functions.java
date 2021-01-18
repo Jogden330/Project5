@@ -112,72 +112,6 @@ public final class Functions
         entity.imageIndex = (entity.imageIndex + 1) % entity.images.size();
     }
 
-    public static void executeAction(Action action, EventScheduler scheduler) {
-        switch (action.kind) {
-            case ACTIVITY:
-                executeActivityAction(action, scheduler);
-                break;
-
-            case ANIMATION:
-                executeAnimationAction(action, scheduler);
-                break;
-        }
-    }
-
-    public static void executeAnimationAction(
-            Action action, EventScheduler scheduler)
-    {
-        nextImage(action.entity);
-
-        if (action.repeatCount != 1) {
-            scheduleEvent(scheduler, action.entity,
-                          createAnimationAction(action.entity,
-                                                Math.max(action.repeatCount - 1,
-                                                         0)),
-                          getAnimationPeriod(action.entity));
-        }
-    }
-
-    public static void executeActivityAction(
-            Action action, EventScheduler scheduler)
-    {
-        switch (action.entity.kind) {
-            case MINER_FULL:
-                executeMinerFullActivity(action.entity, action.world,
-                                         action.imageStore, scheduler);
-                break;
-
-            case MINER_NOT_FULL:
-                executeMinerNotFullActivity(action.entity, action.world,
-                                            action.imageStore, scheduler);
-                break;
-
-            case ORE:
-                executeOreActivity(action.entity, action.world,
-                                   action.imageStore, scheduler);
-                break;
-
-            case ORE_BLOB:
-                executeOreBlobActivity(action.entity, action.world,
-                                       action.imageStore, scheduler);
-                break;
-
-            case QUAKE:
-                executeQuakeActivity(action.entity, action.world,
-                                     action.imageStore, scheduler);
-                break;
-
-            case VEIN:
-                executeVeinActivity(action.entity, action.world,
-                                    action.imageStore, scheduler);
-                break;
-
-            default:
-                throw new UnsupportedOperationException(String.format(
-                        "executeActivityAction not supported for %s",
-                        action.entity.kind));
-        }
-    }
 
     public static void executeMinerFullActivity(
             Entity entity,
@@ -590,7 +524,7 @@ public final class Functions
 
             removePendingEvent(scheduler, next);
 
-            executeAction(next.action, scheduler);
+            next.action.executeAction(scheduler);
         }
     }
 
