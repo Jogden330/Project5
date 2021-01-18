@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 
 public final class Action
@@ -79,7 +81,7 @@ public final class Action
     private void executeMinerFullActivity(EventScheduler scheduler)
     {
         Optional<Entity> fullTarget =
-                Functions.findNearest(world, entity.position, EntityKind.BLACKSMITH);
+                findNearest(  EntityKind.BLACKSMITH);
 
         if (fullTarget.isPresent() && Functions.moveToFull(entity, world,
                 fullTarget.get(), scheduler))
@@ -96,7 +98,7 @@ public final class Action
     private   void executeMinerNotFullActivity(EventScheduler scheduler)
     {
         Optional<Entity> notFullTarget =
-                Functions.findNearest(world, entity.position, EntityKind.ORE);
+                findNearest( EntityKind.ORE);
 
         if (!notFullTarget.isPresent() || !Functions.moveToNotFull(entity, world,
                 notFullTarget.get(),
@@ -130,7 +132,7 @@ public final class Action
     private void executeOreBlobActivity(EventScheduler scheduler)
     {
         Optional<Entity> blobTarget =
-                Functions.findNearest(world, entity.position, EntityKind.VEIN);
+                findNearest( EntityKind.VEIN);
         long nextPeriod = entity.actionPeriod;
 
         if (blobTarget.isPresent()) {
@@ -173,5 +175,18 @@ public final class Action
         Functions.scheduleEvent(scheduler, entity,
                 Functions.createActivityAction(entity, world, imageStore),
                 entity.actionPeriod);
+    }
+
+
+    public  Optional<Entity> findNearest( EntityKind kind)
+    {
+        List<Entity> ofType = new LinkedList<>();
+        for (Entity entity : world.entities) {
+            if (entity.kind == kind) {
+                ofType.add(entity);
+            }
+        }
+
+        return Functions.nearestEntity(ofType, entity.position);
     }
 }

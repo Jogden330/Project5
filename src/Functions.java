@@ -654,18 +654,6 @@ public final class Functions
         return deltaX * deltaX + deltaY * deltaY;
     }
 
-    public static Optional<Entity> findNearest(
-            WorldModel world, Point pos, EntityKind kind)
-    {
-        List<Entity> ofType = new LinkedList<>();
-        for (Entity entity : world.entities) {
-            if (entity.kind == kind) {
-                ofType.add(entity);
-            }
-        }
-
-        return nearestEntity(ofType, pos);
-    }
 
     /*
        Assumes that there is no entity currently occupying the
