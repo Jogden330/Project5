@@ -74,7 +74,7 @@ public final class Action
         entity.nextImage();
 
         if (repeatCount != 1) {
-            Functions.scheduleEvent(scheduler, entity, Functions.createAnimationAction(entity,  Math.max(repeatCount - 1, 0)),  entity.getAnimationPeriod());
+            scheduler.scheduleEvent( entity, Functions.createAnimationAction(entity,  Math.max(repeatCount - 1, 0)),  entity.getAnimationPeriod());
         }
     }
 
@@ -89,7 +89,7 @@ public final class Action
             Functions.transformFull(entity, world, scheduler, imageStore);
         }
         else {
-            Functions.scheduleEvent(scheduler, entity,
+            scheduler.scheduleEvent( entity,
                     Functions.createActivityAction(entity, world, imageStore),
                     entity.actionPeriod);
         }
@@ -105,7 +105,7 @@ public final class Action
                 scheduler)
                 || !Functions.transformNotFull(entity, world, scheduler, imageStore))
         {
-            Functions.scheduleEvent(scheduler, entity,
+            scheduler.scheduleEvent(entity,
                     Functions.createActivityAction(entity, world, imageStore),
                     entity.actionPeriod);
         }
@@ -116,7 +116,7 @@ public final class Action
         Point pos = entity.position;
 
         Functions.removeEntity(world, entity);
-        Functions.unscheduleAllEvents(scheduler, entity);
+        scheduler.unscheduleAllEvents( entity);
 
         Entity blob = Functions.createOreBlob(entity.id + Entity.BLOB_ID_SUFFIX, pos,
                 entity.actionPeriod / Entity.BLOB_PERIOD_SCALE,
@@ -126,7 +126,7 @@ public final class Action
                 Functions.getImageList(imageStore, Entity.BLOB_KEY));
 
         Functions.addEntity(world, blob);
-        Functions.scheduleActions(blob, scheduler, world, imageStore);
+        scheduler.scheduleActions(blob,  world, imageStore);
     }
 
     private void executeOreBlobActivity(EventScheduler scheduler)
@@ -144,18 +144,18 @@ public final class Action
 
                 Functions.addEntity(world, quake);
                 nextPeriod += entity.actionPeriod;
-                Functions.scheduleActions(quake, scheduler, world, imageStore);
+                scheduler.scheduleActions(quake, world, imageStore);
             }
         }
 
-        Functions.scheduleEvent(scheduler, entity,
+        scheduler.scheduleEvent( entity,
                 Functions.createActivityAction(entity, world, imageStore),
                 nextPeriod);
     }
 
     private void executeQuakeActivity(EventScheduler scheduler)
     {
-        Functions.unscheduleAllEvents(scheduler, entity);
+        scheduler.unscheduleAllEvents(entity);
         Functions.removeEntity(world, entity);
     }
 
@@ -169,10 +169,10 @@ public final class Action
                             Entity.ORE_CORRUPT_MAX - Entity.ORE_CORRUPT_MIN),
                     Functions.getImageList(imageStore, Entity.ORE_KEY));
             Functions.addEntity(world, ore);
-            Functions.scheduleActions(ore, scheduler, world, imageStore);
+            scheduler.scheduleActions(ore,  world, imageStore);
         }
 
-        Functions.scheduleEvent(scheduler, entity,
+        scheduler.scheduleEvent( entity,
                 Functions.createActivityAction(entity, world, imageStore),
                 entity.actionPeriod);
     }
