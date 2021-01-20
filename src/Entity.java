@@ -104,8 +104,7 @@ public final class Entity
                 return animationPeriod;
             default:
                 throw new UnsupportedOperationException(
-                        String.format("getAnimationPeriod not supported for %s",
-                                kind));
+                        String.format("getAnimationPeriod not supported for %s", kind));
         }
     }
 
@@ -136,8 +135,8 @@ public final class Entity
     }
 
     private void removeEntityAt(WorldModel world, Point pos) {
-        if (world.withinBounds( pos) && world.getOccupancyCell( pos) != null) {
-            Entity entity = world.getOccupancyCell( pos);
+        if (world.withinBounds(pos) && world.getOccupancyCell(pos) != null) {
+            Entity entity = world.getOccupancyCell(pos);
 
             /* This moves the entity just outside of the grid for
              * debugging purposes. */

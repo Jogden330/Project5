@@ -558,6 +558,10 @@ public final class Functions
         return new Entity(EntityKind.VEIN, id, position, images, 0, 0,
                           actionPeriod, 0);
     }
+    public static Action createAnimationAction(Entity entity, int repeatCount) {
+        return new Action(ActionKind.ANIMATION, entity, null, null,
+                repeatCount);
+    }
 
 
 }
