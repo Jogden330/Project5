@@ -167,7 +167,9 @@
 -getBackgroundCell(): Background   +getBackgroundImage():Optional&lt;PImage&gt;
 +getOccupant: Optional&lt;Entity&gt;   
 +getOccupancyCell(): Entity             
-+setOccupancyCell()                                 </y:MethodLabel>
++setOccupancyCell()
++isOccupied(): boolean             
++load():                                 </y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
       </data>
@@ -249,7 +251,7 @@
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="1897.1825069713047" width="365.0" x="290.1169372294555" y="744.7862724920521"/>
+          <y:Geometry height="795.702616929229" width="365.0" x="290.1169372294555" y="744.7862724920521"/>
           <y:Fill color="#C0C0C0" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="2.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="66.10546875" x="149.447265625" xml:space="preserve" y="3.0">Functions<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="-0.03703090122767855" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
@@ -272,7 +274,6 @@
 +processImageLine()                          &lt;&lt;static&gt;&gt;
 +getImages(): List&lt;PImage&gt;                   &lt;&lt;static&gt;&gt;
 +setAlpha()                                  &lt;&lt;static&gt;&gt;
-+load()                                      &lt;&lt;static&gt;&gt;
 +processLine(): boolean                      &lt;&lt;static&gt;&gt;
 +parseBackground(): boolean                  &lt;&lt;static&gt;&gt;
 +parseMiner(): boolean                       &lt;&lt;static&gt;&gt;
@@ -281,7 +282,6 @@
 +parseSmith(): boolean                       &lt;&lt;static&gt;&gt;
 +parseVein(): boolean                        &lt;&lt;static&gt;&gt;
 +tryAddEntity()                              &lt;&lt;static&gt;&gt;
-+isOccupied(): boolean                       &lt;&lt;static&gt;&gt;
 +nearestEntity(): Optional&lt;Entity&gt;           &lt;&lt;static&gt;&gt;
 +distanceSquared(): int                      &lt;&lt;static&gt;&gt;
 +createActivityAction(): Action              &lt;&lt;static&gt;&gt;

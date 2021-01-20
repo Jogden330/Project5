@@ -42,7 +42,7 @@ public final class WorldModel
              Point pos)
     {
         if (withinBounds( pos)) {
-            return Optional.of(Functions.getCurrentImage(getBackgroundCell(pos)));
+            return Optional.of(getBackgroundCell(pos).getCurrentImage());
         }
         else {
             return Optional.empty();

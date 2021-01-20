@@ -146,6 +146,12 @@ public final class Entity
         }
     }
 
+    public  PImage getCurrentImage() {
+
+            return images.get(imageIndex);
+
+
+    }
 
 
 }

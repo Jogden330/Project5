@@ -14,20 +14,6 @@ public final class Functions
 
 
 
-    public static PImage getCurrentImage(Object entity) {
-        if (entity instanceof Background) {
-            return ((Background)entity).images.get(
-                    ((Background)entity).imageIndex);
-        }
-        else if (entity instanceof Entity) {
-            return ((Entity)entity).images.get(((Entity)entity).imageIndex);
-        }
-        else {
-            throw new UnsupportedOperationException(
-                    String.format("getCurrentImage not supported for %s",
-                                  entity));
-        }
-    }
 
 
     public static boolean transformNotFull(
@@ -404,9 +390,6 @@ public final class Functions
 
         return properties.length == Entity.VEIN_NUM_PROPERTIES;
     }
-
-
-
 
 
     public static Optional<Entity> nearestEntity(

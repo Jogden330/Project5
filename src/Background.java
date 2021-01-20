@@ -19,4 +19,9 @@ public final class Background
         this.images = images;
     }
 
+    public PImage getCurrentImage() {
+
+            return images.get(imageIndex);
+
+    }
 }
