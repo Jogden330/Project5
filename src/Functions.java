@@ -156,11 +156,11 @@ public final class Functions
         int horiz = Integer.signum(destPos.x - entity.position.x);
         Point newPos = new Point(entity.position.x + horiz, entity.position.y);
 
-        if (horiz == 0 || isOccupied(world, newPos)) {
+        if (horiz == 0 || world.isOccupied(newPos)) {
             int vert = Integer.signum(destPos.y - entity.position.y);
             newPos = new Point(entity.position.x, entity.position.y + vert);
 
-            if (vert == 0 || isOccupied(world, newPos)) {
+            if (vert == 0 || world.isOccupied(newPos)) {
                 newPos = entity.position;
             }
         }
@@ -202,7 +202,7 @@ public final class Functions
         for (int dy = -Entity.ORE_REACH; dy <= Entity.ORE_REACH; dy++) {
             for (int dx = -Entity.ORE_REACH; dx <= Entity.ORE_REACH; dx++) {
                 Point newPt = new Point(pos.x + dx, pos.y + dy);
-                if (world.withinBounds( newPt) && !isOccupied(world, newPt)) {
+                if (world.withinBounds( newPt) && !world.isOccupied(newPt)) {
                     return Optional.of(newPt);
                 }
             }
@@ -360,7 +360,7 @@ public final class Functions
                             properties[Entity.MINER_ANIMATION_PERIOD]),
                                                getImageList(imageStore,
                                                        Entity.MINER_KEY));
-            tryAddEntity(world, entity);
+            world.tryAddEntity(entity);
         }
 
         return properties.length == Entity.MINER_NUM_PROPERTIES;
@@ -375,7 +375,7 @@ public final class Functions
             Entity entity = createObstacle(properties[Entity.OBSTACLE_ID], pt,
                                            getImageList(imageStore,
                                                    Entity.OBSTACLE_KEY));
-            tryAddEntity(world, entity);
+            world.tryAddEntity(entity);
         }
 
         return properties.length == Entity.OBSTACLE_NUM_PROPERTIES;
@@ -390,7 +390,7 @@ public final class Functions
             Entity entity = createOre(properties[Entity.ORE_ID], pt, Integer.parseInt(
                     properties[Entity.ORE_ACTION_PERIOD]),
                                       getImageList(imageStore, Entity.ORE_KEY));
-            tryAddEntity(world, entity);
+            world.tryAddEntity(entity);
         }
 
         return properties.length == Entity.ORE_NUM_PROPERTIES;
@@ -405,7 +405,7 @@ public final class Functions
             Entity entity = createBlacksmith(properties[Entity.SMITH_ID], pt,
                                              getImageList(imageStore,
                                                      Entity.SMITH_KEY));
-            tryAddEntity(world, entity);
+            world.tryAddEntity(entity);
         }
 
         return properties.length == Entity.SMITH_NUM_PROPERTIES;
@@ -421,27 +421,15 @@ public final class Functions
                                        Integer.parseInt(
                                                properties[Entity.VEIN_ACTION_PERIOD]),
                                        getImageList(imageStore, Entity.VEIN_KEY));
-            tryAddEntity(world, entity);
+            world.tryAddEntity(entity);
         }
 
         return properties.length == Entity.VEIN_NUM_PROPERTIES;
     }
 
-    public static void tryAddEntity(WorldModel world, Entity entity) {
-        if (isOccupied(world, entity.position)) {
-            // arguably the wrong type of exception, but we are not
-            // defining our own exceptions yet
-            throw new IllegalArgumentException("position occupied");
-        }
-
-        entity.addEntity(world);
-    }
 
 
 
-    public static boolean isOccupied(WorldModel world, Point pos) {
-        return world.withinBounds( pos) && world.getOccupancyCell( pos) != null;
-    }
 
     public static Optional<Entity> nearestEntity(
             List<Entity> entities, Point pos)

@@ -57,7 +57,7 @@ public final class WorldModel
     }
 
     public  Optional<Entity> getOccupant( Point pos) {
-        if (Functions.isOccupied(this, pos)) {
+        if (isOccupied(pos)) {
             return Optional.of(getOccupancyCell( pos));
         }
         else {
@@ -71,6 +71,19 @@ public final class WorldModel
     public void setOccupancyCell(Point pos, Entity entity)
     {
         occupancy[pos.y][pos.x] = entity;
+    }
+
+    public void tryAddEntity(Entity entity) {
+        if (isOccupied(entity.position)) {
+            // arguably the wrong type of exception, but we are not
+            // defining our own exceptions yet
+            throw new IllegalArgumentException("position occupied");
+        }
+
+        entity.addEntity(this);
+    }
+    public boolean isOccupied(Point pos) {
+        return withinBounds(pos) && getOccupancyCell(pos) != null;
     }
 
 }
