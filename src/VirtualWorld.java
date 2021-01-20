@@ -133,7 +133,7 @@ public final class VirtualWorld extends PApplet
     {
         try {
             Scanner in = new Scanner(new File(filename));
-            Functions.load(in, world, imageStore);
+            world.load(in, imageStore);
         }
         catch (FileNotFoundException e) {
             System.err.println(e.getMessage());

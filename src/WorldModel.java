@@ -1,9 +1,6 @@
 import processing.core.PImage;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 public final class WorldModel
 {
@@ -84,6 +81,30 @@ public final class WorldModel
     }
     public boolean isOccupied(Point pos) {
         return withinBounds(pos) && getOccupancyCell(pos) != null;
+    }
+
+    public void load(
+            Scanner in, ImageStore imageStore)
+    {
+        int lineNumber = 0;
+        while (in.hasNextLine()) {
+            try {
+                if (!Functions.processLine(in.nextLine(), this, imageStore)) {
+                    System.err.println(String.format("invalid entry on line %d",
+                            lineNumber));
+                }
+            }
+            catch (NumberFormatException e) {
+                System.err.println(
+                        String.format("invalid entry on line %d", lineNumber));
+            }
+            catch (IllegalArgumentException e) {
+                System.err.println(
+                        String.format("issue on line %d: %s", lineNumber,
+                                e.getMessage()));
+            }
+            lineNumber++;
+        }
     }
 
 }

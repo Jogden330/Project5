@@ -284,29 +284,7 @@ public final class Functions
 
 
 
-    public static void load(
-            Scanner in, WorldModel world, ImageStore imageStore)
-    {
-        int lineNumber = 0;
-        while (in.hasNextLine()) {
-            try {
-                if (!processLine(in.nextLine(), world, imageStore)) {
-                    System.err.println(String.format("invalid entry on line %d",
-                                                     lineNumber));
-                }
-            }
-            catch (NumberFormatException e) {
-                System.err.println(
-                        String.format("invalid entry on line %d", lineNumber));
-            }
-            catch (IllegalArgumentException e) {
-                System.err.println(
-                        String.format("issue on line %d: %s", lineNumber,
-                                      e.getMessage()));
-            }
-            lineNumber++;
-        }
-    }
+
 
     public static boolean processLine(
             String line, WorldModel world, ImageStore imageStore)
