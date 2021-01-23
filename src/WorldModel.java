@@ -223,4 +223,18 @@ public final class WorldModel
         return properties.length == Entity.VEIN_NUM_PROPERTIES;
     }
 
+
+    public  Optional<Point> findOpenAround( Point pos) {
+        for (int dy = -Entity.ORE_REACH; dy <= Entity.ORE_REACH; dy++) {
+            for (int dx = -Entity.ORE_REACH; dx <= Entity.ORE_REACH; dx++) {
+                Point newPt = new Point(pos.x + dx, pos.y + dy);
+                if (withinBounds( newPt) && !isOccupied(newPt)) {
+                    return Optional.of(newPt);
+                }
+            }
+        }
+
+        return Optional.empty();
+    }
+
 }

@@ -19,18 +19,6 @@ public final class Functions
                 && Math.abs(p1.x - p2.x) == 1);
     }
 
-    public static Optional<Point> findOpenAround(WorldModel world, Point pos) {
-        for (int dy = -Entity.ORE_REACH; dy <= Entity.ORE_REACH; dy++) {
-            for (int dx = -Entity.ORE_REACH; dx <= Entity.ORE_REACH; dx++) {
-                Point newPt = new Point(pos.x + dx, pos.y + dy);
-                if (world.withinBounds( newPt) && !world.isOccupied(newPt)) {
-                    return Optional.of(newPt);
-                }
-            }
-        }
-
-        return Optional.empty();
-    }
 
     public static List<PImage> getImageList(ImageStore imageStore, String key) {
         return imageStore.images.getOrDefault(key, imageStore.defaultImages);
@@ -101,10 +89,6 @@ public final class Functions
         }
         img.updatePixels();
     }
-
-
-
-
 
 
     public static Optional<Entity> nearestEntity(

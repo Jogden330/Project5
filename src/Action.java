@@ -161,7 +161,7 @@ public final class Action
 
     private void executeVeinActivity(EventScheduler scheduler)
     {
-        Optional<Point> openPt =Functions.findOpenAround(world, entity.position);
+        Optional<Point> openPt = world.findOpenAround(entity.position);
 
         if (openPt.isPresent()) {
             Entity ore = Functions.createOre(Entity.ORE_ID_PREFIX + entity.id, openPt.get(),
