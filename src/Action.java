@@ -43,11 +43,11 @@ public final class Action
                 break;
 
             case MINER_NOT_FULL:
-                executeMinerNotFullActivity( scheduler);
+                executeMinerNotFullActivity(scheduler);
                 break;
 
             case ORE:
-                executeOreActivity( scheduler);
+                executeOreActivity(scheduler);
                 break;
 
             case ORE_BLOB:
@@ -83,7 +83,7 @@ public final class Action
         Optional<Entity> fullTarget =
                 findNearest(  EntityKind.BLACKSMITH);
 
-        if (fullTarget.isPresent() && Functions.moveToFull(entity, world,
+        if (fullTarget.isPresent() && entity.moveToFull(world,
                 fullTarget.get(), scheduler))
         {
             entity.transformFull( world, scheduler, imageStore);
@@ -95,12 +95,12 @@ public final class Action
         }
     }
 
-    private   void executeMinerNotFullActivity(EventScheduler scheduler)
+    private  void executeMinerNotFullActivity(EventScheduler scheduler)
     {
         Optional<Entity> notFullTarget =
                 findNearest( EntityKind.ORE);
 
-        if (!notFullTarget.isPresent() || !Functions.moveToNotFull(entity, world,
+        if (!notFullTarget.isPresent() || !entity.moveToNotFull( world,
                 notFullTarget.get(),
                 scheduler)
                 || !entity.transformNotFull( world, scheduler, imageStore))
@@ -138,7 +138,7 @@ public final class Action
         if (blobTarget.isPresent()) {
             Point tgtPos = blobTarget.get().position;
 
-            if (Functions.moveToOreBlob(entity, world, blobTarget.get(), scheduler)) {
+            if (entity.moveToOreBlob( world, blobTarget.get(), scheduler)) {
                 Entity quake = Functions.createQuake(tgtPos,
                         Functions.getImageList(imageStore, Entity.QUAKE_KEY));
 
