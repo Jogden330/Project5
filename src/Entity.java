@@ -153,5 +153,38 @@ public final class Entity
 
     }
 
+    public  void transformFull( WorldModel world, EventScheduler scheduler, ImageStore imageStore)
+    {
+        Entity miner = Functions.createMinerNotFull(id, resourceLimit, position, actionPeriod, animationPeriod, images);
+
+        removeEntity(world);
+        scheduler.unscheduleAllEvents(this);
+
+        miner.addEntity(world);
+        scheduler.scheduleActions(miner, world, imageStore);
+    }
+
+    public boolean transformNotFull(
+            WorldModel world,
+            EventScheduler scheduler,
+            ImageStore imageStore)
+    {
+        if (resourceCount >= resourceLimit) {
+            Entity miner = Functions.createMinerFull(id, resourceLimit,
+                    position, actionPeriod,
+                    animationPeriod,
+                    images);
+
+            removeEntity(world);
+            scheduler.unscheduleAllEvents(this);
+
+            miner.addEntity(world);
+            scheduler.scheduleActions(miner,  world, imageStore);
+
+            return true;
+        }
+
+        return false;
+    }
 
 }

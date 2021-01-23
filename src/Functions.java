@@ -16,47 +16,10 @@ public final class Functions
 
 
 
-    public static boolean transformNotFull(
-            Entity entity,
-            WorldModel world,
-            EventScheduler scheduler,
-            ImageStore imageStore)
-    {
-        if (entity.resourceCount >= entity.resourceLimit) {
-            Entity miner = createMinerFull(entity.id, entity.resourceLimit,
-                                           entity.position, entity.actionPeriod,
-                                           entity.animationPeriod,
-                                           entity.images);
 
-            entity.removeEntity(world);
-            scheduler.unscheduleAllEvents(entity);
 
-            miner.addEntity(world);
-            scheduler.scheduleActions(miner,  world, imageStore);
 
-            return true;
-        }
 
-        return false;
-    }
-
-    public static void transformFull(
-            Entity entity,
-            WorldModel world,
-            EventScheduler scheduler,
-            ImageStore imageStore)
-    {
-        Entity miner = createMinerNotFull(entity.id, entity.resourceLimit,
-                                          entity.position, entity.actionPeriod,
-                                          entity.animationPeriod,
-                                          entity.images);
-
-        entity.removeEntity(world);
-        scheduler.unscheduleAllEvents(entity);
-
-        miner.addEntity(world);
-        scheduler.scheduleActions(miner, world, imageStore);
-    }
 
     public static boolean moveToNotFull(
             Entity miner,

@@ -86,7 +86,7 @@ public final class Action
         if (fullTarget.isPresent() && Functions.moveToFull(entity, world,
                 fullTarget.get(), scheduler))
         {
-            Functions.transformFull(entity, world, scheduler, imageStore);
+            entity.transformFull( world, scheduler, imageStore);
         }
         else {
             scheduler.scheduleEvent( entity,
@@ -103,7 +103,7 @@ public final class Action
         if (!notFullTarget.isPresent() || !Functions.moveToNotFull(entity, world,
                 notFullTarget.get(),
                 scheduler)
-                || !Functions.transformNotFull(entity, world, scheduler, imageStore))
+                || !entity.transformNotFull( world, scheduler, imageStore))
         {
             scheduler.scheduleEvent(entity,
                     Functions.createActivityAction(entity, world, imageStore),
