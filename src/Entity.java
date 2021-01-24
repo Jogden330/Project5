@@ -178,7 +178,6 @@ public final class Entity
 
 
     public  boolean moveToOreBlob(
-
             WorldModel world,
             Entity target,
             EventScheduler scheduler)
@@ -257,7 +256,6 @@ public final class Entity
 
 
     public boolean moveToFull(
-
             WorldModel world,
             Entity target,
             EventScheduler scheduler)
@@ -281,17 +279,6 @@ public final class Entity
     }
 
 
-//    private  Optional<Entity> findNearest( WorldModel world)
-//    {
-//        List<Entity> ofType = new LinkedList<>();
-//        for (Entity entity : world.getEntities()) {
-//            if (entity.getKind() == kind) {
-//                ofType.add(entity);
-//            }
-//        }
-//
-//        return Functions.nearestEntity(ofType, getPosition());
-//    }
 
     public EntityKind getKind() {
         return kind;

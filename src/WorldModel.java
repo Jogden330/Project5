@@ -4,6 +4,13 @@ import java.util.*;
 
 public final class WorldModel
 {
+    private  final int BGND_NUM_PROPERTIES = 4;
+    private  final String BGND_KEY = "background";
+    private  final int BGND_ID = 1;
+    private  final int BGND_COL = 2;
+    private  final int BGND_ROW = 3;
+
+
     private int numRows;
     private int numCols;
     private Background background[][];
@@ -101,7 +108,7 @@ public final class WorldModel
         String[] properties = line.split("\\s");
         if (properties.length > 0) {
             switch (properties[Entity.PROPERTY_KEY]) {
-                case Background.BGND_KEY:
+                case BGND_KEY:
                     return parseBackground(properties, imageStore);
                 case Entity.MINER_KEY:
                     return parseMiner(properties, imageStore);
@@ -121,14 +128,14 @@ public final class WorldModel
 
     public boolean parseBackground(String[] properties,  ImageStore imageStore)
     {
-        if (properties.length == Background.BGND_NUM_PROPERTIES) {
-            Point pt = new Point(Integer.parseInt(properties[Background.BGND_COL]),
-                    Integer.parseInt(properties[Background.BGND_ROW]));
-            String id = properties[Background.BGND_ID];
+        if (properties.length == BGND_NUM_PROPERTIES) {
+            Point pt = new Point(Integer.parseInt(properties[BGND_COL]),
+                    Integer.parseInt(properties[BGND_ROW]));
+            String id = properties[BGND_ID];
             new Background(id, Functions.getImageList(imageStore, id)).setBackground( pt,this);
         }
 
-        return properties.length == Background.BGND_NUM_PROPERTIES;
+        return properties.length == BGND_NUM_PROPERTIES;
     }
 
     public boolean parseMiner(
