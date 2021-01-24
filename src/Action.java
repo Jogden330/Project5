@@ -91,7 +91,7 @@ public final class Action
         else {
             scheduler.scheduleEvent( entity,
                     Functions.createActivityAction(entity, world, imageStore),
-                    entity.actionPeriod);
+                    entity.getActionPeriod());
         }
     }
 
@@ -107,7 +107,7 @@ public final class Action
         {
             scheduler.scheduleEvent(entity,
                     Functions.createActivityAction(entity, world, imageStore),
-                    entity.actionPeriod);
+                    entity.getActionPeriod());
         }
     }
 
@@ -119,7 +119,7 @@ public final class Action
         scheduler.unscheduleAllEvents( entity);
 
         Entity blob = Functions.createOreBlob(entity.getId() + Entity.BLOB_ID_SUFFIX, pos,
-                entity.actionPeriod / Entity.BLOB_PERIOD_SCALE,
+                entity.getActionPeriod() / Entity.BLOB_PERIOD_SCALE,
                 Entity.BLOB_ANIMATION_MIN + Functions.rand.nextInt(
                         Entity.BLOB_ANIMATION_MAX
                                 - Entity.BLOB_ANIMATION_MIN),
@@ -133,7 +133,7 @@ public final class Action
     {
         Optional<Entity> blobTarget =
                 findNearest( EntityKind.VEIN);
-        long nextPeriod = entity.actionPeriod;
+        long nextPeriod = entity.getActionPeriod();
 
         if (blobTarget.isPresent()) {
             Point tgtPos = blobTarget.get().getPosition() ;
@@ -143,7 +143,7 @@ public final class Action
                         Functions.getImageList(imageStore, Entity.QUAKE_KEY));
 
                 world.addEntity(quake);
-                nextPeriod += entity.actionPeriod;
+                nextPeriod += entity.getActionPeriod();
                 scheduler.scheduleActions(quake, world, imageStore);
             }
         }
@@ -174,7 +174,7 @@ public final class Action
 
         scheduler.scheduleEvent( entity,
                 Functions.createActivityAction(entity, world, imageStore),
-                entity.actionPeriod);
+                entity.getActionPeriod());
     }
 
 

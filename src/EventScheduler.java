@@ -50,7 +50,7 @@ public final class EventScheduler
             case MINER_FULL:
                 scheduleEvent(entity,
                         Functions.createActivityAction(entity, world, imageStore),
-                        entity.actionPeriod);
+                        entity.getActionPeriod());
                scheduleEvent( entity,
                         Functions.createAnimationAction(entity, 0),
                         entity.getAnimationPeriod());
@@ -59,7 +59,7 @@ public final class EventScheduler
             case MINER_NOT_FULL:
                 scheduleEvent( entity,
                         Functions.createActivityAction(entity, world, imageStore),
-                        entity.actionPeriod);
+                        entity.getActionPeriod());
                 scheduleEvent( entity,
                         Functions.createAnimationAction(entity, 0),
                         entity.getAnimationPeriod());
@@ -68,13 +68,13 @@ public final class EventScheduler
             case ORE:
                 scheduleEvent( entity,
                         Functions.createActivityAction(entity, world, imageStore),
-                        entity.actionPeriod);
+                        entity.getActionPeriod());
                 break;
 
             case ORE_BLOB:
                 scheduleEvent(entity,
                         Functions.createActivityAction(entity, world, imageStore),
-                        entity.actionPeriod);
+                        entity.getActionPeriod());
                 scheduleEvent( entity,
                         Functions.createAnimationAction(entity, 0),
                         entity.getAnimationPeriod());
@@ -83,7 +83,7 @@ public final class EventScheduler
             case QUAKE:
                 scheduleEvent(entity,
                         Functions.createActivityAction(entity, world, imageStore),
-                        entity.actionPeriod);
+                        entity.getActionPeriod());
                 scheduleEvent(entity,
                         Functions.createAnimationAction(entity,
                         Entity.QUAKE_ANIMATION_REPEAT_COUNT),
@@ -93,7 +93,7 @@ public final class EventScheduler
             case VEIN:
                 scheduleEvent( entity,
                         Functions.createActivityAction(entity, world, imageStore),
-                        entity.actionPeriod);
+                        entity.getActionPeriod());
                 break;
 
             default:
@@ -119,6 +119,9 @@ public final class EventScheduler
             pending.remove(event);
         }
     }
+
+
+
 
 
 }

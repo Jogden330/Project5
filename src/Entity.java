@@ -73,7 +73,7 @@ public final class Entity
     private int imageIndex;
     private int resourceLimit;
     private int resourceCount;
-    int actionPeriod;
+    private int actionPeriod;
     private int animationPeriod;
 
     public Entity(
@@ -307,5 +307,9 @@ public final class Entity
 
     public void setPosition(Point position) {
         this.position = position;
+    }
+
+    public int getActionPeriod() {
+        return actionPeriod;
     }
 }
