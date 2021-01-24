@@ -183,7 +183,7 @@ public final class Entity
             Entity target,
             EventScheduler scheduler)
     {
-        if (Functions.adjacent(position, target.position)) {
+        if (position.adjacent(target.position)) {
             world.removeEntity(target);
             scheduler.unscheduleAllEvents(target);
             return true;
@@ -233,7 +233,7 @@ public final class Entity
             Entity target,
             EventScheduler scheduler)
     {
-        if (Functions.adjacent(position, target.position)) {
+        if (position.adjacent( target.position)) {
             resourceCount += 1;
             world.removeEntity(target);
             scheduler.unscheduleAllEvents( target);
@@ -262,7 +262,7 @@ public final class Entity
             Entity target,
             EventScheduler scheduler)
     {
-        if (Functions.adjacent(position, target.position)) {
+        if (position.adjacent(target.position)) {
             return true;
         }
         else {

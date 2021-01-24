@@ -55,4 +55,9 @@ public final class Point
         return deltaX * deltaX + deltaY * deltaY;
     }
 
+    public  boolean adjacent( Point target) {
+        return (this.x == target.x && Math.abs(this.y - target.y) == 1) || (this.y == target.y
+                && Math.abs(this.x - target.x) == 1);
+    }
+
 }
