@@ -177,11 +177,14 @@
 +parseOre(): boolean                       
 +parseSmith(): boolean                     
 +parseVein(): boolean   
-+findOpenAround(): Optional&lt;Point&gt; 
++findOpenAround(): Optional&lt;Point&gt; +moveEntity():
 +getNumRows(): int  
 +getNumCols(): int
 +getBackground():  Background[][]
 +getEntities(): Set&lt;Entity&gt;
++addEntity():
++removeEntity():
++removeEntityAt():
                                    </y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
@@ -410,10 +413,6 @@ ANIMATION</y:AttributeLabel>
 +actionPeriod: int
 -animationPeriod: int</y:AttributeLabel>
             <y:MethodLabel xml:space="preserve">+nextImage():
-+addEntity():
-+moveEntity():
-+removeEntity():
--removeEntityAt():
 +transformNotFull(): boolean         
 +transformFull()                       
 +moveToNotFull(): boolean            
@@ -424,6 +423,7 @@ ANIMATION</y:AttributeLabel>
 +getKind(): EntityKind
 +getId(): String
 +getPosition(): Point
++setPosition():
 </y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>

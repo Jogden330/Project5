@@ -116,12 +116,12 @@ public final class VirtualWorld extends PApplet
         return img;
     }
 
-    private static void loadImages(
+    private  void loadImages(
             String filename, ImageStore imageStore, PApplet screen)
     {
         try {
             Scanner in = new Scanner(new File(filename));
-            Functions.loadImages(in, imageStore, screen);
+            view.loadImages(in, imageStore);
         }
         catch (FileNotFoundException e) {
             System.err.println(e.getMessage());
