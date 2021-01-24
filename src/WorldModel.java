@@ -67,7 +67,7 @@ public final class WorldModel
             throw new IllegalArgumentException("position occupied");
         }
 
-        addEntity(entity);
+       addEntity(entity);
     }
     public boolean isOccupied(Point pos) {
         return withinBounds(pos) && getOccupancyCell(pos) != null;
@@ -240,6 +240,13 @@ public final class WorldModel
     public  void removeEntity(Entity entity) { removeEntityAt(entity.getPosition());
     }
 
+    public void addEntity(Entity entity) {
+        if (withinBounds(entity.getPosition())) {
+            setOccupancyCell( entity.getPosition(), entity);
+            entities.add(entity);
+        }
+    }
+
     public void removeEntityAt(  Point pos) {
         if (withinBounds(pos) && getOccupancyCell(pos) != null) {
             Entity entity = getOccupancyCell(pos);
@@ -249,13 +256,6 @@ public final class WorldModel
             entity.setPosition(new Point(-1, -1));
             getEntities().remove(entity);
            setOccupancyCell( pos, null);
-        }
-    }
-
-    public void addEntity(Entity entity) {
-        if (withinBounds(entity.getPosition())) {
-            setOccupancyCell( entity.getPosition(), entity);
-            getEntities().add(entity);
         }
     }
 

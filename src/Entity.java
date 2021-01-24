@@ -1,3 +1,4 @@
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -277,6 +278,34 @@ public final class Entity
             }
             return false;
         }
+    }
+
+    public void executeMinerFullActivity(EventScheduler scheduler, WorldModel world, ImageStore imageStore)
+    {
+        Optional<Entity> fullTarget =
+                findNearest(world);
+
+        if (fullTarget.isPresent() && moveToFull(world,
+                fullTarget.get(), scheduler))
+        {
+            transformFull( world, scheduler, imageStore);
+        }
+        else {
+            scheduler.scheduleEvent( this,
+                    Functions.createActivityAction(this, world, imageStore),
+                    actionPeriod);
+        }
+    }
+    private  Optional<Entity> findNearest( WorldModel world)
+    {
+        List<Entity> ofType = new LinkedList<>();
+        for (Entity entity : world.getEntities()) {
+            if (entity.getKind() == kind) {
+                ofType.add(entity);
+            }
+        }
+
+        return Functions.nearestEntity(ofType, getPosition());
     }
 
     public EntityKind getKind() {
