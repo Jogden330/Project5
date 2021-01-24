@@ -280,33 +280,18 @@ public final class Entity
         }
     }
 
-    public void executeMinerFullActivity(EventScheduler scheduler, WorldModel world, ImageStore imageStore)
-    {
-        Optional<Entity> fullTarget =
-                findNearest(world);
 
-        if (fullTarget.isPresent() && moveToFull(world,
-                fullTarget.get(), scheduler))
-        {
-            transformFull( world, scheduler, imageStore);
-        }
-        else {
-            scheduler.scheduleEvent( this,
-                    Functions.createActivityAction(this, world, imageStore),
-                    actionPeriod);
-        }
-    }
-    private  Optional<Entity> findNearest( WorldModel world)
-    {
-        List<Entity> ofType = new LinkedList<>();
-        for (Entity entity : world.getEntities()) {
-            if (entity.getKind() == kind) {
-                ofType.add(entity);
-            }
-        }
-
-        return Functions.nearestEntity(ofType, getPosition());
-    }
+//    private  Optional<Entity> findNearest( WorldModel world)
+//    {
+//        List<Entity> ofType = new LinkedList<>();
+//        for (Entity entity : world.getEntities()) {
+//            if (entity.getKind() == kind) {
+//                ofType.add(entity);
+//            }
+//        }
+//
+//        return Functions.nearestEntity(ofType, getPosition());
+//    }
 
     public EntityKind getKind() {
         return kind;

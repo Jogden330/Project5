@@ -39,7 +39,7 @@ public final class Action
     {
         switch (entity.getKind()) {
             case MINER_FULL:
-                entity.executeMinerFullActivity(scheduler, world, imageStore);
+                executeMinerFullActivity(scheduler);
                 break;
 
             case MINER_NOT_FULL:
@@ -78,7 +78,22 @@ public final class Action
         }
     }
 
+    public void executeMinerFullActivity(EventScheduler scheduler)
+    {
+        Optional<Entity> fullTarget =
+                findNearest(EntityKind.BLACKSMITH);
 
+        if (fullTarget.isPresent() && entity.moveToFull(world,
+                fullTarget.get(), scheduler))
+        {
+            entity.transformFull( world, scheduler, imageStore);
+        }
+        else {
+            scheduler.scheduleEvent( entity,
+                    Functions.createActivityAction(entity, world, imageStore),
+                    entity.actionPeriod);
+        }
+    }
 
     private  void executeMinerNotFullActivity(EventScheduler scheduler)
     {
