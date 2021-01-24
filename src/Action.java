@@ -187,7 +187,7 @@ public final class Action
             }
         }
 
-        return Functions.nearestEntity(ofType, entity.getPosition());
+        return entity.getPosition().nearestEntity(ofType);
     }
 
 

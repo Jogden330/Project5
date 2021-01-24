@@ -38,6 +38,7 @@ public final class Functions
         return imgs;
     }
 
+
     /*
       Called with color for which alpha should be set and alpha value.
       setAlpha(img, color(255, 255, 255), 0));
@@ -56,35 +57,9 @@ public final class Functions
     }
 
 
-    public static Optional<Entity> nearestEntity(
-            List<Entity> entities, Point pos)
-    {
-        if (entities.isEmpty()) {
-            return Optional.empty();
-        }
-        else {
-            Entity nearest = entities.get(0);
-            int nearestDistance = distanceSquared(nearest.getPosition(), pos);
 
-            for (Entity other : entities) {
-                int otherDistance = distanceSquared(other.getPosition(), pos);
 
-                if (otherDistance < nearestDistance) {
-                    nearest = other;
-                    nearestDistance = otherDistance;
-                }
-            }
 
-            return Optional.of(nearest);
-        }
-    }
-
-    public static int distanceSquared(Point p1, Point p2) {
-        int deltaX = p1.x - p2.x;
-        int deltaY = p1.y - p2.y;
-
-        return deltaX * deltaX + deltaY * deltaY;
-    }
 
 
     /*
