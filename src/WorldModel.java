@@ -10,6 +10,44 @@ public final class WorldModel
     private  final int BGND_COL = 2;
     private  final int BGND_ROW = 3;
 
+    private  final int ORE_REACH = 1;
+    private final int PROPERTY_KEY = 0;
+
+    private final String MINER_KEY = "miner";
+    private final int MINER_NUM_PROPERTIES = 7;
+    private final int MINER_ID = 1;
+    private final int MINER_COL = 2;
+    private final int MINER_ROW = 3;
+    private final int MINER_LIMIT = 4;
+    private final int MINER_ACTION_PERIOD = 5;
+    private final int MINER_ANIMATION_PERIOD = 6;
+
+    private final String OBSTACLE_KEY = "obstacle";
+    private final int OBSTACLE_NUM_PROPERTIES = 4;
+    private final int OBSTACLE_ID = 1;
+    private final int OBSTACLE_COL = 2;
+    private final int OBSTACLE_ROW = 3;
+
+    private final String ORE_KEY = "ore";
+    private final int ORE_NUM_PROPERTIES = 5;
+    private final int ORE_ID = 1;
+    private final int ORE_COL = 2;
+    private final int ORE_ROW = 3;
+    private final int ORE_ACTION_PERIOD = 4;
+
+    private final String SMITH_KEY = "blacksmith";
+    private final int SMITH_NUM_PROPERTIES = 4;
+    private final int SMITH_ID = 1;
+    private final int SMITH_COL = 2;
+    private final int SMITH_ROW = 3;
+
+    private final String VEIN_KEY = "vein";
+    private final int VEIN_NUM_PROPERTIES = 5;
+    private final int VEIN_ID = 1;
+    private final int VEIN_COL = 2;
+    private final int VEIN_ROW = 3;
+    private final int VEIN_ACTION_PERIOD = 4;
+
 
     private int numRows;
     private int numCols;
@@ -107,18 +145,18 @@ public final class WorldModel
     {
         String[] properties = line.split("\\s");
         if (properties.length > 0) {
-            switch (properties[Entity.PROPERTY_KEY]) {
+            switch (properties[PROPERTY_KEY]) {
                 case BGND_KEY:
                     return parseBackground(properties, imageStore);
-                case Entity.MINER_KEY:
+                case MINER_KEY:
                     return parseMiner(properties, imageStore);
-                case Entity.OBSTACLE_KEY:
+                case OBSTACLE_KEY:
                     return parseObstacle(properties, imageStore);
-                case Entity.ORE_KEY:
+                case ORE_KEY:
                     return parseOre(properties, imageStore);
-                case Entity.SMITH_KEY:
+                case SMITH_KEY:
                     return parseSmith(properties, imageStore);
-                case Entity.VEIN_KEY:
+                case VEIN_KEY:
                     return parseVein(properties, imageStore);
             }
         }
@@ -141,89 +179,89 @@ public final class WorldModel
     public boolean parseMiner(
             String[] properties, ImageStore imageStore)
     {
-        if (properties.length == Entity.MINER_NUM_PROPERTIES) {
-            Point pt = new Point(Integer.parseInt(properties[Entity.MINER_COL]),
-                    Integer.parseInt(properties[Entity.MINER_ROW]));
-            Entity entity = Functions.createMinerNotFull(properties[Entity.MINER_ID],
+        if (properties.length == MINER_NUM_PROPERTIES) {
+            Point pt = new Point(Integer.parseInt(properties[MINER_COL]),
+                    Integer.parseInt(properties[MINER_ROW]));
+            Entity entity = Functions.createMinerNotFull(properties[MINER_ID],
                     Integer.parseInt(
-                            properties[Entity.MINER_LIMIT]),
+                            properties[MINER_LIMIT]),
                     pt, Integer.parseInt(
-                            properties[Entity.MINER_ACTION_PERIOD]), Integer.parseInt(
-                            properties[Entity.MINER_ANIMATION_PERIOD]),
+                            properties[MINER_ACTION_PERIOD]), Integer.parseInt(
+                            properties[MINER_ANIMATION_PERIOD]),
                     Functions.getImageList(imageStore,
-                            Entity.MINER_KEY));
+                            MINER_KEY));
             tryAddEntity(entity);
         }
 
-        return properties.length == Entity.MINER_NUM_PROPERTIES;
+        return properties.length == MINER_NUM_PROPERTIES;
     }
 
     public boolean parseObstacle(
             String[] properties,  ImageStore imageStore)
     {
-        if (properties.length == Entity.OBSTACLE_NUM_PROPERTIES) {
-            Point pt = new Point(Integer.parseInt(properties[Entity.OBSTACLE_COL]),
-                    Integer.parseInt(properties[Entity.OBSTACLE_ROW]));
-            Entity entity = Functions.createObstacle(properties[Entity.OBSTACLE_ID], pt,
+        if (properties.length == OBSTACLE_NUM_PROPERTIES) {
+            Point pt = new Point(Integer.parseInt(properties[OBSTACLE_COL]),
+                    Integer.parseInt(properties[OBSTACLE_ROW]));
+            Entity entity = Functions.createObstacle(properties[OBSTACLE_ID], pt,
                     Functions.getImageList(imageStore,
-                            Entity.OBSTACLE_KEY));
+                            OBSTACLE_KEY));
             tryAddEntity(entity);
         }
 
-        return properties.length == Entity.OBSTACLE_NUM_PROPERTIES;
+        return properties.length == OBSTACLE_NUM_PROPERTIES;
 
     }
 
     public boolean parseOre(
             String[] properties,  ImageStore imageStore)
     {
-        if (properties.length == Entity.ORE_NUM_PROPERTIES) {
-            Point pt = new Point(Integer.parseInt(properties[Entity.ORE_COL]),
-                    Integer.parseInt(properties[Entity.ORE_ROW]));
-            Entity entity = Functions.createOre(properties[Entity.ORE_ID], pt, Integer.parseInt(
-                    properties[Entity.ORE_ACTION_PERIOD]),
-                    Functions.getImageList(imageStore, Entity.ORE_KEY));
+        if (properties.length == ORE_NUM_PROPERTIES) {
+            Point pt = new Point(Integer.parseInt(properties[ORE_COL]),
+                    Integer.parseInt(properties[ORE_ROW]));
+            Entity entity = Functions.createOre(properties[ORE_ID], pt, Integer.parseInt(
+                    properties[ORE_ACTION_PERIOD]),
+                    Functions.getImageList(imageStore, ORE_KEY));
             tryAddEntity(entity);
         }
 
-        return properties.length == Entity.ORE_NUM_PROPERTIES;
+        return properties.length == ORE_NUM_PROPERTIES;
     }
 
     public  boolean parseSmith(
             String[] properties,  ImageStore imageStore)
     {
-        if (properties.length == Entity.SMITH_NUM_PROPERTIES) {
-            Point pt = new Point(Integer.parseInt(properties[Entity.SMITH_COL]),
-                    Integer.parseInt(properties[Entity.SMITH_ROW]));
-            Entity entity = Functions.createBlacksmith(properties[Entity.SMITH_ID], pt,
+        if (properties.length == SMITH_NUM_PROPERTIES) {
+            Point pt = new Point(Integer.parseInt(properties[SMITH_COL]),
+                    Integer.parseInt(properties[SMITH_ROW]));
+            Entity entity = Functions.createBlacksmith(properties[SMITH_ID], pt,
                     Functions.getImageList(imageStore,
-                            Entity.SMITH_KEY));
+                            SMITH_KEY));
             tryAddEntity(entity);
         }
 
-        return properties.length == Entity.SMITH_NUM_PROPERTIES;
+        return properties.length == SMITH_NUM_PROPERTIES;
     }
 
     public boolean parseVein(
             String[] properties,  ImageStore imageStore)
     {
-        if (properties.length == Entity.VEIN_NUM_PROPERTIES) {
-            Point pt = new Point(Integer.parseInt(properties[Entity.VEIN_COL]),
-                    Integer.parseInt(properties[Entity.VEIN_ROW]));
-            Entity entity = Functions.createVein(properties[Entity.VEIN_ID], pt,
+        if (properties.length == VEIN_NUM_PROPERTIES) {
+            Point pt = new Point(Integer.parseInt(properties[VEIN_COL]),
+                    Integer.parseInt(properties[VEIN_ROW]));
+            Entity entity = Functions.createVein(properties[VEIN_ID], pt,
                     Integer.parseInt(
-                            properties[Entity.VEIN_ACTION_PERIOD]),
-                    Functions.getImageList(imageStore, Entity.VEIN_KEY));
+                            properties[VEIN_ACTION_PERIOD]),
+                    Functions.getImageList(imageStore, VEIN_KEY));
             tryAddEntity(entity);
         }
 
-        return properties.length == Entity.VEIN_NUM_PROPERTIES;
+        return properties.length == VEIN_NUM_PROPERTIES;
     }
 
 
     public  Optional<Point> findOpenAround( Point pos) {
-        for (int dy = -Entity.ORE_REACH; dy <= Entity.ORE_REACH; dy++) {
-            for (int dx = -Entity.ORE_REACH; dx <= Entity.ORE_REACH; dx++) {
+        for (int dy = -ORE_REACH; dy <= ORE_REACH; dy++) {
+            for (int dx = -ORE_REACH; dx <= ORE_REACH; dx++) {
                 Point newPt = new Point(pos.x + dx, pos.y + dy);
                 if (withinBounds( newPt) && !isOccupied(newPt)) {
                     return Optional.of(newPt);

@@ -12,6 +12,10 @@ public final class Functions
 {
     public static final Random rand = new Random();
 
+    public static final String QUAKE_ID = "quake";
+    public static final int QUAKE_ACTION_PERIOD = 1100;
+    public static final int QUAKE_ANIMATION_PERIOD = 100;
+    public static final int COLOR_MASK = 0xffffff;
 
 
 
@@ -41,11 +45,11 @@ public final class Functions
     */
     public static void setAlpha(PImage img, int maskColor, int alpha) {
         int alphaValue = alpha << 24;
-        int nonAlpha = maskColor & Entity.COLOR_MASK;
+        int nonAlpha = maskColor & COLOR_MASK;
         img.format = PApplet.ARGB;
         img.loadPixels();
         for (int i = 0; i < img.pixels.length; i++) {
-            if ((img.pixels[i] & Entity.COLOR_MASK) == nonAlpha) {
+            if ((img.pixels[i] & COLOR_MASK) == nonAlpha) {
                 img.pixels[i] = alphaValue | nonAlpha;
             }
         }
@@ -132,8 +136,8 @@ public final class Functions
     public static Entity createQuake(
             Point position, List<PImage> images)
     {
-        return new Entity(EntityKind.QUAKE, Entity.QUAKE_ID, position, images, 0, 0,
-                Entity.QUAKE_ACTION_PERIOD, Entity.QUAKE_ANIMATION_PERIOD);
+        return new Entity(EntityKind.QUAKE, QUAKE_ID, position, images, 0, 0,
+                QUAKE_ACTION_PERIOD, QUAKE_ANIMATION_PERIOD);
     }
 
     public static Entity createVein(

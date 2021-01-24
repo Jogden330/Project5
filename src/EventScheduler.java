@@ -2,6 +2,8 @@ import java.util.*;
 
 public final class EventScheduler
 {
+    private  final int QUAKE_ANIMATION_REPEAT_COUNT = 10;
+
     private PriorityQueue<Event> eventQueue;
     private Map<Entity, List<Event>> pendingEvents;
     private double timeScale;
@@ -86,7 +88,7 @@ public final class EventScheduler
                         entity.getActionPeriod());
                 scheduleEvent(entity,
                         Functions.createAnimationAction(entity,
-                        Entity.QUAKE_ANIMATION_REPEAT_COUNT),
+                        QUAKE_ANIMATION_REPEAT_COUNT),
                         entity.getAnimationPeriod());
                 break;
 

@@ -4,6 +4,28 @@ import java.util.Optional;
 
 public final class Action
 {
+    private final String BLOB_KEY = "blob";
+    private final String BLOB_ID_SUFFIX = " -- blob";
+    private final int BLOB_PERIOD_SCALE = 4;
+    private final int BLOB_ANIMATION_MIN = 50;
+    private final int BLOB_ANIMATION_MAX = 150;
+
+    private final String ORE_ID_PREFIX = "ore -- ";
+    private final int ORE_CORRUPT_MIN = 20000;
+    private final int ORE_CORRUPT_MAX = 30000;
+
+    private  final String QUAKE_KEY = "quake";
+    private  final String ORE_KEY = "ore";
+
+
+
+
+
+
+
+
+
+
     private ActionKind kind;
     private Entity entity;
     private WorldModel world;
@@ -118,12 +140,12 @@ public final class Action
         world.removeEntity(entity);
         scheduler.unscheduleAllEvents( entity);
 
-        Entity blob = Functions.createOreBlob(entity.getId() + Entity.BLOB_ID_SUFFIX, pos,
-                entity.getActionPeriod() / Entity.BLOB_PERIOD_SCALE,
-                Entity.BLOB_ANIMATION_MIN + Functions.rand.nextInt(
-                        Entity.BLOB_ANIMATION_MAX
-                                - Entity.BLOB_ANIMATION_MIN),
-                Functions.getImageList(imageStore, Entity.BLOB_KEY));
+        Entity blob = Functions.createOreBlob(entity.getId() + BLOB_ID_SUFFIX, pos,
+                entity.getActionPeriod() / BLOB_PERIOD_SCALE,
+                BLOB_ANIMATION_MIN + Functions.rand.nextInt(
+                        BLOB_ANIMATION_MAX
+                                - BLOB_ANIMATION_MIN),
+                Functions.getImageList(imageStore, BLOB_KEY));
 
         world.addEntity(blob);
         scheduler.scheduleActions(blob,  world, imageStore);
@@ -140,7 +162,7 @@ public final class Action
 
             if (entity.moveToOreBlob( world, blobTarget.get(), scheduler)) {
                 Entity quake = Functions.createQuake(tgtPos,
-                        Functions.getImageList(imageStore, Entity.QUAKE_KEY));
+                        Functions.getImageList(imageStore, QUAKE_KEY));
 
                 world.addEntity(quake);
                 nextPeriod += entity.getActionPeriod();
@@ -164,12 +186,12 @@ public final class Action
         Optional<Point> openPt = world.findOpenAround(entity.getPosition());
 
         if (openPt.isPresent()) {
-            Entity ore = Functions.createOre(Entity.ORE_ID_PREFIX + entity.getId(), openPt.get(),
-                    Entity.ORE_CORRUPT_MIN + Functions.rand.nextInt(
-                            Entity.ORE_CORRUPT_MAX - Entity.ORE_CORRUPT_MIN),
-                    Functions.getImageList(imageStore, Entity.ORE_KEY));
+            Entity ore = Functions.createOre(ORE_ID_PREFIX + entity.getId(), openPt.get(),
+                    ORE_CORRUPT_MIN + Functions.rand.nextInt(
+                            ORE_CORRUPT_MAX - ORE_CORRUPT_MIN),
+                    Functions.getImageList(imageStore, ORE_KEY));
             world.addEntity(ore);
-            scheduler.scheduleActions(ore,  world, imageStore);
+            scheduler.scheduleActions(ore, world, imageStore);
         }
 
         scheduler.scheduleEvent( entity,

@@ -8,6 +8,12 @@ import java.util.Scanner;
 
 public final class WorldView
 {
+    private final int KEYED_IMAGE_MIN = 5;
+    private final int KEYED_RED_IDX = 2;
+    private final int KEYED_GREEN_IDX = 3;
+    private final int KEYED_BLUE_IDX = 4;
+
+
     private PApplet screen;
     private WorldModel world;
     private int tileWidth;
@@ -85,10 +91,10 @@ public final class WorldView
                 List<PImage> imgs = Functions.getImages(images, key);
                 imgs.add(img);
 
-                if (attrs.length >= Entity.KEYED_IMAGE_MIN) {
-                    int r = Integer.parseInt(attrs[Entity.KEYED_RED_IDX]);
-                    int g = Integer.parseInt(attrs[Entity.KEYED_GREEN_IDX]);
-                    int b = Integer.parseInt(attrs[Entity.KEYED_BLUE_IDX]);
+                if (attrs.length >= KEYED_IMAGE_MIN) {
+                    int r = Integer.parseInt(attrs[KEYED_RED_IDX]);
+                    int g = Integer.parseInt(attrs[KEYED_GREEN_IDX]);
+                    int b = Integer.parseInt(attrs[KEYED_BLUE_IDX]);
                     Functions.setAlpha(img, screen.color(r, g, b), 0);
                 }
             }
