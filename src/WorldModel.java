@@ -67,7 +67,7 @@ public final class WorldModel
             throw new IllegalArgumentException("position occupied");
         }
 
-        entity.addEntity(this);
+        addEntity(entity);
     }
     public boolean isOccupied(Point pos) {
         return withinBounds(pos) && getOccupancyCell(pos) != null;
@@ -227,6 +227,38 @@ public final class WorldModel
         return Optional.empty();
     }
 
+    public  void moveEntity(Entity entity,  Point pos) {
+        Point oldPos = entity.getPosition();
+        if (withinBounds(pos) && !pos.equals(oldPos)) {
+            setOccupancyCell(oldPos, null);
+            removeEntityAt(pos);
+            setOccupancyCell(pos,entity);
+            entity.setPosition(pos);
+        }
+    }
+
+    public  void removeEntity(Entity entity) { removeEntityAt(entity.getPosition());
+    }
+
+    public void removeEntityAt(  Point pos) {
+        if (withinBounds(pos) && getOccupancyCell(pos) != null) {
+            Entity entity = getOccupancyCell(pos);
+
+            /* This moves the entity just outside of the grid for
+             * debugging purposes. */
+            entity.setPosition(new Point(-1, -1));
+            getEntities().remove(entity);
+           setOccupancyCell( pos, null);
+        }
+    }
+
+    public void addEntity(Entity entity) {
+        if (withinBounds(entity.getPosition())) {
+            setOccupancyCell( entity.getPosition(), entity);
+            getEntities().add(entity);
+        }
+    }
+
     public int getNumRows() {return numRows;}
     public int getNumCols() {return numCols;}
 
@@ -237,4 +269,6 @@ public final class WorldModel
     public Set<Entity> getEntities() {
         return entities;
     }
+
+
 }

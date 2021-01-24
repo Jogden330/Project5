@@ -72,7 +72,7 @@ public final class Entity
     private int imageIndex;
     private int resourceLimit;
     private int resourceCount;
-    public int actionPeriod;
+    int actionPeriod;
     private int animationPeriod;
 
     public Entity(
@@ -114,38 +114,9 @@ public final class Entity
     public void nextImage() {
         imageIndex = (imageIndex + 1) % images.size();
     }
-    public void addEntity(WorldModel world) {
-        if (world.withinBounds(position)) {
-            world.setOccupancyCell( position, this);
-            world.getEntities().add(this);
-        }
-    }
 
-    public  void moveEntity(WorldModel world,  Point pos) {
-        Point oldPos = position;
-        if (world.withinBounds(pos) && !pos.equals(oldPos)) {
-            world.setOccupancyCell(oldPos, null);
-            removeEntityAt(world, pos);
-            world.setOccupancyCell(pos,this);
-            position = pos;
-        }
-    }
 
-    public  void removeEntity(WorldModel world ) {
-        removeEntityAt(world, position);
-    }
 
-    private void removeEntityAt(WorldModel world, Point pos) {
-        if (world.withinBounds(pos) && world.getOccupancyCell(pos) != null) {
-            Entity entity = world.getOccupancyCell(pos);
-
-            /* This moves the entity just outside of the grid for
-             * debugging purposes. */
-            entity.position = new Point(-1, -1);
-            world.getEntities().remove(entity);
-            world.setOccupancyCell( pos, null);
-        }
-    }
 
     public  PImage getCurrentImage() {
 
@@ -158,10 +129,10 @@ public final class Entity
     {
         Entity miner = Functions.createMinerNotFull(id, resourceLimit, position, actionPeriod, animationPeriod, images);
 
-        removeEntity(world);
+        world.removeEntity(this);
         scheduler.unscheduleAllEvents(this);
 
-        miner.addEntity(world);
+        world.addEntity(miner);
         scheduler.scheduleActions(miner, world, imageStore);
     }
 
@@ -176,10 +147,10 @@ public final class Entity
                     animationPeriod,
                     images);
 
-            removeEntity(world);
+            world.removeEntity(this);
             scheduler.unscheduleAllEvents(this);
 
-            miner.addEntity(world);
+            world.addEntity(miner);
             scheduler.scheduleActions(miner,  world, imageStore);
 
             return true;
@@ -212,7 +183,7 @@ public final class Entity
             EventScheduler scheduler)
     {
         if (Functions.adjacent(position, target.position)) {
-            target.removeEntity(world);
+            world.removeEntity(target);
             scheduler.unscheduleAllEvents(target);
             return true;
         }
@@ -225,7 +196,7 @@ public final class Entity
                     scheduler.unscheduleAllEvents( occupant.get());
                 }
 
-                moveEntity(world,  nextPos);
+                world.moveEntity(this,  nextPos);
             }
             return false;
         }
@@ -263,7 +234,7 @@ public final class Entity
     {
         if (Functions.adjacent(position, target.position)) {
             resourceCount += 1;
-            target.removeEntity(world);
+            world.removeEntity(target);
             scheduler.unscheduleAllEvents( target);
 
             return true;
@@ -277,7 +248,7 @@ public final class Entity
                     scheduler.unscheduleAllEvents( occupant.get());
                 }
 
-                moveEntity(world,  nextPos);
+                world.moveEntity(this,  nextPos);
             }
             return false;
         }
@@ -302,7 +273,7 @@ public final class Entity
                     scheduler.unscheduleAllEvents(occupant.get());
                 }
 
-                moveEntity(world, nextPos);
+                world.moveEntity(this, nextPos);
             }
             return false;
         }
@@ -320,5 +291,7 @@ public final class Entity
         return position;
     }
 
-
+    public void setPosition(Point position) {
+        this.position = position;
+    }
 }

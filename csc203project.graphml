@@ -272,13 +272,6 @@
             <y:AttributeLabel xml:space="preserve">+rand: Random                                &lt;&lt;static&gt;&gt;
 </y:AttributeLabel>
             <y:MethodLabel xml:space="preserve">+getAnimationPeriod(): int                   &lt;&lt;static&gt;&gt;
-+transformNotFull(): boolean                 &lt;&lt;static&gt;&gt;
-+transformFull()                             &lt;&lt;static&gt;&gt;
-+moveToNotFull(): boolean                    &lt;&lt;static&gt;&gt;
-+moveToFull(): boolean                       &lt;&lt;static&gt;&gt;
-+moveToOreBlob(): boolean                    &lt;&lt;static&gt;&gt;
-+nextPositionMiner(): Point                  &lt;&lt;static&gt;&gt;
-+nextPositionOreBlob(): Point                &lt;&lt;static&gt;&gt;
 +adjacent(): boolean                            &lt;&lt;static&gt;&gt;
 +getImageList(): List&lt;PImage&gt;                &lt;&lt;static&gt;&gt;
 +loadImages()                                &lt;&lt;static&gt;&gt;
@@ -350,7 +343,7 @@ ANIMATION</y:AttributeLabel>
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="1132.3363072582072" width="168.51625251004018" x="725.8103663636128" y="-660.2057840225561"/>
+          <y:Geometry height="1234.3488738464425" width="168.51625251004018" x="725.8103663636128" y="-660.2057840225561"/>
           <y:Fill color="#C0C0C0" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="2.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="40.11181640625" x="64.20221805189509" xml:space="preserve" y="3.0">Entity<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="-0.03703090122767855" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
@@ -421,11 +414,17 @@ ANIMATION</y:AttributeLabel>
 +moveEntity():
 +removeEntity():
 -removeEntityAt():
++transformNotFull(): boolean         
++transformFull()                       
++moveToNotFull(): boolean            
++moveToFull(): boolean              
++moveToOreBlob(): boolean             +nextPositionMiner(): Point              
++nextPositionOreBlob(): Point          
 +getCurrentImage(): PImage   
 +getKind(): EntityKind
 +getId(): String
 +getPosition(): Point
-+</y:MethodLabel>
+</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
       </data>
