@@ -18,7 +18,7 @@
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="245.8391597051383" width="149.0" x="239.33174949816254" y="-535.1284167722436"/>
+          <y:Geometry height="245.8391597051383" width="149.0" x="239.33174949816254" y="-636.0009345247142"/>
           <y:Fill color="#C0C0C0" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="2.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="79.841796875" x="34.5791015625" xml:space="preserve" y="3.0">Background<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="-0.03703090122767855" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
@@ -31,7 +31,9 @@
 +id: String
 +images: List&lt;PImage&gt;
 +imageIndex: int</y:AttributeLabel>
-            <y:MethodLabel xml:space="preserve"/>
+            <y:MethodLabel xml:space="preserve">+getCurrentImage(): PImage    
++setBackgroundCell():
++setBackground():      </y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
       </data>
@@ -151,25 +153,36 @@
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="245.83915970513826" width="192.99999999999991" x="217.3317494981626" y="-164.03091876157993"/>
+          <y:Geometry height="442.2764268599618" width="192.99999999999991" x="217.3317494981626" y="-348.0086357987564"/>
           <y:Fill color="#C0C0C0" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="2.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="78.37548828125" x="57.31225585937496" xml:space="preserve" y="3.0">WorldModel<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="-0.03703090122767855" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
           <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="false">
-            <y:AttributeLabel xml:space="preserve">+numRows: int
-+numCols: int
-+background: Background[][]
-+occupancy: Entity[][]
-+entities: Set&lt;Entity&gt;</y:AttributeLabel>
-            <y:MethodLabel xml:space="preserve">-setBackgroundCell():
-+setBackground():
-+withinBounds(): boolean  
+            <y:AttributeLabel xml:space="preserve">-numRows: int
+-numCols: int
+-background: Background[][]
+-occupancy: Entity[][]
+-entities: Set&lt;Entity&gt;</y:AttributeLabel>
+            <y:MethodLabel xml:space="preserve">+withinBounds(): boolean  
 -getBackgroundCell(): Background   +getBackgroundImage():Optional&lt;PImage&gt;
 +getOccupant: Optional&lt;Entity&gt;   
 +getOccupancyCell(): Entity             
 +setOccupancyCell()
 +isOccupied(): boolean             
-+load():                                 </y:MethodLabel>
++load():         
++processLine(): boolean                    
++parseBackground(): boolean          
++parseMiner(): boolean                       &lt;&lt;static&gt;&gt;
++parseObstacle(): boolean                
++parseOre(): boolean                       
++parseSmith(): boolean                     
++parseVein(): boolean   
++findOpenAround(): Optional&lt;Point&gt; 
++getNumRows(): int  
++getNumCols(): int
++getBackground():  Background[][]
++getEntities(): Set&lt;Entity&gt;
+                                   </y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
       </data>
@@ -258,8 +271,7 @@
           <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="false">
             <y:AttributeLabel xml:space="preserve">+rand: Random                                &lt;&lt;static&gt;&gt;
 </y:AttributeLabel>
-            <y:MethodLabel xml:space="preserve">+getCurrentImage(): PImage            &lt;&lt;static&gt;&gt;
-+getAnimationPeriod(): int                   &lt;&lt;static&gt;&gt;
+            <y:MethodLabel xml:space="preserve">+getAnimationPeriod(): int                   &lt;&lt;static&gt;&gt;
 +transformNotFull(): boolean                 &lt;&lt;static&gt;&gt;
 +transformFull()                             &lt;&lt;static&gt;&gt;
 +moveToNotFull(): boolean                    &lt;&lt;static&gt;&gt;
@@ -268,19 +280,11 @@
 +nextPositionMiner(): Point                  &lt;&lt;static&gt;&gt;
 +nextPositionOreBlob(): Point                &lt;&lt;static&gt;&gt;
 +adjacent(): boolean                            &lt;&lt;static&gt;&gt;
-+findOpenAround(): Optional&lt;Point&gt;  &lt;&lt;static&gt;&gt;
 +getImageList(): List&lt;PImage&gt;                &lt;&lt;static&gt;&gt;
 +loadImages()                                &lt;&lt;static&gt;&gt;
 +processImageLine()                          &lt;&lt;static&gt;&gt;
 +getImages(): List&lt;PImage&gt;                   &lt;&lt;static&gt;&gt;
 +setAlpha()                                  &lt;&lt;static&gt;&gt;
-+processLine(): boolean                      &lt;&lt;static&gt;&gt;
-+parseBackground(): boolean                  &lt;&lt;static&gt;&gt;
-+parseMiner(): boolean                       &lt;&lt;static&gt;&gt;
-+parseObstacle(): boolean                    &lt;&lt;static&gt;&gt;
-+parseOre(): boolean                         &lt;&lt;static&gt;&gt;
-+parseSmith(): boolean                       &lt;&lt;static&gt;&gt;
-+parseVein(): boolean                        &lt;&lt;static&gt;&gt;
 +tryAddEntity()                              &lt;&lt;static&gt;&gt;
 +nearestEntity(): Optional&lt;Entity&gt;           &lt;&lt;static&gt;&gt;
 +distanceSquared(): int                      &lt;&lt;static&gt;&gt;
@@ -403,20 +407,25 @@ ANIMATION</y:AttributeLabel>
 +PROPERTY_KEY: int                           &lt;&lt;static&gt;&gt;
 
 
-+kind: EntityKind
-+id: String
-+position: Point
-+images: List&lt;PImage&gt;
-+imageIndex: int
-+resourceLimit: int
-+resourceCount: int
+-kind: EntityKind
+-id: String
+-position: Point
+-images: List&lt;PImage&gt;
+-imageIndex: int
+-resourceLimit: int
+-resourceCount: int
 +actionPeriod: int
-+animationPeriod: int</y:AttributeLabel>
+-animationPeriod: int</y:AttributeLabel>
             <y:MethodLabel xml:space="preserve">+nextImage():
 +addEntity():
 +moveEntity():
 +removeEntity():
--removeEntityAt():</y:MethodLabel>
+-removeEntityAt():
++getCurrentImage(): PImage   
++getKind(): EntityKind
++getId(): String
++getPosition(): Point
++</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
       </data>

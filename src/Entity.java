@@ -65,15 +65,15 @@ public final class Entity
     public static final int VEIN_ROW = 3;
     public static final int VEIN_ACTION_PERIOD = 4;
 
-    public EntityKind kind;
-    public String id;
-    public Point position;
-    public List<PImage> images;
-    public int imageIndex;
-    public int resourceLimit;
-    public int resourceCount;
+    private EntityKind kind;
+    private String id;
+    private Point position;
+    private List<PImage> images;
+    private int imageIndex;
+    private int resourceLimit;
+    private int resourceCount;
     public int actionPeriod;
-    public int animationPeriod;
+    private int animationPeriod;
 
     public Entity(
             EntityKind kind,
@@ -117,13 +117,13 @@ public final class Entity
     public void addEntity(WorldModel world) {
         if (world.withinBounds(position)) {
             world.setOccupancyCell( position, this);
-            world.entities.add(this);
+            world.getEntities().add(this);
         }
     }
 
     public  void moveEntity(WorldModel world,  Point pos) {
         Point oldPos = position;
-        if (world.withinBounds( pos) && !pos.equals(oldPos)) {
+        if (world.withinBounds(pos) && !pos.equals(oldPos)) {
             world.setOccupancyCell(oldPos, null);
             removeEntityAt(world, pos);
             world.setOccupancyCell(pos,this);
@@ -142,7 +142,7 @@ public final class Entity
             /* This moves the entity just outside of the grid for
              * debugging purposes. */
             entity.position = new Point(-1, -1);
-            world.entities.remove(entity);
+            world.getEntities().remove(entity);
             world.setOccupancyCell( pos, null);
         }
     }
@@ -307,4 +307,18 @@ public final class Entity
             return false;
         }
     }
+
+    public EntityKind getKind() {
+        return kind;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public Point getPosition() {
+        return position;
+    }
+
+
 }

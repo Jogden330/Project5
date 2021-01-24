@@ -24,4 +24,16 @@ public final class Background
             return images.get(imageIndex);
 
     }
+
+    public void setBackground(Point pos, WorldModel world)
+    {
+        if (world.withinBounds(pos)) {
+            this.setBackgroundCell( pos, world);
+        }
+    }
+
+    public void setBackgroundCell( Point pos, WorldModel world)
+    {
+        world.getBackground()[pos.y][pos.x] = this;
+    }
 }

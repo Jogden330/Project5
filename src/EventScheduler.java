@@ -46,7 +46,7 @@ public final class EventScheduler
             WorldModel world,
             ImageStore imageStore)
     {
-        switch (entity.kind) {
+        switch (entity.getKind()) {
             case MINER_FULL:
                 scheduleEvent(entity,
                         Functions.createActivityAction(entity, world, imageStore),

@@ -37,7 +37,7 @@ public final class Action
     }
     private void executeActivityAction(EventScheduler scheduler)
     {
-        switch (entity.kind) {
+        switch (entity.getKind()) {
             case MINER_FULL:
                 executeMinerFullActivity(scheduler);
                 break;
@@ -65,7 +65,7 @@ public final class Action
             default:
                 throw new UnsupportedOperationException(String.format(
                         "executeActivityAction not supported for %s",
-                        entity.kind));
+                        entity.getKind()));
         }
     }
 
@@ -113,12 +113,12 @@ public final class Action
 
     private void executeOreActivity(EventScheduler scheduler)
     {
-        Point pos = entity.position;
+        Point pos = entity.getPosition();
 
         entity.removeEntity(world);
         scheduler.unscheduleAllEvents( entity);
 
-        Entity blob = Functions.createOreBlob(entity.id + Entity.BLOB_ID_SUFFIX, pos,
+        Entity blob = Functions.createOreBlob(entity.getId() + Entity.BLOB_ID_SUFFIX, pos,
                 entity.actionPeriod / Entity.BLOB_PERIOD_SCALE,
                 Entity.BLOB_ANIMATION_MIN + Functions.rand.nextInt(
                         Entity.BLOB_ANIMATION_MAX
@@ -136,7 +136,7 @@ public final class Action
         long nextPeriod = entity.actionPeriod;
 
         if (blobTarget.isPresent()) {
-            Point tgtPos = blobTarget.get().position;
+            Point tgtPos = blobTarget.get().getPosition() ;
 
             if (entity.moveToOreBlob( world, blobTarget.get(), scheduler)) {
                 Entity quake = Functions.createQuake(tgtPos,
@@ -161,10 +161,10 @@ public final class Action
 
     private void executeVeinActivity(EventScheduler scheduler)
     {
-        Optional<Point> openPt = world.findOpenAround(entity.position);
+        Optional<Point> openPt = world.findOpenAround(entity.getPosition());
 
         if (openPt.isPresent()) {
-            Entity ore = Functions.createOre(Entity.ORE_ID_PREFIX + entity.id, openPt.get(),
+            Entity ore = Functions.createOre(Entity.ORE_ID_PREFIX + entity.getId(), openPt.get(),
                     Entity.ORE_CORRUPT_MIN + Functions.rand.nextInt(
                             Entity.ORE_CORRUPT_MAX - Entity.ORE_CORRUPT_MIN),
                     Functions.getImageList(imageStore, Entity.ORE_KEY));
@@ -181,13 +181,13 @@ public final class Action
     private  Optional<Entity> findNearest( EntityKind kind)
     {
         List<Entity> ofType = new LinkedList<>();
-        for (Entity entity : world.entities) {
-            if (entity.kind == kind) {
+        for (Entity entity : world.getEntities()) {
+            if (entity.getKind() == kind) {
                 ofType.add(entity);
             }
         }
 
-        return Functions.nearestEntity(ofType, entity.position);
+        return Functions.nearestEntity(ofType, entity.getPosition());
     }
 
 

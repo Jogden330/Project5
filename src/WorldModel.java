@@ -4,11 +4,11 @@ import java.util.*;
 
 public final class WorldModel
 {
-    public int numRows;
-    public int numCols;
-    public Background background[][];
-    public Entity occupancy[][];
-    public Set<Entity> entities;
+    private int numRows;
+    private int numCols;
+    private Background background[][];
+    private Entity occupancy[][];
+    private Set<Entity> entities;
 
     public WorldModel(int numRows, int numCols, Background defaultBackground) {
         this.numRows = numRows;
@@ -22,26 +22,16 @@ public final class WorldModel
         }
     }
 
-    public void setBackground(Point pos, Background background)
-    {
-        if (withinBounds(pos)) {
-            this.setBackgroundCell( pos, background);
-        }
-    }
-    private void setBackgroundCell( Point pos, Background background)
-    {
-        this.background[pos.y][pos.x] = background;
-    }
+
 
     public  boolean withinBounds( Point pos) {
         return pos.y >= 0 && pos.y < numRows && pos.x >= 0
                 && pos.x < numCols;
     }
 
-    public Optional<PImage> getBackgroundImage(
-             Point pos)
+    public Optional<PImage> getBackgroundImage(Point pos)
     {
-        if (withinBounds( pos)) {
+        if (withinBounds(pos)) {
             return Optional.of(getBackgroundCell(pos).getCurrentImage());
         }
         else {
@@ -71,7 +61,7 @@ public final class WorldModel
     }
 
     public void tryAddEntity(Entity entity) {
-        if (isOccupied(entity.position)) {
+        if (isOccupied(entity.getPosition())) {
             // arguably the wrong type of exception, but we are not
             // defining our own exceptions yet
             throw new IllegalArgumentException("position occupied");
@@ -135,7 +125,7 @@ public final class WorldModel
             Point pt = new Point(Integer.parseInt(properties[Background.BGND_COL]),
                     Integer.parseInt(properties[Background.BGND_ROW]));
             String id = properties[Background.BGND_ID];
-            setBackground( pt,new Background(id, Functions.getImageList(imageStore, id)));
+            new Background(id, Functions.getImageList(imageStore, id)).setBackground( pt,this);
         }
 
         return properties.length == Background.BGND_NUM_PROPERTIES;
@@ -237,4 +227,14 @@ public final class WorldModel
         return Optional.empty();
     }
 
+    public int getNumRows() {return numRows;}
+    public int getNumCols() {return numCols;}
+
+    public Background[][] getBackground() {
+        return background;
+    }
+
+    public Set<Entity> getEntities() {
+        return entities;
+    }
 }
