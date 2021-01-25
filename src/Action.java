@@ -17,15 +17,6 @@ public final class Action
     private  final String QUAKE_KEY = "quake";
     private  final String ORE_KEY = "ore";
 
-
-
-
-
-
-
-
-
-
     private ActionKind kind;
     private Entity entity;
     private WorldModel world;
@@ -122,9 +113,7 @@ public final class Action
         Optional<Entity> notFullTarget =
                 findNearest( EntityKind.ORE);
 
-        if (!notFullTarget.isPresent() || !entity.moveToNotFull( world,
-                notFullTarget.get(),
-                scheduler)
+        if (!notFullTarget.isPresent() || !entity.moveToNotFull( world, notFullTarget.get(), scheduler)
                 || !entity.transformNotFull( world, scheduler, imageStore))
         {
             scheduler.scheduleEvent(entity,
@@ -211,6 +200,8 @@ public final class Action
 
         return entity.getPosition().nearestEntity(ofType);
     }
+
+
 
 
 }
