@@ -106,7 +106,7 @@ public final class WorldView
         int lineNumber = 0;
         while (in.hasNextLine()) {
             try {
-                processImageLine(imageStore.images, in.nextLine());
+                processImageLine(imageStore.getImages(), in.nextLine());
             }
             catch (NumberFormatException e) {
                 System.out.println(

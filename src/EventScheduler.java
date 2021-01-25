@@ -104,18 +104,18 @@ public final class EventScheduler
 
     public  void updateOnTime(long time) {
         while (!eventQueue.isEmpty()
-                && eventQueue.peek().time < time) {
+                && eventQueue.peek().getTime() < time) {
             Event next = eventQueue.poll();
 
             removePendingEvent(next);
 
-            next.action.executeAction(this);
+            next.getAction().executeAction(this);
         }
     }
 
     public void removePendingEvent(Event event)
     {
-        List<Event> pending = pendingEvents.get(event.entity);
+        List<Event> pending = pendingEvents.get(event.getEntity());
 
         if (pending != null) {
             pending.remove(event);

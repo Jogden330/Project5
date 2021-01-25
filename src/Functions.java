@@ -21,7 +21,7 @@ public final class Functions
 
 
     public static List<PImage> getImageList(ImageStore imageStore, String key) {
-        return imageStore.images.getOrDefault(key, imageStore.defaultImages);
+        return imageStore.getImages().getOrDefault(key, imageStore.getDefaultImages());
     }
 
 
