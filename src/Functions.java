@@ -18,15 +18,6 @@ public final class Functions
     public static final int COLOR_MASK = 0xffffff;
 
 
-
-
-    public static List<PImage> getImageList(ImageStore imageStore, String key) {
-        return imageStore.getImages().getOrDefault(key, imageStore.getDefaultImages());
-    }
-
-
-
-
     public static List<PImage> getImages(
             Map<String, List<PImage>> images, String key)
     {

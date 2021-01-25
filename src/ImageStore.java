@@ -23,4 +23,10 @@ public final class ImageStore
     public Map<String, List<PImage>> getImages() {
         return images;
     }
+
+    public List<PImage> getImageList(String key) {
+        return images.getOrDefault(key, defaultImages);
+    }
+
+
 }

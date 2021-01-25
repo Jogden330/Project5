@@ -1,8 +1,7 @@
 The Functions I decided to keep in Functions.Java besides the Create Functions which we were instructed to keep there were: 
 
-getImageList() I really wanted to put this in action because it is passed the ImageStore object. But when I moved it I wasn’t able to get VirtualWorld to interface with this function throw the action object. Because of this, I left it in Functions
 
-getImages() I left this in because I couldnt figure out how to get Vitual world.java to call ImageStore when calling this function.
+getImages() I left this in because I couldnt figure out how to get WorldModel.java to call ImageStore when calling this function.
 I wanted to put this function in ImageStore.java becase it containd wantMap<String, List<PImage>>  data.
 
 setAlpha() I left this in because non of the data passed in was part of any of my other objects

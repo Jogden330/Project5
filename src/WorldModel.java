@@ -170,7 +170,7 @@ public final class WorldModel
             Point pt = new Point(Integer.parseInt(properties[BGND_COL]),
                     Integer.parseInt(properties[BGND_ROW]));
             String id = properties[BGND_ID];
-            new Background(id, Functions.getImageList(imageStore, id)).setBackground( pt,this);
+            new Background(id, imageStore.getImageList(id)).setBackground( pt,this);
         }
 
         return properties.length == BGND_NUM_PROPERTIES;
@@ -188,8 +188,7 @@ public final class WorldModel
                     pt, Integer.parseInt(
                             properties[MINER_ACTION_PERIOD]), Integer.parseInt(
                             properties[MINER_ANIMATION_PERIOD]),
-                    Functions.getImageList(imageStore,
-                            MINER_KEY));
+                    imageStore.getImageList(MINER_KEY));
             tryAddEntity(entity);
         }
 
@@ -203,8 +202,7 @@ public final class WorldModel
             Point pt = new Point(Integer.parseInt(properties[OBSTACLE_COL]),
                     Integer.parseInt(properties[OBSTACLE_ROW]));
             Entity entity = Functions.createObstacle(properties[OBSTACLE_ID], pt,
-                    Functions.getImageList(imageStore,
-                            OBSTACLE_KEY));
+                    imageStore.getImageList(OBSTACLE_KEY));
             tryAddEntity(entity);
         }
 
@@ -220,7 +218,7 @@ public final class WorldModel
                     Integer.parseInt(properties[ORE_ROW]));
             Entity entity = Functions.createOre(properties[ORE_ID], pt, Integer.parseInt(
                     properties[ORE_ACTION_PERIOD]),
-                    Functions.getImageList(imageStore, ORE_KEY));
+                    imageStore.getImageList(ORE_KEY));
             tryAddEntity(entity);
         }
 
@@ -234,8 +232,7 @@ public final class WorldModel
             Point pt = new Point(Integer.parseInt(properties[SMITH_COL]),
                     Integer.parseInt(properties[SMITH_ROW]));
             Entity entity = Functions.createBlacksmith(properties[SMITH_ID], pt,
-                    Functions.getImageList(imageStore,
-                            SMITH_KEY));
+                    imageStore.getImageList(SMITH_KEY));
             tryAddEntity(entity);
         }
 
@@ -251,7 +248,7 @@ public final class WorldModel
             Entity entity = Functions.createVein(properties[VEIN_ID], pt,
                     Integer.parseInt(
                             properties[VEIN_ACTION_PERIOD]),
-                    Functions.getImageList(imageStore, VEIN_KEY));
+                    imageStore.getImageList(VEIN_KEY));
             tryAddEntity(entity);
         }
 

@@ -134,7 +134,7 @@ public final class Action
                 BLOB_ANIMATION_MIN + Functions.rand.nextInt(
                         BLOB_ANIMATION_MAX
                                 - BLOB_ANIMATION_MIN),
-                Functions.getImageList(imageStore, BLOB_KEY));
+                imageStore.getImageList(BLOB_KEY));
 
         world.addEntity(blob);
         scheduler.scheduleActions(blob,  world, imageStore);
@@ -151,7 +151,7 @@ public final class Action
 
             if (entity.moveToOreBlob( world, blobTarget.get(), scheduler)) {
                 Entity quake = Functions.createQuake(tgtPos,
-                        Functions.getImageList(imageStore, QUAKE_KEY));
+                        imageStore.getImageList(QUAKE_KEY));
 
                 world.addEntity(quake);
                 nextPeriod += entity.getActionPeriod();
@@ -178,7 +178,7 @@ public final class Action
             Entity ore = Functions.createOre(ORE_ID_PREFIX + entity.getId(), openPt.get(),
                     ORE_CORRUPT_MIN + Functions.rand.nextInt(
                             ORE_CORRUPT_MAX - ORE_CORRUPT_MIN),
-                    Functions.getImageList(imageStore, ORE_KEY));
+                    imageStore.getImageList(ORE_KEY));
             world.addEntity(ore);
             scheduler.scheduleActions(ore, world, imageStore);
         }
