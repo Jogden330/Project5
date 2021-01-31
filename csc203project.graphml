@@ -76,15 +76,12 @@
           <y:BorderStyle color="#000000" type="line" width="2.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="102.25537109375" x="85.372314453125" xml:space="preserve" y="3.0">EventScheduler<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="-0.03703090122767855" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
           <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="false">
-            <y:AttributeLabel xml:space="preserve">-QUAKE_ANIMATION_REPEAT_COUNT: int
-
-- eventQueue: PriorityQueue&lt;Event&gt;
+            <y:AttributeLabel xml:space="preserve">- eventQueue: PriorityQueue&lt;Event&gt;
 -pendingEvents: Map&lt;Entity, List&lt;Event&gt;&gt;
 -timeScale: double
 </y:AttributeLabel>
             <y:MethodLabel xml:space="preserve">+scheduleEvent():
-+unscheduleAllEvents():     
-+scheduleActions():   
++unscheduleAllEvents():      
 +updateOnTime():     
 +removePendingEvent():     </y:MethodLabel>
           </y:UML>
@@ -387,7 +384,9 @@ ANIMATION</y:AttributeLabel>
           <y:BorderStyle color="#000000" type="line" width="2.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="40.11181640625" x="64.20221805189509" xml:space="preserve" y="3.0">Entity<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="-0.03703090122767855" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
           <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="false">
-            <y:AttributeLabel xml:space="preserve">-kind: EntityKind
+            <y:AttributeLabel xml:space="preserve">-QUAKE_ANIMATION_REPEAT_COUNT: int
+
+-kind: EntityKind
 -id: String
 -position: Point
 -images: List&lt;PImage&gt;
@@ -410,6 +409,7 @@ ANIMATION</y:AttributeLabel>
 +getPosition(): Point
 +setPosition():
 +getActionPeriod(): int
++scheduleActions(): 
 </y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>

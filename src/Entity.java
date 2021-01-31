@@ -7,6 +7,8 @@ import processing.core.PImage;
 public final class Entity
 {
 
+    private  final int QUAKE_ANIMATION_REPEAT_COUNT = 10;
+
     private EntityKind kind;
     private String id;
     private Point position;
@@ -75,7 +77,7 @@ public final class Entity
         scheduler.unscheduleAllEvents(this);
 
         world.addEntity(miner);
-        scheduler.scheduleActions(miner, world, imageStore);
+        miner.scheduleActions(scheduler, world, imageStore);
     }
 
     public boolean transformNotFull(
@@ -93,7 +95,7 @@ public final class Entity
             scheduler.unscheduleAllEvents(this);
 
             world.addEntity(miner);
-            scheduler.scheduleActions(miner,  world, imageStore);
+            miner.scheduleActions(scheduler,  world, imageStore);
 
             return true;
         }
@@ -239,5 +241,63 @@ public final class Entity
 
     public int getActionPeriod() {
         return actionPeriod;
+    }
+
+    public void scheduleActions(
+            EventScheduler scheduler,
+            WorldModel world,
+            ImageStore imageStore)
+    {
+        switch (kind) {
+            case MINER_FULL:
+                scheduler.scheduleEvent(this,
+                        Functions.createActivityAction(this, world, imageStore),
+                        actionPeriod);
+                scheduler.scheduleEvent(this,
+                        Functions.createAnimationAction(this, 0),
+                        animationPeriod);
+                break;
+
+            case MINER_NOT_FULL:
+                scheduler.scheduleEvent(this,
+                        Functions.createActivityAction(this, world, imageStore),
+                        actionPeriod);
+                scheduler.scheduleEvent( this,
+                        Functions.createAnimationAction(this, 0),
+                        animationPeriod);
+                break;
+
+            case ORE:
+                scheduler.scheduleEvent(this,
+                        Functions.createActivityAction(this, world, imageStore),
+                        actionPeriod);
+                break;
+
+            case ORE_BLOB:
+                scheduler.scheduleEvent(this,
+                        Functions.createActivityAction(this, world, imageStore),
+                        actionPeriod);
+                scheduler.scheduleEvent(this,
+                        Functions.createAnimationAction(this, 0),
+                        animationPeriod);
+                break;
+
+            case QUAKE:
+                scheduler.scheduleEvent(this,
+                        Functions.createActivityAction(this, world, imageStore),
+                        actionPeriod);
+                scheduler.scheduleEvent(this, Functions.createAnimationAction(this,
+                        QUAKE_ANIMATION_REPEAT_COUNT),
+                        animationPeriod);
+                break;
+
+            case VEIN:
+                scheduler.scheduleEvent(this,
+                        Functions.createActivityAction(this, world, imageStore),
+                        actionPeriod);
+                break;
+
+            default:
+        }
     }
 }

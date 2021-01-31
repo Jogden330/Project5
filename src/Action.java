@@ -137,7 +137,7 @@ public final class Action
                 imageStore.getImageList(BLOB_KEY));
 
         world.addEntity(blob);
-        scheduler.scheduleActions(blob,  world, imageStore);
+        blob.scheduleActions(scheduler,  world, imageStore);
     }
 
     private void executeOreBlobActivity(EventScheduler scheduler)
@@ -155,7 +155,7 @@ public final class Action
 
                 world.addEntity(quake);
                 nextPeriod += entity.getActionPeriod();
-                scheduler.scheduleActions(quake, world, imageStore);
+                quake.scheduleActions(scheduler, world, imageStore);
             }
         }
 
@@ -180,7 +180,7 @@ public final class Action
                             ORE_CORRUPT_MAX - ORE_CORRUPT_MIN),
                     imageStore.getImageList(ORE_KEY));
             world.addEntity(ore);
-            scheduler.scheduleActions(ore, world, imageStore);
+            ore.scheduleActions(scheduler, world, imageStore);
         }
 
         scheduler.scheduleEvent( entity,
