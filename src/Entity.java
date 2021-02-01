@@ -400,6 +400,26 @@ public final class Entity
         world.removeEntity(this);
     }
 
+   public void executeVeinActivity(WorldModel world,
+                                     ImageStore imageStore,
+                                     EventScheduler scheduler)
+    {
+        Optional<Point> openPt = world.findOpenAround(getPosition());
+
+        if (openPt.isPresent()) {
+            Entity ore = Functions.createOre(ORE_ID_PREFIX + getId(), openPt.get(),
+                    ORE_CORRUPT_MIN + Functions.rand.nextInt(
+                            ORE_CORRUPT_MAX - ORE_CORRUPT_MIN),
+                    imageStore.getImageList(ORE_KEY));
+            world.addEntity(ore);
+            ore.scheduleActions(scheduler, world, imageStore);
+        }
+
+        scheduler.scheduleEvent( this,
+                Functions.createActivityAction(this, world, imageStore),
+                getActionPeriod());
+    }
+
 
     private  Optional<Entity> findNearest( WorldModel world, EntityKind kind)
     {
