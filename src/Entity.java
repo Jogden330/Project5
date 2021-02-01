@@ -368,6 +368,32 @@ public final class Entity
         blob.scheduleActions(scheduler,  world, imageStore);
     }
 
+    public void executeOreBlobActivity(WorldModel world,
+                                        ImageStore imageStore,
+                                        EventScheduler scheduler)
+    {
+        Optional<Entity> blobTarget =
+                findNearest(world, EntityKind.VEIN);
+        long nextPeriod = getActionPeriod();
+
+        if (blobTarget.isPresent()) {
+            Point tgtPos = blobTarget.get().getPosition() ;
+
+            if (moveToOreBlob( world, blobTarget.get(), scheduler)) {
+                Entity quake = Functions.createQuake(tgtPos,
+                        imageStore.getImageList(QUAKE_KEY));
+
+                world.addEntity(quake);
+                nextPeriod += getActionPeriod();
+                quake.scheduleActions(scheduler, world, imageStore);
+            }
+        }
+
+        scheduler.scheduleEvent( this,
+                Functions.createActivityAction(this, world, imageStore),
+                nextPeriod);
+    }
+
 
     private  Optional<Entity> findNearest( WorldModel world, EntityKind kind)
     {

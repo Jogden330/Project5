@@ -64,7 +64,7 @@ public final class Action
                 break;
 
             case ORE_BLOB:
-                executeOreBlobActivity(scheduler);
+                entity.executeOreBlobActivity(world, imageStore, scheduler);
                 break;
 
             case QUAKE:
@@ -140,29 +140,29 @@ public final class Action
 //        blob.scheduleActions(scheduler,  world, imageStore);
 //    }
 
-    private void executeOreBlobActivity(EventScheduler scheduler)
-    {
-        Optional<Entity> blobTarget =
-                findNearest( EntityKind.VEIN);
-        long nextPeriod = entity.getActionPeriod();
-
-        if (blobTarget.isPresent()) {
-            Point tgtPos = blobTarget.get().getPosition() ;
-
-            if (entity.moveToOreBlob( world, blobTarget.get(), scheduler)) {
-                Entity quake = Functions.createQuake(tgtPos,
-                        imageStore.getImageList(QUAKE_KEY));
-
-                world.addEntity(quake);
-                nextPeriod += entity.getActionPeriod();
-                quake.scheduleActions(scheduler, world, imageStore);
-            }
-        }
-
-        scheduler.scheduleEvent( entity,
-                Functions.createActivityAction(entity, world, imageStore),
-                nextPeriod);
-    }
+//    private void executeOreBlobActivity(EventScheduler scheduler)
+//    {
+//        Optional<Entity> blobTarget =
+//                findNearest( EntityKind.VEIN);
+//        long nextPeriod = entity.getActionPeriod();
+//
+//        if (blobTarget.isPresent()) {
+//            Point tgtPos = blobTarget.get().getPosition() ;
+//
+//            if (entity.moveToOreBlob( world, blobTarget.get(), scheduler)) {
+//                Entity quake = Functions.createQuake(tgtPos,
+//                        imageStore.getImageList(QUAKE_KEY));
+//
+//                world.addEntity(quake);
+//                nextPeriod += entity.getActionPeriod();
+//                quake.scheduleActions(scheduler, world, imageStore);
+//            }
+//        }
+//
+//        scheduler.scheduleEvent( entity,
+//                Functions.createActivityAction(entity, world, imageStore),
+//                nextPeriod);
+//    }
 
     private void executeQuakeActivity(EventScheduler scheduler)
     {
