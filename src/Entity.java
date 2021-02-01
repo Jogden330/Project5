@@ -394,6 +394,12 @@ public final class Entity
                 nextPeriod);
     }
 
+    public void executeQuakeActivity(WorldModel world, EventScheduler scheduler)
+    {
+        scheduler.unscheduleAllEvents(this);
+        world.removeEntity(this);
+    }
+
 
     private  Optional<Entity> findNearest( WorldModel world, EntityKind kind)
     {

@@ -68,7 +68,7 @@ public final class Action
                 break;
 
             case QUAKE:
-                executeQuakeActivity(scheduler);
+                entity.executeQuakeActivity(world,scheduler);
                 break;
 
             case VEIN:
@@ -164,11 +164,11 @@ public final class Action
 //                nextPeriod);
 //    }
 
-    private void executeQuakeActivity(EventScheduler scheduler)
-    {
-        scheduler.unscheduleAllEvents(entity);
-        world.removeEntity(entity);
-    }
+//    private void executeQuakeActivity(EventScheduler scheduler)
+//    {
+//        scheduler.unscheduleAllEvents(entity);
+//        world.removeEntity(entity);
+//    }
 
     private void executeVeinActivity(EventScheduler scheduler)
     {
