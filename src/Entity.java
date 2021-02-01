@@ -300,4 +300,38 @@ public final class Entity
             default:
         }
     }
+
+    public void executeMinerFullActivity(WorldModel world,
+                                         ImageStore imageStore,
+                                         EventScheduler scheduler)
+    {
+        Optional<Entity> fullTarget =
+                findNearest(world, EntityKind.BLACKSMITH);
+
+        if (fullTarget.isPresent() && moveToFull(world,
+                fullTarget.get(), scheduler))
+        {
+            transformFull( world, scheduler, imageStore);
+        }
+        else {
+            scheduler.scheduleEvent( this,
+                    Functions.createActivityAction(this, world, imageStore),
+                    getActionPeriod());
+        }
+    }
+
+
+
+
+    private  Optional<Entity> findNearest( WorldModel world, EntityKind kind)
+    {
+        List<Entity> ofType = new LinkedList<>();
+        for (Entity entity : world.getEntities()) {
+            if (entity.getKind() == kind) {
+                ofType.add(entity);
+            }
+        }
+
+        return getPosition().nearestEntity(ofType);
+    }
 }
