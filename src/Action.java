@@ -60,7 +60,7 @@ public final class Action
                 break;
 
             case ORE:
-                executeOreActivity(scheduler);
+                entity.executeOreActivity(world, imageStore, scheduler);
                 break;
 
             case ORE_BLOB:
@@ -122,23 +122,23 @@ public final class Action
 //        }
 //    }
 
-    private void executeOreActivity(EventScheduler scheduler)
-    {
-        Point pos = entity.getPosition();
-
-        world.removeEntity(entity);
-        scheduler.unscheduleAllEvents( entity);
-
-        Entity blob = Functions.createOreBlob(entity.getId() + BLOB_ID_SUFFIX, pos,
-                entity.getActionPeriod() / BLOB_PERIOD_SCALE,
-                BLOB_ANIMATION_MIN + Functions.rand.nextInt(
-                        BLOB_ANIMATION_MAX
-                                - BLOB_ANIMATION_MIN),
-                imageStore.getImageList(BLOB_KEY));
-
-        world.addEntity(blob);
-        blob.scheduleActions(scheduler,  world, imageStore);
-    }
+//    private void executeOreActivity(EventScheduler scheduler)
+//    {
+//        Point pos = entity.getPosition();
+//
+//        world.removeEntity(entity);
+//        scheduler.unscheduleAllEvents( entity);
+//
+//        Entity blob = Functions.createOreBlob(entity.getId() + BLOB_ID_SUFFIX, pos,
+//                entity.getActionPeriod() / BLOB_PERIOD_SCALE,
+//                BLOB_ANIMATION_MIN + Functions.rand.nextInt(
+//                        BLOB_ANIMATION_MAX
+//                                - BLOB_ANIMATION_MIN),
+//                imageStore.getImageList(BLOB_KEY));
+//
+//        world.addEntity(blob);
+//        blob.scheduleActions(scheduler,  world, imageStore);
+//    }
 
     private void executeOreBlobActivity(EventScheduler scheduler)
     {

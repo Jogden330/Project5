@@ -8,6 +8,18 @@ public final class Entity
 {
 
     private  final int QUAKE_ANIMATION_REPEAT_COUNT = 10;
+    private final String BLOB_KEY = "blob";
+    private final String BLOB_ID_SUFFIX = " -- blob";
+    private final int BLOB_PERIOD_SCALE = 4;
+    private final int BLOB_ANIMATION_MIN = 50;
+    private final int BLOB_ANIMATION_MAX = 150;
+
+    private final String ORE_ID_PREFIX = "ore -- ";
+    private final int ORE_CORRUPT_MIN = 20000;
+    private final int ORE_CORRUPT_MAX = 30000;
+
+    private  final String QUAKE_KEY = "quake";
+    private  final String ORE_KEY = "ore";
 
     private EntityKind kind;
     private String id;
@@ -336,6 +348,25 @@ public final class Entity
         }
     }
 
+    public void executeOreActivity(WorldModel world,
+                                    ImageStore imageStore,
+                                    EventScheduler scheduler)
+    {
+        Point pos = getPosition();
+
+        world.removeEntity(this);
+        scheduler.unscheduleAllEvents(this);
+
+        Entity blob = Functions.createOreBlob(getId() + BLOB_ID_SUFFIX, pos,
+                getActionPeriod() / BLOB_PERIOD_SCALE,
+                BLOB_ANIMATION_MIN + Functions.rand.nextInt(
+                        BLOB_ANIMATION_MAX
+                                - BLOB_ANIMATION_MIN),
+                imageStore.getImageList(BLOB_KEY));
+
+        world.addEntity(blob);
+        blob.scheduleActions(scheduler,  world, imageStore);
+    }
 
 
     private  Optional<Entity> findNearest( WorldModel world, EntityKind kind)
