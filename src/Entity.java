@@ -320,6 +320,21 @@ public final class Entity
         }
     }
 
+    public void executeMinerNotFullActivity(WorldModel world,
+                                              ImageStore imageStore,
+                                              EventScheduler scheduler)
+    {
+        Optional<Entity> notFullTarget =
+                findNearest(world, EntityKind.ORE);
+
+        if (!notFullTarget.isPresent() || !moveToNotFull( world, notFullTarget.get(), scheduler)
+                || !transformNotFull( world, scheduler, imageStore))
+        {
+            scheduler.scheduleEvent(this,
+                    Functions.createActivityAction(this, world, imageStore),
+                    getActionPeriod());
+        }
+    }
 
 
 

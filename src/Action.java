@@ -56,7 +56,7 @@ public final class Action
                 break;
 
             case MINER_NOT_FULL:
-                executeMinerNotFullActivity(scheduler);
+                entity.executeMinerNotFullActivity(world, imageStore, scheduler);
                 break;
 
             case ORE:
@@ -108,19 +108,19 @@ public final class Action
 //        }
 //    }
 
-    private  void executeMinerNotFullActivity(EventScheduler scheduler)
-    {
-        Optional<Entity> notFullTarget =
-                findNearest( EntityKind.ORE);
-
-        if (!notFullTarget.isPresent() || !entity.moveToNotFull( world, notFullTarget.get(), scheduler)
-                || !entity.transformNotFull( world, scheduler, imageStore))
-        {
-            scheduler.scheduleEvent(entity,
-                    Functions.createActivityAction(entity, world, imageStore),
-                    entity.getActionPeriod());
-        }
-    }
+//    private  void executeMinerNotFullActivity(EventScheduler scheduler)
+//    {
+//        Optional<Entity> notFullTarget =
+//                findNearest( EntityKind.ORE);
+//
+//        if (!notFullTarget.isPresent() || !entity.moveToNotFull( world, notFullTarget.get(), scheduler)
+//                || !entity.transformNotFull( world, scheduler, imageStore))
+//        {
+//            scheduler.scheduleEvent(entity,
+//                    Functions.createActivityAction(entity, world, imageStore),
+//                    entity.getActionPeriod());
+//        }
+//    }
 
     private void executeOreActivity(EventScheduler scheduler)
     {
