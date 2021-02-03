@@ -246,32 +246,33 @@
           <y:BorderStyle color="#000000" type="line" width="2.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="81.2763671875" x="150.86181640624991" xml:space="preserve" y="3.0">VirtualWorld<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="-0.03703090122767855" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
           <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="false">
-            <y:AttributeLabel xml:space="preserve">+TIMER_ACTION_PERIOD: int         &lt;&lt;static&gt;&gt;
-+VIEW_WIDTH: int                          &lt;&lt;static&gt;&gt;
-+VIEW_HEIGHT: int                         &lt;&lt;static&gt;&gt;
-+TILE_WIDTH: int                           &lt;&lt;static&gt;&gt;
-+TILE_HEIGHT: int                          &lt;&lt;static&gt;&gt;
-+WORLD_WIDTH_SCALE: int           &lt;&lt;static&gt;&gt;
-+WORLD_HEIGHT_SCALE: int          &lt;&lt;static&gt;&gt;
-+VIEW_COLS: int                             &lt;&lt;static&gt;&gt;
-+VIEW_ROWS: int                            &lt;&lt;static&gt;&gt;
-+WORLD_COLS: int                         &lt;&lt;static&gt;&gt;
-+WORLD_ROWS: int                        &lt;&lt;static&gt;&gt;
-+IMAGE_LIST_FILE_NAME: String    &lt;&lt;static&gt;&gt;
-+DEFAULT_IMAGE_NAME: String    &lt;&lt;static&gt;&gt;
-+DEFAULT_IMAGE_COLOR: int       &lt;&lt;static&gt;&gt;
-+LOAD_FILE_NAME: String            &lt;&lt;static&gt;&gt;
-+FAST_FLAG: String                      &lt;&lt;static&gt;&gt;
-+FASTER_FLAG: String                  &lt;&lt;static&gt;&gt;
-+FASTEST_FLAG: String                &lt;&lt;static&gt;&gt;
-+FAST_SCALE: double                  &lt;&lt;static&gt;&gt;
-+FASTER_SCALE: double              &lt;&lt;static&gt;&gt;
-+FASTEST_SCALE: double            &lt;&lt;static&gt;&gt;
-+timeScale: double
-+imageStore: ImageStore
-+world: WorldModel
-+view: WorldView
-+scheduler: EventScheduler</y:AttributeLabel>
+            <y:AttributeLabel xml:space="preserve">-TIMER_ACTION_PERIOD: int        
+-VIEW_WIDTH: int                         
+-VIEW_HEIGHT: int 
+-TILE_WIDTH: int   
+-TILE_HEIGHT: int                          
+-WORLD_WIDTH_SCALE: int           
+-WORLD_HEIGHT_SCALE: int          
+-VIEW_COLS: int                             
+-VIEW_ROWS: int                            
+-WORLD_COLS: int     
+-WORLD_ROWS: int    
+-IMAGE_LIST_FILE_NAME: String   
+-DEFAULT_IMAGE_NAME: String   
+-DEFAULT_IMAGE_COLOR: int &gt;
+-LOAD_FILE_NAME: String  
+-FAST_FLAG: String  
+-FASTER_FLAG: String    
+-FASTEST_FLAG: String   
+-FAST_SCALE: double      
+-FASTER_SCALE: double     
+-FASTEST_SCALE: double     
+
+-timeScale: double
+-imageStore: ImageStore
+-world: WorldModel
+-view: WorldView
+-scheduler: EventScheduler</y:AttributeLabel>
             <y:MethodLabel xml:space="preserve">+settings()
 +setup()
 +draw()
@@ -323,23 +324,12 @@
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="457.6571376134906" width="166.9936691209282" x="952.3742488466828" y="352.3868784756815"/>
+          <y:Geometry height="184.06479738398048" width="166.9936691209282" x="952.3742488466828" y="489.1830485904366"/>
           <y:Fill color="#C0C0C0" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="2.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="44.44091796875" x="61.276375576089094" xml:space="preserve" y="3.0">Action<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="-0.03703090122767855" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
           <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="false">
-            <y:AttributeLabel xml:space="preserve">-BLOB_KEY: String 
--BLOB_ID_SUFFIX:String  
--BLOB_PERIOD_SCALE: int
--BLOB_ANIMATION_MIN: int
--BLOB_ANIMATION_MAX:int
--ORE_ID_PREFIX: String
--ORE_CORRUPT_MI0: int
--ORE_CORRUPT_MAX: int
--ORE_KEY: String
--QUAKE_KEY: String
- 
--kind: ActionKind
+            <y:AttributeLabel xml:space="preserve">-kind: ActionKind
 -entity: Entity
 -world: WorldModel
 -imageStore: ImageStore
@@ -347,14 +337,7 @@
             <y:MethodLabel xml:space="preserve">+executeAction():
 -executeActivityAction():
 -executeAnimationAction():
--executeMinerFullActivity():
--executeMinerNotFullActivity()          
--executeOreActivity():       
--executeOreBlobActivity():
--executeQuakeActivity():   
--executeVeinActivity():
--findNearest(): Optional&lt;Entity&gt;
-      </y:MethodLabel>
+</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
       </data>
@@ -379,12 +362,22 @@ ANIMATION</y:AttributeLabel>
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="388.9884747876191" width="168.51625251004018" x="658.3852587601671" y="-562.7677546587986"/>
+          <y:Geometry height="685.1187568753019" width="168.51625251004018" x="652.0648913280168" y="-710.83289570264"/>
           <y:Fill color="#C0C0C0" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="2.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="40.11181640625" x="64.20221805189509" xml:space="preserve" y="3.0">Entity<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="-0.03703090122767855" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
           <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="false">
             <y:AttributeLabel xml:space="preserve">-QUAKE_ANIMATION_REPEAT_COUNT: int
+-BLOB_KEY: String 
+-BLOB_ID_SUFFIX:String  
+-BLOB_PERIOD_SCALE: int
+-BLOB_ANIMATION_MIN: int
+-BLOB_ANIMATION_MAX:int
+-ORE_ID_PREFIX: String
+-ORE_CORRUPT_MI0: int
+-ORE_CORRUPT_MAX: int
+-ORE_KEY: String
+-QUAKE_KEY: String
 
 -kind: EntityKind
 -id: String
@@ -410,6 +403,14 @@ ANIMATION</y:AttributeLabel>
 +setPosition():
 +getActionPeriod(): int
 +scheduleActions(): 
++executeMinerFullActivity():
++executeMinerNotFullActivity()          
++executeOreActivity():       
++executeOreBlobActivity():
++executeQuakeActivity():   
++executeVeinActivity():
++findNearest(): Optional&lt;Entity&gt;
+      
 </y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>

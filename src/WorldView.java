@@ -88,14 +88,14 @@ public final class WorldView
             String key = attrs[0];
             PImage img = screen.loadImage(attrs[1]);
             if (img != null && img.width != -1) {
-                List<PImage> imgs = Functions.getImages(images, key);
+                List<PImage> imgs = WorldFactory.getImages(images, key);
                 imgs.add(img);
 
                 if (attrs.length >= KEYED_IMAGE_MIN) {
                     int r = Integer.parseInt(attrs[KEYED_RED_IDX]);
                     int g = Integer.parseInt(attrs[KEYED_GREEN_IDX]);
                     int b = Integer.parseInt(attrs[KEYED_BLUE_IDX]);
-                    Functions.setAlpha(img, screen.color(r, g, b), 0);
+                    WorldFactory.setAlpha(img, screen.color(r, g, b), 0);
                 }
             }
         }

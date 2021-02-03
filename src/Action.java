@@ -76,7 +76,7 @@ public final class Action
         entity.nextImage();
 
         if (repeatCount != 1) {
-            scheduler.scheduleEvent( entity, Functions.createAnimationAction(entity,  Math.max(repeatCount - 1, 0)),  entity.getAnimationPeriod());
+            scheduler.scheduleEvent( entity, EntityFactory.createAnimationAction(entity,  Math.max(repeatCount - 1, 0)),  entity.getAnimationPeriod());
         }
     }
 
