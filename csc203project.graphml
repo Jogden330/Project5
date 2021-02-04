@@ -269,7 +269,7 @@ Action<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:Mod
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="685.1187568753019" width="168.51625251004018" x="652.0648913280168" y="-710.83289570264"/>
+          <y:Geometry height="685.1187568753019" width="168.51625251004018" x="597.8978465448589" y="-710.83289570264"/>
           <y:Fill color="#C0C0C0" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="2.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="40.11181640625" x="64.20221805189509" xml:space="preserve" y="3.0">Entity<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="-0.03703090122767855" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
@@ -441,7 +441,7 @@ VEIN</y:AttributeLabel>
           <y:Geometry height="184.06479738398048" width="166.9936691209282" x="895.3660324938072" y="530.7214751080717"/>
           <y:Fill color="#C0C0C0" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="2.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="44.44091796875" x="61.276375576089094" xml:space="preserve" y="3.0">Action<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="-0.03703090122767855" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="50.9599609375" x="58.016854091714094" xml:space="preserve" y="3.0">Activity<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="-0.03703090122767855" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
           <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="false">
             <y:AttributeLabel xml:space="preserve">-entity: Entity
 -world: WorldModel
@@ -465,6 +465,484 @@ VEIN</y:AttributeLabel>
             <y:AttributeLabel xml:space="preserve">-entity: Entity
 -repeatCount: int</y:AttributeLabel>
             <y:MethodLabel xml:space="preserve">+executeAction():
+</y:MethodLabel>
+          </y:UML>
+        </y:UMLClassNode>
+      </data>
+    </node>
+    <node id="n16">
+      <data key="d4" xml:space="preserve"/>
+      <data key="d6">
+        <y:UMLClassNode>
+          <y:Geometry height="685.1187568753019" width="168.51625251004018" x="63.11922810949068" y="-902.3350417236926"/>
+          <y:Fill color="#C0C0C0" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="2.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="61.7763671875" x="53.36994266127009" xml:space="preserve" y="3.0">MinerFull<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="-0.03703090122767855" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+          <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="false">
+            <y:AttributeLabel xml:space="preserve">-QUAKE_ANIMATION_REPEAT_COUNT: int
+-BLOB_KEY: String 
+-BLOB_ID_SUFFIX:String  
+-BLOB_PERIOD_SCALE: int
+-BLOB_ANIMATION_MIN: int
+-BLOB_ANIMATION_MAX:int
+-ORE_ID_PREFIX: String
+-ORE_CORRUPT_MI0: int
+-ORE_CORRUPT_MAX: int
+-ORE_KEY: String
+-QUAKE_KEY: String
+
+-kind: EntityKind
+-id: String
+-position: Point
+-images: List&lt;PImage&gt;
+-imageIndex: int
+-resourceLimit: int
+-resourceCount: int
+-actionPeriod: int
+-animationPeriod: int</y:AttributeLabel>
+            <y:MethodLabel xml:space="preserve">+getAnimationPeriod(): int               
++nextImage():
++transformNotFull(): boolean         
++transformFull()                       
++moveToNotFull(): boolean            
++moveToFull(): boolean              
++moveToOreBlob(): boolean             +nextPositionMiner(): Point              
++nextPositionOreBlob(): Point          
++getCurrentImage(): PImage   
++getKind(): EntityKind
++getId(): String
++getPosition(): Point
++setPosition():
++getActionPeriod(): int
++scheduleActions(): 
++executeMinerFullActivity():
++executeMinerNotFullActivity()          
++executeOreActivity():       
++executeOreBlobActivity():
++executeQuakeActivity():   
++executeVeinActivity():
++findNearest(): Optional&lt;Entity&gt;
+      
+</y:MethodLabel>
+          </y:UML>
+        </y:UMLClassNode>
+      </data>
+    </node>
+    <node id="n17">
+      <data key="d4" xml:space="preserve"/>
+      <data key="d6">
+        <y:UMLClassNode>
+          <y:Geometry height="685.1187568753019" width="168.51625251004018" x="-282.9391315632213" y="-902.3350417236926"/>
+          <y:Fill color="#C0C0C0" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="2.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="83.4345703125" x="42.54084109877009" xml:space="preserve" y="3.0">MinerNotFull<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="-0.03703090122767855" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+          <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="false">
+            <y:AttributeLabel xml:space="preserve">-QUAKE_ANIMATION_REPEAT_COUNT: int
+-BLOB_KEY: String 
+-BLOB_ID_SUFFIX:String  
+-BLOB_PERIOD_SCALE: int
+-BLOB_ANIMATION_MIN: int
+-BLOB_ANIMATION_MAX:int
+-ORE_ID_PREFIX: String
+-ORE_CORRUPT_MI0: int
+-ORE_CORRUPT_MAX: int
+-ORE_KEY: String
+-QUAKE_KEY: String
+
+-kind: EntityKind
+-id: String
+-position: Point
+-images: List&lt;PImage&gt;
+-imageIndex: int
+-resourceLimit: int
+-resourceCount: int
+-actionPeriod: int
+-animationPeriod: int</y:AttributeLabel>
+            <y:MethodLabel xml:space="preserve">+getAnimationPeriod(): int               
++nextImage():
++transformNotFull(): boolean         
++transformFull()                       
++moveToNotFull(): boolean            
++moveToFull(): boolean              
++moveToOreBlob(): boolean             +nextPositionMiner(): Point              
++nextPositionOreBlob(): Point          
++getCurrentImage(): PImage   
++getKind(): EntityKind
++getId(): String
++getPosition(): Point
++setPosition():
++getActionPeriod(): int
++scheduleActions(): 
++executeMinerFullActivity():
++executeMinerNotFullActivity()          
++executeOreActivity():       
++executeOreBlobActivity():
++executeQuakeActivity():   
++executeVeinActivity():
++findNearest(): Optional&lt;Entity&gt;
+      
+</y:MethodLabel>
+          </y:UML>
+        </y:UMLClassNode>
+      </data>
+    </node>
+    <node id="n18">
+      <data key="d4" xml:space="preserve"/>
+      <data key="d6">
+        <y:UMLClassNode>
+          <y:Geometry height="685.1187568753019" width="168.51625251004018" x="-1563.572337971061" y="-279.6289533026396"/>
+          <y:Fill color="#C0C0C0" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="2.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="58.91357421875" x="54.80133914564509" xml:space="preserve" y="3.0">Obstacle<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="-0.03703090122767855" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+          <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="false">
+            <y:AttributeLabel xml:space="preserve">-QUAKE_ANIMATION_REPEAT_COUNT: int
+-BLOB_KEY: String 
+-BLOB_ID_SUFFIX:String  
+-BLOB_PERIOD_SCALE: int
+-BLOB_ANIMATION_MIN: int
+-BLOB_ANIMATION_MAX:int
+-ORE_ID_PREFIX: String
+-ORE_CORRUPT_MI0: int
+-ORE_CORRUPT_MAX: int
+-ORE_KEY: String
+-QUAKE_KEY: String
+
+-kind: EntityKind
+-id: String
+-position: Point
+-images: List&lt;PImage&gt;
+-imageIndex: int
+-resourceLimit: int
+-resourceCount: int
+-actionPeriod: int
+</y:AttributeLabel>
+            <y:MethodLabel xml:space="preserve">+nextImage():
++transformNotFull(): boolean         
++transformFull()                       
++moveToNotFull(): boolean            
++moveToFull(): boolean              
++moveToOreBlob(): boolean             +nextPositionMiner(): Point              
++nextPositionOreBlob(): Point          
++getCurrentImage(): PImage   
++getKind(): EntityKind
++getId(): String
++getPosition(): Point
++setPosition():
++getActionPeriod(): int
++scheduleActions(): 
++executeMinerFullActivity():
++executeMinerNotFullActivity()          
++executeOreActivity():       
++executeOreBlobActivity():
++executeQuakeActivity():   
++executeVeinActivity():
++findNearest(): Optional&lt;Entity&gt;
+      
+</y:MethodLabel>
+          </y:UML>
+        </y:UMLClassNode>
+      </data>
+    </node>
+    <node id="n19">
+      <data key="d4" xml:space="preserve"/>
+      <data key="d6">
+        <y:UMLClassNode>
+          <y:Geometry height="685.1187568753019" width="168.51625251004018" x="-1563.572337971061" y="-1021.5136333868503"/>
+          <y:Fill color="#C0C0C0" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="2.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="26.40087890625" x="71.05768680189509" xml:space="preserve" y="3.0">Ore<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="-0.03703090122767855" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+          <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="false">
+            <y:AttributeLabel xml:space="preserve">-QUAKE_ANIMATION_REPEAT_COUNT: int
+-BLOB_KEY: String 
+-BLOB_ID_SUFFIX:String  
+-BLOB_PERIOD_SCALE: int
+-BLOB_ANIMATION_MIN: int
+-BLOB_ANIMATION_MAX:int
+-ORE_ID_PREFIX: String
+-ORE_CORRUPT_MI0: int
+-ORE_CORRUPT_MAX: int
+-ORE_KEY: String
+-QUAKE_KEY: String
+
+-kind: EntityKind
+-id: String
+-position: Point
+-images: List&lt;PImage&gt;
+-imageIndex: int
+-resourceLimit: int
+-resourceCount: int
+-actionPeriod: int
+</y:AttributeLabel>
+            <y:MethodLabel xml:space="preserve">+nextImage():
++transformNotFull(): boolean         
++transformFull()                       
++moveToNotFull(): boolean            
++moveToFull(): boolean              
++moveToOreBlob(): boolean             +nextPositionMiner(): Point              
++nextPositionOreBlob(): Point          
++getCurrentImage(): PImage   
++getKind(): EntityKind
++getId(): String
++getPosition(): Point
++setPosition():
++getActionPeriod(): int
++scheduleActions(): 
++executeMinerFullActivity():
++executeMinerNotFullActivity()          
++executeOreActivity():       
++executeOreBlobActivity():
++executeQuakeActivity():   
++executeVeinActivity():
++findNearest(): Optional&lt;Entity&gt;
+      
+</y:MethodLabel>
+          </y:UML>
+        </y:UMLClassNode>
+      </data>
+    </node>
+    <node id="n20">
+      <data key="d4" xml:space="preserve"/>
+      <data key="d6">
+        <y:UMLClassNode>
+          <y:Geometry height="685.1187568753019" width="197.25827255214548" x="-894.3695738172465" y="-961.8215474921136"/>
+          <y:Fill color="#C0C0C0" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="2.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="43.74267578125" x="76.75779838544774" xml:space="preserve" y="3.0">Quake<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="-0.03703090122767855" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+          <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="false">
+            <y:AttributeLabel xml:space="preserve">-QUAKE_ANIMATION_REPEAT_COUNT: int
+-BLOB_KEY: String 
+-BLOB_ID_SUFFIX:String  
+-BLOB_PERIOD_SCALE: int
+-BLOB_ANIMATION_MIN: int
+-BLOB_ANIMATION_MAX:int
+-ORE_ID_PREFIX: String
+-ORE_CORRUPT_MI0: int
+-ORE_CORRUPT_MAX: int
+-ORE_KEY: String
+-QUAKE_KEY: String
+
+-kind: EntityKind
+-id: String
+-position: Point
+-images: List&lt;PImage&gt;
+-imageIndex: int
+-resourceLimit: int
+-resourceCount: int
+-actionPeriod: int
+-animationPeriod: int</y:AttributeLabel>
+            <y:MethodLabel xml:space="preserve">+getAnimationPeriod(): int               
++nextImage():
++transformNotFull(): boolean         
++transformFull()                       
++moveToNotFull(): boolean            
++moveToFull(): boolean              
++moveToOreBlob(): boolean             +nextPositionMiner(): Point              
++nextPositionOreBlob(): Point          
++getCurrentImage(): PImage   
++getKind(): EntityKind
++getId(): String
++getPosition(): Point
++setPosition():
++getActionPeriod(): int
++scheduleActions(): 
++executeMinerFullActivity():
++executeMinerNotFullActivity()          
++executeOreActivity():       
++executeOreBlobActivity():
++executeQuakeActivity():   
++executeVeinActivity():
++findNearest(): Optional&lt;Entity&gt;
+      
+</y:MethodLabel>
+          </y:UML>
+        </y:UMLClassNode>
+      </data>
+    </node>
+    <node id="n21">
+      <data key="d4" xml:space="preserve"/>
+      <data key="d6">
+        <y:UMLClassNode>
+          <y:Geometry height="685.1187568753019" width="168.51625251004018" x="-1326.652326832264" y="-1022.5411311552715"/>
+          <y:Fill color="#C0C0C0" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="2.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="31.45361328125" x="68.53131961439509" xml:space="preserve" y="3.0">Vein<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="-0.03703090122767855" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+          <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="false">
+            <y:AttributeLabel xml:space="preserve">-QUAKE_ANIMATION_REPEAT_COUNT: int
+-BLOB_KEY: String 
+-BLOB_ID_SUFFIX:String  
+-BLOB_PERIOD_SCALE: int
+-BLOB_ANIMATION_MIN: int
+-BLOB_ANIMATION_MAX:int
+-ORE_ID_PREFIX: String
+-ORE_CORRUPT_MI0: int
+-ORE_CORRUPT_MAX: int
+-ORE_KEY: String
+-QUAKE_KEY: String
+
+-kind: EntityKind
+-id: String
+-position: Point
+-images: List&lt;PImage&gt;
+-imageIndex: int
+-resourceLimit: int
+-resourceCount: int
+-actionPeriod: int
+</y:AttributeLabel>
+            <y:MethodLabel xml:space="preserve">+nextImage():
++transformNotFull(): boolean         
++transformFull()                       
++moveToNotFull(): boolean            
++moveToFull(): boolean              
++moveToOreBlob(): boolean             +nextPositionMiner(): Point              
++nextPositionOreBlob(): Point          
++getCurrentImage(): PImage   
++getKind(): EntityKind
++getId(): String
++getPosition(): Point
++setPosition():
++getActionPeriod(): int
++scheduleActions(): 
++executeMinerFullActivity():
++executeMinerNotFullActivity()          
++executeOreActivity():       
++executeOreBlobActivity():
++executeQuakeActivity():   
++executeVeinActivity():
++findNearest(): Optional&lt;Entity&gt;
+      
+</y:MethodLabel>
+          </y:UML>
+        </y:UMLClassNode>
+      </data>
+    </node>
+    <node id="n22">
+      <data key="d4" xml:space="preserve"/>
+      <data key="d6">
+        <y:UMLClassNode>
+          <y:Geometry height="685.1187568753019" width="168.51625251004018" x="-608.9723323387851" y="-939.2358585657977"/>
+          <y:Fill color="#C0C0C0" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="2.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="55.28271484375" x="56.61676883314509" xml:space="preserve" y="3.0">OreBlob<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="-0.03703090122767855" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+          <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="false">
+            <y:AttributeLabel xml:space="preserve">-QUAKE_ANIMATION_REPEAT_COUNT: int
+-BLOB_KEY: String 
+-BLOB_ID_SUFFIX:String  
+-BLOB_PERIOD_SCALE: int
+-BLOB_ANIMATION_MIN: int
+-BLOB_ANIMATION_MAX:int
+-ORE_ID_PREFIX: String
+-ORE_CORRUPT_MI0: int
+-ORE_CORRUPT_MAX: int
+-ORE_KEY: String
+-QUAKE_KEY: String
+
+-kind: EntityKind
+-id: String
+-position: Point
+-images: List&lt;PImage&gt;
+-imageIndex: int
+-resourceLimit: int
+-resourceCount: int
+-actionPeriod: int
+-animationPeriod: int</y:AttributeLabel>
+            <y:MethodLabel xml:space="preserve">+getAnimationPeriod(): int               
++nextImage():
++transformNotFull(): boolean         
++transformFull()                       
++moveToNotFull(): boolean            
++moveToFull(): boolean              
++moveToOreBlob(): boolean             +nextPositionMiner(): Point              
++nextPositionOreBlob(): Point          
++getCurrentImage(): PImage   
++getKind(): EntityKind
++getId(): String
++getPosition(): Point
++setPosition():
++getActionPeriod(): int
++scheduleActions(): 
++executeMinerFullActivity():
++executeMinerNotFullActivity()          
++executeOreActivity():       
++executeOreBlobActivity():
++executeQuakeActivity():   
++executeVeinActivity():
++findNearest(): Optional&lt;Entity&gt;
+      
+</y:MethodLabel>
+          </y:UML>
+        </y:UMLClassNode>
+      </data>
+    </node>
+    <node id="n23">
+      <data key="d4" xml:space="preserve"/>
+      <data key="d6">
+        <y:UMLClassNode>
+          <y:Geometry height="685.1187568753019" width="168.51625251004018" x="-1341.0638523633688" y="-284.8307048815873"/>
+          <y:Fill color="#C0C0C0" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="2.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="74.8017578125" x="46.85724734877009" xml:space="preserve" y="3.0">BlackSmith<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="-0.03703090122767855" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+          <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="false">
+            <y:AttributeLabel xml:space="preserve">-QUAKE_ANIMATION_REPEAT_COUNT: int
+-BLOB_KEY: String 
+-BLOB_ID_SUFFIX:String  
+-BLOB_PERIOD_SCALE: int
+-BLOB_ANIMATION_MIN: int
+-BLOB_ANIMATION_MAX:int
+-ORE_ID_PREFIX: String
+-ORE_CORRUPT_MI0: int
+-ORE_CORRUPT_MAX: int
+-ORE_KEY: String
+-QUAKE_KEY: String
+
+-kind: EntityKind
+-id: String
+-position: Point
+-images: List&lt;PImage&gt;
+-imageIndex: int
+-resourceLimit: int
+-resourceCount: int
+-actionPeriod: int
+</y:AttributeLabel>
+            <y:MethodLabel xml:space="preserve">+nextImage():
++transformNotFull(): boolean         
++transformFull()                       
++moveToNotFull(): boolean            
++moveToFull(): boolean              
++moveToOreBlob(): boolean             +nextPositionMiner(): Point              
++nextPositionOreBlob(): Point          
++getCurrentImage(): PImage   
++getKind(): EntityKind
++getId(): String
++getPosition(): Point
++setPosition():
++getActionPeriod(): int
++scheduleActions(): 
++executeMinerFullActivity():
++executeMinerNotFullActivity()          
++executeOreActivity():       
++executeOreBlobActivity():
++executeQuakeActivity():   
++executeVeinActivity():
++findNearest(): Optional&lt;Entity&gt;
+      
+</y:MethodLabel>
+          </y:UML>
+        </y:UMLClassNode>
+      </data>
+    </node>
+    <node id="n24">
+      <data key="d4" xml:space="preserve"/>
+      <data key="d6">
+        <y:UMLClassNode>
+          <y:Geometry height="184.06479738398048" width="166.9936691209282" x="-262.2568783332167" y="-1210.0188532200898"/>
+          <y:Fill color="#C0C0C0" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="2.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="35.8525390625" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="73.37353515625" x="46.810066982339094" xml:space="preserve" y="3.0">&lt;interface&gt;
+Action<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="-0.03703090122767855" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+          <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="false">
+            <y:AttributeLabel xml:space="preserve"/>
+            <y:MethodLabel xml:space="preserve">+getAnimationPeriod(): int    
+
 </y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
@@ -636,6 +1114,50 @@ VEIN</y:AttributeLabel>
       </data>
     </edge>
     <edge id="e15" source="n14" target="n9">
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="dashed_dotted" width="1.0"/>
+          <y:Arrows source="none" target="white_delta"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e16" source="n20" target="n24">
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="dashed_dotted" width="1.0"/>
+          <y:Arrows source="none" target="white_delta"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e17" source="n22" target="n24">
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="dashed_dotted" width="1.0"/>
+          <y:Arrows source="none" target="white_delta"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e18" source="n17" target="n24">
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="dashed_dotted" width="1.0"/>
+          <y:Arrows source="none" target="white_delta"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e19" source="n16" target="n24">
       <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>

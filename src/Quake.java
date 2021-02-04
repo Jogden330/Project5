@@ -1,12 +1,10 @@
+import processing.core.PImage;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
-import processing.core.PImage;
-
-public final class Entity
-{
-
+public class Quake implements Animated {
     private  final int QUAKE_ANIMATION_REPEAT_COUNT = 10;
     private final String BLOB_KEY = "blob";
     private final String BLOB_ID_SUFFIX = " -- blob";
@@ -31,7 +29,7 @@ public final class Entity
     private int actionPeriod;
     private int animationPeriod;
 
-    public Entity(
+    public Quake(
 
             String id,
             Point position,
@@ -53,16 +51,8 @@ public final class Entity
     }
 
     public int getAnimationPeriod() {
-        switch (kind) {
-            case MINER_FULL:
-            case MINER_NOT_FULL:
-            case ORE_BLOB:
-            case QUAKE:
-                return animationPeriod;
-            default:
-                throw new UnsupportedOperationException(
-                        String.format("getAnimationPeriod not supported for %s", kind));
-        }
+        return animationPeriod;
+
     }
 
 
@@ -74,7 +64,7 @@ public final class Entity
 
     public  PImage getCurrentImage() {
 
-            return images.get(imageIndex);
+        return images.get(imageIndex);
 
 
     }
@@ -331,8 +321,8 @@ public final class Entity
     }
 
     public void executeMinerNotFullActivity(WorldModel world,
-                                              ImageStore imageStore,
-                                              EventScheduler scheduler)
+                                            ImageStore imageStore,
+                                            EventScheduler scheduler)
     {
         Optional<Entity> notFullTarget =
                 findNearest(world, EntityKind.ORE);
@@ -347,8 +337,8 @@ public final class Entity
     }
 
     public void executeOreActivity(WorldModel world,
-                                    ImageStore imageStore,
-                                    EventScheduler scheduler)
+                                   ImageStore imageStore,
+                                   EventScheduler scheduler)
     {
         Point pos = getPosition();
 
@@ -367,8 +357,8 @@ public final class Entity
     }
 
     public void executeOreBlobActivity(WorldModel world,
-                                        ImageStore imageStore,
-                                        EventScheduler scheduler)
+                                       ImageStore imageStore,
+                                       EventScheduler scheduler)
     {
         Optional<Entity> blobTarget =
                 findNearest(world, EntityKind.VEIN);
@@ -398,9 +388,9 @@ public final class Entity
         world.removeEntity(this);
     }
 
-   public void executeVeinActivity(WorldModel world,
-                                     ImageStore imageStore,
-                                     EventScheduler scheduler)
+    public void executeVeinActivity(WorldModel world,
+                                    ImageStore imageStore,
+                                    EventScheduler scheduler)
     {
         Optional<Point> openPt = world.findOpenAround(getPosition());
 
