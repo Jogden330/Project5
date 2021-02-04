@@ -17,7 +17,7 @@ public class EntityFactory {
     public static Action createActivityAction(
             Entity entity, WorldModel world, ImageStore imageStore)
     {
-        return new Action(ActionKind.ACTIVITY, entity, world, imageStore, 0);
+        return new Activity(entity, world, imageStore);
     }
 
     public static Entity createBlacksmith(
@@ -91,7 +91,6 @@ public class EntityFactory {
                 actionPeriod, 0);
     }
     public static Action createAnimationAction(Entity entity, int repeatCount) {
-        return new Action(ActionKind.ANIMATION, entity, null, null,
-                repeatCount);
+        return new Animation(entity,  repeatCount);
     }
 }
