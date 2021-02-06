@@ -1,5 +1,5 @@
 public interface Animated {
 
-    public int getAnimationPeriod();
-
+    int getAnimationPeriod();
+    void nextImage();
 }

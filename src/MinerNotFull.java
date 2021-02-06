@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
-public class MinerNotFull implements Animated {
+public class MinerNotFull implements Animated, Entity {
     private  final int QUAKE_ANIMATION_REPEAT_COUNT = 10;
     private final String BLOB_KEY = "blob";
     private final String BLOB_ID_SUFFIX = " -- blob";

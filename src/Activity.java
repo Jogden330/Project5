@@ -22,7 +22,7 @@ public class Activity implements  Action{
 
     public void executeAction(EventScheduler scheduler)
     {
-        switch (entity.getKind()) {
+        switch (entity.getClass().getSimpleName()) {
             case MINER_FULL:
                 entity.executeMinerFullActivity(world, imageStore, scheduler);
                 break;
