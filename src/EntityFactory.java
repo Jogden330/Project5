@@ -7,9 +7,7 @@ import java.util.Random;
 
 public class EntityFactory {
 
-    public static final Random rand = new Random();
-
-    public static final String QUAKE_ID = "quake";
+     public static final String QUAKE_ID = "quake";
     public static final int QUAKE_ACTION_PERIOD = 1100;
     public static final int QUAKE_ANIMATION_PERIOD = 100;
 

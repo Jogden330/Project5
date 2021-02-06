@@ -3,6 +3,7 @@ import processing.core.PImage;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 public class Ore implements Entity, HasAction {
 
@@ -12,7 +13,7 @@ public class Ore implements Entity, HasAction {
     private final int BLOB_ANIMATION_MIN = 50;
     private final int BLOB_ANIMATION_MAX = 150;
 
-
+    private static final Random rand = new Random();
 
     private String id;
     private Point position;
@@ -62,7 +63,6 @@ public class Ore implements Entity, HasAction {
     }
 
 
-
     public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler)
     {
         Point pos = getPosition();
@@ -72,7 +72,7 @@ public class Ore implements Entity, HasAction {
 
         Entity blob = EntityFactory.createOreBlob(getId() + BLOB_ID_SUFFIX, pos,
                 getActionPeriod() / BLOB_PERIOD_SCALE,
-                BLOB_ANIMATION_MIN + EntityFactory.rand.nextInt(
+                BLOB_ANIMATION_MIN + rand.nextInt(
                         BLOB_ANIMATION_MAX
                                 - BLOB_ANIMATION_MIN),
                 imageStore.getImageList(BLOB_KEY));
