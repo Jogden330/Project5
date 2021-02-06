@@ -46,13 +46,13 @@ public class MinerFull implements Animated, Entity, HasAction, Movable, Miner{
 
     public boolean transform( WorldModel world, EventScheduler scheduler, ImageStore imageStore)
     {
-        Entity miner = EntityFactory.createMinerNotFull(id, resourceLimit, position, actionPeriod, animationPeriod, images);
+        MinerNotFull miner = EntityFactory.createMinerNotFull(id, resourceLimit, position, actionPeriod, animationPeriod, images);
 
         world.removeEntity(this);
         scheduler.unscheduleAllEvents(this);
 
         world.addEntity(miner);
-        ((HasAction)miner).scheduleActions(scheduler, world, imageStore);
+        miner.scheduleActions(scheduler, world, imageStore);
         return false;
     }
 

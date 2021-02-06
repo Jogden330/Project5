@@ -35,7 +35,7 @@ public class EntityFactory {
         return new MinerFull(id, position, images, resourceLimit, resourceLimit, actionPeriod, animationPeriod);
     }
 
-    public static Entity createMinerNotFull(
+    public static MinerNotFull createMinerNotFull(
             String id,
             int resourceLimit,
             Point position,

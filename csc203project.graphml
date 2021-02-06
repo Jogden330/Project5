@@ -304,9 +304,9 @@ Entity<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:Mod
 +createMinerFull(): Entity                   &lt;&lt;static&gt;&gt;
 +createMinerNotFull(): Entity                &lt;&lt;static&gt;&gt;
 +createObstacle(): Entity                    &lt;&lt;static&gt;&gt;
-+createOre(): Entity                         &lt;&lt;static&gt;&gt;
++createOre(): Ore                        &lt;&lt;static&gt;&gt;
 +createOreBlob(): OreBlob                  &lt;&lt;static&gt;&gt;
-+createQuake(): Entity                       &lt;&lt;static&gt;&gt;
++createQuake(): Quake                      &lt;&lt;static&gt;&gt;
 +createVein(): Entity                        &lt;&lt;static&gt;&gt;
 </y:MethodLabel>
           </y:UML>
