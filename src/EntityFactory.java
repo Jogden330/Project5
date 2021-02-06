@@ -68,7 +68,7 @@ public class EntityFactory {
         return new OreBlob(id, position, images,  actionPeriod, animationPeriod);
     }
 
-    public static Entity createQuake(
+    public static Quake createQuake(
             Point position, List<PImage> images)
     {
         return new Quake(QUAKE_ID, position, images);

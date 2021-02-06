@@ -129,12 +129,12 @@ public class OreBlob implements Animated, Entity, Movable, HasAction{
             Point tgtPos = blobTarget.get().getPosition() ;
 
             if (moveTo( world, blobTarget.get(), scheduler)) {
-                Entity quake = EntityFactory.createQuake(tgtPos,
+                Quake quake = EntityFactory.createQuake(tgtPos,
                         imageStore.getImageList(QUAKE_KEY));
 
                 world.addEntity(quake);
                 nextPeriod += getActionPeriod();
-                ((HasAction)quake).scheduleActions(scheduler, world, imageStore);
+                quake.scheduleActions(scheduler, world, imageStore);
             }
         }
 
