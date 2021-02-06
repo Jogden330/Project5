@@ -197,10 +197,4 @@ public class WorldFactory {
         img.updatePixels();
     }
 
-
-
-
-
-
-
 }
