@@ -1,13 +1,13 @@
 public class Activity implements  Action{
 
-    private Entity entity;
+    private HasAction entity;
     private WorldModel world;
     private ImageStore imageStore;
 
 
     public Activity(
 
-            Entity entity,
+            HasAction entity,
             WorldModel world,
             ImageStore imageStore)
 
@@ -19,10 +19,9 @@ public class Activity implements  Action{
 
     }
 
-
     public void executeAction(EventScheduler scheduler)
     {
-        ((HasAction)entity).executeActivity(this.world, this.imageStore, scheduler);
+        entity.executeActivity(this.world, this.imageStore, scheduler);
     }
 
 

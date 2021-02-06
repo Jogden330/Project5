@@ -13,7 +13,7 @@ public class EntityFactory {
 
 
     public static Action createActivityAction(
-            Entity entity, WorldModel world, ImageStore imageStore)
+            HasAction entity, WorldModel world, ImageStore imageStore)
     {
         return new Activity(entity, world, imageStore);
     }
