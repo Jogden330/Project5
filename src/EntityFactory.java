@@ -52,7 +52,7 @@ public class EntityFactory {
         return new Obstacle(id, position, images);
     }
 
-    public static Entity createOre(
+    public static Ore createOre(
             String id, Point position, int actionPeriod, List<PImage> images)
     {
         return new Ore(id, position, images, actionPeriod);

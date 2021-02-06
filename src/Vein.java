@@ -68,10 +68,10 @@ public class Vein implements Entity, HasAction{
         Optional<Point> openPt = world.findOpenAround(this.position);
 
         if (openPt.isPresent()) {
-            Entity ore = EntityFactory.createOre(ORE_ID_PREFIX + this.id, openPt.get(), ORE_CORRUPT_MIN + rand.nextInt(ORE_CORRUPT_MAX - ORE_CORRUPT_MIN),
+            Ore ore = EntityFactory.createOre(ORE_ID_PREFIX + this.id, openPt.get(), ORE_CORRUPT_MIN + rand.nextInt(ORE_CORRUPT_MAX - ORE_CORRUPT_MIN),
                     imageStore.getImageList(ORE_KEY));
             world.addEntity(ore);
-            ((HasAction)ore).scheduleActions(scheduler, world, imageStore);
+            ore.scheduleActions(scheduler, world, imageStore);
         }
 
         scheduler.scheduleEvent(this, EntityFactory.createActivityAction(this, world, imageStore),
