@@ -24,7 +24,7 @@ public class EntityFactory {
         return new BlackSmith( id, position, images);
     }
 
-    public static Entity createMinerFull(
+    public static MinerFull createMinerFull(
             String id,
             int resourceLimit,
             Point position,

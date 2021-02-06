@@ -55,7 +55,7 @@ public class MinerNotFull implements Animated, Entity, HasAction, Movable, Miner
             ImageStore imageStore)
     {
         if (resourceCount >= resourceLimit) {
-            Entity miner = EntityFactory.createMinerFull(id, resourceLimit,
+            MinerFull miner = EntityFactory.createMinerFull(id, resourceLimit,
                     position, actionPeriod,
                     animationPeriod,
                     images);
@@ -64,7 +64,7 @@ public class MinerNotFull implements Animated, Entity, HasAction, Movable, Miner
             scheduler.unscheduleAllEvents(this);
 
             world.addEntity(miner);
-            ((HasAction)miner).scheduleActions(scheduler,  world, imageStore);
+            miner.scheduleActions(scheduler,  world, imageStore);
 
             return true;
         }
