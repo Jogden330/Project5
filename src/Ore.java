@@ -70,7 +70,7 @@ public class Ore implements Entity, HasAction {
         world.removeEntity(this);
         scheduler.unscheduleAllEvents(this);
 
-        Entity blob = EntityFactory.createOreBlob(getId() + BLOB_ID_SUFFIX, pos,
+        OreBlob blob = EntityFactory.createOreBlob(getId() + BLOB_ID_SUFFIX, pos,
                 getActionPeriod() / BLOB_PERIOD_SCALE,
                 BLOB_ANIMATION_MIN + rand.nextInt(
                         BLOB_ANIMATION_MAX
@@ -78,7 +78,7 @@ public class Ore implements Entity, HasAction {
                 imageStore.getImageList(BLOB_KEY));
 
         world.addEntity(blob);
-        ((HasAction)blob).scheduleActions(scheduler,  world, imageStore);
+        blob.scheduleActions(scheduler,  world, imageStore);
     }
 
 

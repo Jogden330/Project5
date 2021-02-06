@@ -58,7 +58,7 @@ public class EntityFactory {
         return new Ore(id, position, images, actionPeriod);
     }
 
-    public static Entity createOreBlob(
+    public static OreBlob createOreBlob(
             String id,
             Point position,
             int actionPeriod,
