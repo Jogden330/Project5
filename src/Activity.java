@@ -22,36 +22,7 @@ public class Activity implements  Action{
 
     public void executeAction(EventScheduler scheduler)
     {
-        switch (entity.getClass().getSimpleName()) {
-            case MINER_FULL:
-                entity.executeMinerFullActivity(world, imageStore, scheduler);
-                break;
-
-            case MINER_NOT_FULL:
-                entity.executeMinerNotFullActivity(world, imageStore, scheduler);
-                break;
-
-            case ORE:
-                entity.executeOreActivity(world, imageStore, scheduler);
-                break;
-
-            case ORE_BLOB:
-                entity.executeOreBlobActivity(world, imageStore, scheduler);
-                break;
-
-            case QUAKE:
-                entity.executeQuakeActivity(world,scheduler);
-                break;
-
-            case VEIN:
-                entity.executeVeinActivity(world, imageStore, scheduler);
-                break;
-
-            default:
-                throw new UnsupportedOperationException(String.format(
-                        "executeActivityAction not supported for %s",
-                        entity.getKind()));
-        }
+        entity.executeActivity(this.world, this.imageStore, scheduler);
     }
 
 

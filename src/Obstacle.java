@@ -12,8 +12,6 @@ public class Obstacle implements Entity {
     private int imageIndex;
 
 
-
-
     public Obstacle(
             String id,
             Point position,
