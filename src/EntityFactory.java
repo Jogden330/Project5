@@ -79,7 +79,7 @@ public class EntityFactory {
     {
         return new Vein(id, position, images,  actionPeriod);
     }
-    public static Action createAnimationAction(Entity entity, int repeatCount) {
+    public static Action createAnimationAction(Animated entity, int repeatCount) {
         return new Animation(entity,  repeatCount);
     }
 }
