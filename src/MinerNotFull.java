@@ -222,9 +222,7 @@ public class MinerNotFull implements Animated, Entity {
 
 
 
-    public EntityKind getKind() {
-        return kind;
-    }
+
 
     public String getId() {
         return id;
@@ -304,8 +302,7 @@ public class MinerNotFull implements Animated, Entity {
                                          ImageStore imageStore,
                                          EventScheduler scheduler)
     {
-        Optional<Entity> fullTarget =
-                findNearest(world, EntityKind.BLACKSMITH);
+        Optional<Entity> fullTarget = world.findNearest(BlackSmith.class, getPosition());
 
         if (fullTarget.isPresent() && moveToFull(world,
                 fullTarget.get(), scheduler))
