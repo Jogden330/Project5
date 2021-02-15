@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
-public class Ore implements Entity, HasAction {
+public class Ore extends HasAction {
 
     private final String BLOB_KEY = "blob";
     private final String BLOB_ID_SUFFIX = " -- blob";
@@ -15,11 +15,7 @@ public class Ore implements Entity, HasAction {
 
     private static final Random rand = new Random();
 
-    private String id;
-    private Point position;
-    private List<PImage> images;
-    private int imageIndex;
-    private int actionPeriod;
+
 
 
     public Ore(
@@ -29,37 +25,8 @@ public class Ore implements Entity, HasAction {
             int actionPeriod)
     {
 
-        this.id = id;
-        this.position = position;
-        this.images = images;
-        this.imageIndex = 0;
-        this.actionPeriod = actionPeriod;
+        super(id,position,images,actionPeriod);
 
-    }
-
-    public  PImage getCurrentImage() {return images.get(imageIndex); }
-
-    public String getId() {
-        return id;
-    }
-
-    public Point getPosition() {
-        return position;
-    }
-
-    public void setPosition(Point position) {
-        this.position = position;
-    }
-
-    public int getActionPeriod() {
-        return actionPeriod;
-    }
-
-    public void scheduleActions(EventScheduler scheduler,  WorldModel world, ImageStore imageStore)
-    {
-                scheduler.scheduleEvent(this,
-                        EntityFactory.createActivityAction(this, world, imageStore),
-                        actionPeriod);
     }
 
 

@@ -4,9 +4,37 @@ import java.util.Optional;
 
 import processing.core.PImage;
 
-public interface Entity
+public abstract class Entity
 {
-    PImage getCurrentImage();
-    Point getPosition();
-    void setPosition(Point position);
+    private String id;
+    private Point position;
+    private List<PImage> images;
+    private int imageIndex;
+
+    public Entity(
+            String id,
+            Point position,
+            List<PImage> images)
+    {
+
+        this.id = id;
+        this.position = position;
+        this.images = images;
+        this.imageIndex = 0;
+
+    }
+
+    public  PImage getCurrentImage() {return images.get(imageIndex); }
+
+    public String getId() { return id; }
+
+    public Point getPosition() { return position; }
+
+    public List<PImage> getimages() { return images; }
+
+    public int getImageIndex() { return imageIndex; }
+
+    protected void setImageIndex(int integer) { imageIndex = integer; }
+
+    public void setPosition(Point position) { this.position = position; }
 }
