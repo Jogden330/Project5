@@ -4,17 +4,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
-public class OreBlob implements Animated, Entity, Movable, HasAction{
+public class OreBlob extends Animated implements  Movable{
 
 
     private  final String QUAKE_KEY = "quake";
 
-    private String id;
-    private Point position;
-    private List<PImage> images;
-    private int imageIndex;
-    private int actionPeriod;
-    private int animationPeriod;
+
 
     public OreBlob(
 
@@ -25,28 +20,17 @@ public class OreBlob implements Animated, Entity, Movable, HasAction{
             int animationPeriod)
     {
 
-        this.id = id;
-        this.position = position;
-        this.images = images;
-        this.imageIndex = 0;
-        this.actionPeriod = actionPeriod;
-        this.animationPeriod = animationPeriod;
+        super(id, position, images, actionPeriod, animationPeriod, 0);
     }
 
-    public int getAnimationPeriod() { return animationPeriod;  }
 
-    public void nextImage() {
-        imageIndex = (imageIndex + 1) % images.size();
-    }
-
-    public  PImage getCurrentImage() { return images.get(imageIndex); }
 
     public  boolean moveTo(
             WorldModel world,
             Entity target,
             EventScheduler scheduler)
     {
-        if (position.adjacent(target.getPosition())) {
+        if (getPosition().adjacent(target.getPosition())) {
             world.removeEntity(target);
             scheduler.unscheduleAllEvents(target);
             return true;
@@ -54,7 +38,7 @@ public class OreBlob implements Animated, Entity, Movable, HasAction{
         else {
             Point nextPos = nextPosition(world, target.getPosition());
 
-            if (!position.equals(nextPos)) {
+            if (!getPosition().equals(nextPos)) {
                 Optional<Entity> occupant = world.getOccupant(nextPos);
                 if (occupant.isPresent()) {
                     scheduler.unscheduleAllEvents( occupant.get());
@@ -65,58 +49,30 @@ public class OreBlob implements Animated, Entity, Movable, HasAction{
             return false;
         }
     }
+
     public Point nextPosition(WorldModel world, Point destPos)
     {
-        int horiz = Integer.signum(destPos.x - position.x);
-        Point newPos = new Point(position.x + horiz, position.y);
+        int horiz = Integer.signum(destPos.x - getPosition().x);
+        Point newPos = new Point(getPosition().x + horiz, getPosition().y);
 
         Optional<Entity> occupant = world.getOccupant( newPos);
 
         if (horiz == 0 || (occupant.isPresent() && !(occupant.get() instanceof Ore)))
         {
-            int vert = Integer.signum(destPos.y - position.y);
-            newPos = new Point(position.x, position.y + vert);
+            int vert = Integer.signum(destPos.y - getPosition().y);
+            newPos = new Point(getPosition().x, getPosition().y + vert);
             occupant = world.getOccupant( newPos);
 
             if (vert == 0 || (occupant.isPresent() && !(occupant.get() instanceof Ore)))
             {
-                newPos = position;
+                newPos = getPosition();
             }
         }
 
         return newPos;
     }
 
-    public String getId() {
-        return id;
-    }
 
-    public Point getPosition() {
-        return position;
-    }
-
-    public void setPosition(Point position) {
-        this.position = position;
-    }
-
-    public int getActionPeriod() {
-        return actionPeriod;
-    }
-
-    public void scheduleActions(
-            EventScheduler scheduler,
-            WorldModel world,
-            ImageStore imageStore)
-    {
-
-                scheduler.scheduleEvent(this,
-                        EntityFactory.createActivityAction(this, world, imageStore),
-                        actionPeriod);
-                scheduler.scheduleEvent(this,
-                        EntityFactory.createAnimationAction(this, 0),
-                        animationPeriod);
-
-    }
 
     public void executeActivity(WorldModel world,
                                        ImageStore imageStore,

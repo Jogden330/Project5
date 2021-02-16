@@ -4,19 +4,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
-public class MinerFull implements Animated, Entity, HasAction, Movable, Miner{
+public class MinerFull extends  Miner{
 
-    private String id;
-    private Point position;
-    private List<PImage> images;
-    private int imageIndex;
-    private int resourceLimit;
-    private int resourceCount;
-    private int actionPeriod;
-    private int animationPeriod;
+
 
     public MinerFull(
-
             String id,
             Point position,
             List<PImage> images,
@@ -26,27 +18,14 @@ public class MinerFull implements Animated, Entity, HasAction, Movable, Miner{
             int animationPeriod)
     {
 
-        this.id = id;
-        this.position = position;
-        this.images = images;
-        this.imageIndex = 0;
-        this.resourceLimit = resourceLimit;
-        this.resourceCount = resourceCount;
-        this.actionPeriod = actionPeriod;
-        this.animationPeriod = animationPeriod;
+        super(id, position, images, resourceLimit, resourceCount, actionPeriod, animationPeriod, 0);
     }
 
-    public int getAnimationPeriod() { return animationPeriod; }
 
-    public void nextImage() {
-        imageIndex = (imageIndex + 1) % images.size();
-    }
-
-    public  PImage getCurrentImage() { return images.get(imageIndex); }
 
     public boolean transform( WorldModel world, EventScheduler scheduler, ImageStore imageStore)
     {
-        MinerNotFull miner = EntityFactory.createMinerNotFull(id, resourceLimit, position, actionPeriod, animationPeriod, images);
+        MinerNotFull miner = EntityFactory.createMinerNotFull(getId(), getResourceLimit(), getPosition(), getActionPeriod(), getAnimationPeriod(), getimages());
 
         world.removeEntity(this);
         scheduler.unscheduleAllEvents(this);
@@ -56,35 +35,20 @@ public class MinerFull implements Animated, Entity, HasAction, Movable, Miner{
         return false;
     }
 
-    public  Point nextPosition(WorldModel world, Point destPos)
-    {
-        int horiz = Integer.signum(destPos.x - position.x);
-        Point newPos = new Point(position.x + horiz, position.y);
 
-        if (horiz == 0 || world.isOccupied(newPos)) {
-            int vert = Integer.signum(destPos.y - position.y);
-            newPos = new Point(position.x, position.y + vert);
-
-            if (vert == 0 || world.isOccupied(newPos)) {
-                newPos = position;
-            }
-        }
-
-        return newPos;
-    }
 
     public boolean moveTo(
             WorldModel world,
             Entity target,
             EventScheduler scheduler)
     {
-        if (position.adjacent(target.getPosition())) {
+        if (getPosition().adjacent(target.getPosition())) {
             return true;
         }
         else {
             Point nextPos = nextPosition(world, target.getPosition());
 
-            if (!position.equals(nextPos)) {
+            if (!getPosition().equals(nextPos)) {
                 Optional<Entity> occupant = world.getOccupant( nextPos);
                 if (occupant.isPresent()) {
                     scheduler.unscheduleAllEvents(occupant.get());
@@ -96,35 +60,8 @@ public class MinerFull implements Animated, Entity, HasAction, Movable, Miner{
         }
     }
 
-    public String getId() {
-        return id;
-    }
 
-    public Point getPosition() {
-        return position;
-    }
 
-    public void setPosition(Point position) {
-        this.position = position;
-    }
-
-    public int getActionPeriod() {
-        return actionPeriod;
-    }
-
-    public void scheduleActions(
-            EventScheduler scheduler,
-            WorldModel world,
-            ImageStore imageStore)
-    {
-                scheduler.scheduleEvent(this,
-                        EntityFactory.createActivityAction(this, world, imageStore),
-                        actionPeriod);
-                scheduler.scheduleEvent(this,
-                        EntityFactory.createAnimationAction(this, 0),
-                        animationPeriod);
-
-    }
 
     public void executeActivity(WorldModel world,
                                          ImageStore imageStore,
