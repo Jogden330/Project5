@@ -9,7 +9,6 @@ public class MinerNotFull extends  Miner {
 
 
     public MinerNotFull (
-
             String id,
             Point position,
             List<PImage> images,
@@ -24,53 +23,19 @@ public class MinerNotFull extends  Miner {
 
 
 
-    public boolean transform(
-            WorldModel world,
-            EventScheduler scheduler,
-            ImageStore imageStore)
+    public boolean transform(WorldModel world, EventScheduler scheduler, ImageStore imageStore)
     {
         if (resourceCount >= resourceLimit) {
             MinerFull miner = EntityFactory.createMinerFull(getId(), getResourceLimit(), getPosition(), getActionPeriod(), getAnimationPeriod(), getimages());
-
-            world.removeEntity(this);
-            scheduler.unscheduleAllEvents(this);
-
-            world.addEntity(miner);
-            miner.scheduleActions(scheduler,  world, imageStore);
-
+            super.transform(world, scheduler, imageStore, miner);
             return true;
         }
 
         return false;
     }
 
-    public boolean moveTo(
 
-            WorldModel world,
-            Entity target,
-            EventScheduler scheduler)
-    {
-        if (getPosition().adjacent( target.getPosition())) {
-            resourceCount += 1;
-            world.removeEntity(target);
-            scheduler.unscheduleAllEvents( target);
 
-            return true;
-        }
-        else {
-            Point nextPos = nextPosition(world, target.getPosition());
-
-            if (!getPosition().equals(nextPos)) {
-                Optional<Entity> occupant = world.getOccupant( nextPos);
-                if (occupant.isPresent()) {
-                    scheduler.unscheduleAllEvents( occupant.get());
-                }
-
-                world.moveEntity(this,  nextPos);
-            }
-            return false;
-        }
-    }
     public boolean _Movehelper(
             WorldModel world,
             Entity target,

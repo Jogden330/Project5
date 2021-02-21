@@ -60,10 +60,25 @@ public abstract class Miner extends Animated implements  Movable{
         }
     }
 
+
     abstract boolean _Movehelper(
             WorldModel world,
             Entity target,
             EventScheduler scheduler);
+
+    public boolean transform(WorldModel world, EventScheduler scheduler, ImageStore imageStore, Miner miner) {
+
+
+
+        world.removeEntity(this);
+        scheduler.unscheduleAllEvents(this);
+
+        world.addEntity(miner);
+        miner.scheduleActions(scheduler, world, imageStore);
+        return true;
+
+    }
+
 
 
     public int getResourceLimit() {

@@ -26,17 +26,9 @@ public class MinerFull extends  Miner{
     public boolean transform( WorldModel world, EventScheduler scheduler, ImageStore imageStore)
     {
         MinerNotFull miner = EntityFactory.createMinerNotFull(getId(), getResourceLimit(), getPosition(), getActionPeriod(), getAnimationPeriod(), getimages());
-
-        world.removeEntity(this);
-        scheduler.unscheduleAllEvents(this);
-
-        world.addEntity(miner);
-        miner.scheduleActions(scheduler, world, imageStore);
+        super.transform(world, scheduler, imageStore, miner);
         return false;
     }
-
-
-
 
 
     public boolean _Movehelper(
@@ -48,8 +40,6 @@ public class MinerFull extends  Miner{
         } else {
             return false;
         }
-
-
     }
 
 
