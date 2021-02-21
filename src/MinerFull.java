@@ -35,11 +35,8 @@ public class MinerFull extends  Miner{
             WorldModel world,
             Entity target,
             EventScheduler scheduler){
-        if (getPosition().adjacent(target.getPosition())) {
-            return true;
-        } else {
-            return false;
-        }
+        return  (getPosition().adjacent(target.getPosition()));
+
     }
 
 
@@ -60,5 +57,7 @@ public class MinerFull extends  Miner{
                     getActionPeriod());
         }
     }
+
+
 
 }

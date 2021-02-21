@@ -81,6 +81,8 @@ public abstract class Miner extends Animated implements  Movable{
 
 
 
+
+
     public int getResourceLimit() {
         return resourceLimit;
     }

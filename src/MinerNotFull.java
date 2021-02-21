@@ -68,4 +68,6 @@ public class MinerNotFull extends  Miner {
     }
 
 
+
+
 }
