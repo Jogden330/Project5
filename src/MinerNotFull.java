@@ -71,7 +71,21 @@ public class MinerNotFull extends  Miner {
             return false;
         }
     }
+    public boolean _Movehelper(
+            WorldModel world,
+            Entity target,
+            EventScheduler scheduler) {
+        if(getPosition().adjacent(target.getPosition())) {
+            resourceCount += 1;
+            world.removeEntity(target);
+            scheduler.unscheduleAllEvents(target);
+            return true;
 
+        }else {
+            return false;
+        }
+
+    }
     public void executeActivity(WorldModel world,
                                             ImageStore imageStore,
                                             EventScheduler scheduler)

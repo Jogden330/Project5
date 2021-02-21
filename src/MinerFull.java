@@ -37,30 +37,20 @@ public class MinerFull extends  Miner{
 
 
 
-    public boolean moveTo(
+
+
+    public boolean _Movehelper(
             WorldModel world,
             Entity target,
-            EventScheduler scheduler)
-    {
+            EventScheduler scheduler){
         if (getPosition().adjacent(target.getPosition())) {
             return true;
-        }
-        else {
-            Point nextPos = nextPosition(world, target.getPosition());
-
-            if (!getPosition().equals(nextPos)) {
-                Optional<Entity> occupant = world.getOccupant( nextPos);
-                if (occupant.isPresent()) {
-                    scheduler.unscheduleAllEvents(occupant.get());
-                }
-
-                world.moveEntity(this, nextPos);
-            }
+        } else {
             return false;
         }
+
+
     }
-
-
 
 
     public void executeActivity(WorldModel world,
@@ -70,8 +60,7 @@ public class MinerFull extends  Miner{
         Optional<Entity> fullTarget =
                 world.findNearest(BlackSmith.class, getPosition());
 
-        if (fullTarget.isPresent() && moveTo(world,
-                fullTarget.get(), scheduler))
+        if (fullTarget.isPresent() && moveTo(world,fullTarget.get(), scheduler))
         {
             transform( world, scheduler, imageStore);
         }
