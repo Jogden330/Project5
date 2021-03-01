@@ -16,24 +16,17 @@ public abstract class Movable extends Animated{
 
     abstract boolean moveTo(WorldModel world, Entity target, EventScheduler scheduler);
 
-//    public  Point nextPosition(WorldModel world, Point destPos)
-//    {
-//
-//        return computePath(world, destPos);
-//
-//    }
+    public  Point nextPosition(WorldModel world, Point destPos)
+    {
 
-
-    public Point computePath(WorldModel world, Point end){
-
-        List<Point> Path = pathStrat.computePath(getPosition(), end,
+        List<Point> Path = pathStrat.computePath(getPosition(), destPos,
                 point -> world.withinBounds(point) && !world.isOccupied(point),
                 (p1, p2) -> p1.adjacent(p2),
                 PathingStrategy.CARDINAL_NEIGHBORS);
 
         return Path.isEmpty() ? getPosition() : Path.get(0);
 
-
     }
+
 
 }

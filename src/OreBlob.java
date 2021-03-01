@@ -36,7 +36,7 @@ public class OreBlob extends  Movable{
             return true;
         }
         else {
-            Point nextPos = computePath(world, target.getPosition());
+            Point nextPos = nextPosition(world, target.getPosition());
 
             if (!getPosition().equals(nextPos)) {
                 Optional<Entity> occupant = world.getOccupant(nextPos);
