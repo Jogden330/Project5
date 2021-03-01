@@ -13,6 +13,8 @@ public abstract class HasAction extends Entity{
         this.actionPeriod = actionPeriod;
     }
 
+
+
     public int getActionPeriod() {
         return actionPeriod;
     }

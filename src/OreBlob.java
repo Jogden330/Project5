@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
-public class OreBlob extends Animated implements  Movable{
+public class OreBlob extends  Movable{
 
 
     private  final String QUAKE_KEY = "quake";
@@ -50,27 +50,7 @@ public class OreBlob extends Animated implements  Movable{
         }
     }
 
-    public Point nextPosition(WorldModel world, Point destPos)
-    {
-        int horiz = Integer.signum(destPos.x - getPosition().x);
-        Point newPos = new Point(getPosition().x + horiz, getPosition().y);
 
-        Optional<Entity> occupant = world.getOccupant( newPos);
-
-        if (horiz == 0 || (occupant.isPresent() && !(occupant.get() instanceof Ore)))
-        {
-            int vert = Integer.signum(destPos.y - getPosition().y);
-            newPos = new Point(getPosition().x, getPosition().y + vert);
-            occupant = world.getOccupant( newPos);
-
-            if (vert == 0 || (occupant.isPresent() && !(occupant.get() instanceof Ore)))
-            {
-                newPos = getPosition();
-            }
-        }
-
-        return newPos;
-    }
 
 
 

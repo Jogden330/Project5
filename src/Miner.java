@@ -3,7 +3,7 @@ import processing.core.PImage;
 import java.util.List;
 import java.util.Optional;
 
-public abstract class Miner extends Animated implements  Movable{
+public abstract class Miner extends  Movable{
 
     protected int resourceCount;
     protected int resourceLimit;
@@ -13,27 +13,10 @@ public abstract class Miner extends Animated implements  Movable{
                  int resourceCount, int actionPeriod,
                  int animationPeriod, int repeatCount)
     {
-        super(id, position, images,actionPeriod, animationPeriod,0);
+        super(id, position, images,actionPeriod, animationPeriod, 0);
         this.resourceCount=resourceCount;
         this.resourceLimit=resourceLimit;
 
-    }
-
-    public  Point nextPosition(WorldModel world, Point destPos)
-    {
-        int horiz = Integer.signum(destPos.x - getPosition().x);
-        Point newPos = new Point(getPosition().x + horiz, getPosition().y);
-
-        if (horiz == 0 || world.isOccupied(newPos)) {
-            int vert = Integer.signum(destPos.y - getPosition().y);
-            newPos = new Point(getPosition().x, getPosition().y + vert);
-
-            if (vert == 0 || world.isOccupied(newPos)) {
-                newPos = getPosition();
-            }
-        }
-
-        return newPos;
     }
 
     public boolean moveTo(
@@ -78,9 +61,6 @@ public abstract class Miner extends Animated implements  Movable{
         return true;
 
     }
-
-
-
 
 
     public int getResourceLimit() {
