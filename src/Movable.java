@@ -5,7 +5,7 @@ import java.util.Optional;
 
 public abstract class Movable extends Animated{
 
-    private  PathingStrategy pathStrat= new SingleStepPathingStrategy();
+    private PathingStrategy pathStrat= new SingleStepPathingStrategy();
 
 
     public Movable(String id, Point position, List<PImage> images, int actionPeriod, int animationPeriod, int repeatCount) {
@@ -13,15 +13,15 @@ public abstract class Movable extends Animated{
     }
 
 
+
     abstract boolean moveTo(WorldModel world, Entity target, EventScheduler scheduler);
 
-    public  Point nextPosition(WorldModel world, Point destPos)
-    {
-
-        Point newPos = computePath(world, destPos);
-
-        return newPos;
-    }
+//    public  Point nextPosition(WorldModel world, Point destPos)
+//    {
+//
+//        return computePath(world, destPos);
+//
+//    }
 
 
     public Point computePath(WorldModel world, Point end){
