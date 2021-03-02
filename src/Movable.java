@@ -5,14 +5,18 @@ import java.util.Optional;
 
 public abstract class Movable extends Animated{
 
-    private PathingStrategy pathStrat= new SingleStepPathingStrategy();
+    private PathingStrategy pathStrat;
 
 
     public Movable(String id, Point position, List<PImage> images, int actionPeriod, int animationPeriod, int repeatCount) {
         super(id, position, images, actionPeriod, animationPeriod, repeatCount);
+        pathStrat = new SingleStepPathingStrategy();
     }
 
-
+    public Movable(String id, Point position, List<PImage> images, int actionPeriod, int animationPeriod, int repeatCount, PathingStrategy pathStrat) {
+        super(id, position, images, actionPeriod, animationPeriod, repeatCount);
+        this.pathStrat = pathStrat;
+    }
 
     public boolean moveTo(
             WorldModel world,
