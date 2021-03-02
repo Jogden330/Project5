@@ -43,64 +43,7 @@ public final class EventScheduler
             }
         }
     }
-//    public void scheduleActions(
-//            Entity entity,
-//            WorldModel world,
-//            ImageStore imageStore)
-//    {
-//        switch (entity.getKind()) {
-//            case MINER_FULL:
-//                scheduleEvent(entity,
-//                        Functions.createActivityAction(entity, world, imageStore),
-//                        entity.getActionPeriod());
-//               scheduleEvent( entity,
-//                        Functions.createAnimationAction(entity, 0),
-//                        entity.getAnimationPeriod());
-//                break;
-//
-//            case MINER_NOT_FULL:
-//                scheduleEvent( entity,
-//                        Functions.createActivityAction(entity, world, imageStore),
-//                        entity.getActionPeriod());
-//                scheduleEvent( entity,
-//                        Functions.createAnimationAction(entity, 0),
-//                        entity.getAnimationPeriod());
-//                break;
-//
-//            case ORE:
-//                scheduleEvent( entity,
-//                        Functions.createActivityAction(entity, world, imageStore),
-//                        entity.getActionPeriod());
-//                break;
-//
-//            case ORE_BLOB:
-//                scheduleEvent(entity,
-//                        Functions.createActivityAction(entity, world, imageStore),
-//                        entity.getActionPeriod());
-//                scheduleEvent( entity,
-//                        Functions.createAnimationAction(entity, 0),
-//                        entity.getAnimationPeriod());
-//                break;
-//
-//            case QUAKE:
-//                scheduleEvent(entity,
-//                        Functions.createActivityAction(entity, world, imageStore),
-//                        entity.getActionPeriod());
-//                scheduleEvent(entity,
-//                        Functions.createAnimationAction(entity,
-//                        QUAKE_ANIMATION_REPEAT_COUNT),
-//                        entity.getAnimationPeriod());
-//                break;
-//
-//            case VEIN:
-//                scheduleEvent( entity,
-//                        Functions.createActivityAction(entity, world, imageStore),
-//                        entity.getActionPeriod());
-//                break;
-//
-//            default:
-//        }
-//    }
+
 
     public  void updateOnTime(long time) {
         while (!eventQueue.isEmpty()
@@ -121,9 +64,5 @@ public final class EventScheduler
             pending.remove(event);
         }
     }
-
-
-
-
 
 }

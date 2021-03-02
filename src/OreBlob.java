@@ -38,9 +38,6 @@ public class OreBlob extends  Movable{
     }
 
 
-
-
-
     public void executeActivity(WorldModel world,
                                        ImageStore imageStore,
                                        EventScheduler scheduler)
@@ -65,8 +62,5 @@ public class OreBlob extends  Movable{
                 EntityFactory.createActivityAction(this, world, imageStore),
                 nextPeriod);
     }
-
-
-
 
 }
