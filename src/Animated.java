@@ -23,9 +23,7 @@ public abstract class Animated extends HasAction {
             ImageStore imageStore)
     {
 
-        scheduler.scheduleEvent(this,
-                EntityFactory.createActivityAction(this, world, imageStore),
-                actionPeriod);
+        super.scheduleActions(scheduler, world, imageStore);
         scheduler.scheduleEvent(this,
                 EntityFactory.createAnimationAction(this, 0),
                 animationPeriod);

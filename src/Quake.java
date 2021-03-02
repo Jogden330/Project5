@@ -12,7 +12,6 @@ public class Quake extends Animated {
 
 
     public Quake(
-
             String id,
             Point position,
             List<PImage> images)
