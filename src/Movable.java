@@ -14,7 +14,36 @@ public abstract class Movable extends Animated{
 
 
 
-    abstract boolean moveTo(WorldModel world, Entity target, EventScheduler scheduler);
+    public boolean moveTo(
+
+            WorldModel world,
+            Entity target,
+            EventScheduler scheduler)
+    {
+        if(_Movehelper(world, target, scheduler)){
+            return true;
+        }
+        else {
+            Point nextPos = nextPosition(world, target.getPosition());
+
+            if (!getPosition().equals(nextPos)) {
+                Optional<Entity> occupant = world.getOccupant( nextPos);
+                if (occupant.isPresent()) {
+                    scheduler.unscheduleAllEvents( occupant.get());
+                }
+
+                world.moveEntity(this,  nextPos);
+            }
+            return false;
+        }
+    }
+
+
+    abstract boolean _Movehelper(
+            WorldModel world,
+            Entity target,
+            EventScheduler scheduler);
+
 
     public  Point nextPosition(WorldModel world, Point destPos)
     {
