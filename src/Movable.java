@@ -10,8 +10,8 @@ public abstract class Movable extends Animated{
 
     public Movable(String id, Point position, List<PImage> images, int actionPeriod, int animationPeriod, int repeatCount) {
         super(id, position, images, actionPeriod, animationPeriod, repeatCount);
-//        pathStrat = new SingleStepPathingStrategy();
-        pathStrat = new AStarPathingStrategy();
+        pathStrat = new SingleStepPathingStrategy();
+//        pathStrat = new AStarPathingStrategy();
     }
 
     public Movable(String id, Point position, List<PImage> images, int actionPeriod, int animationPeriod, int repeatCount, PathingStrategy pathStrat) {

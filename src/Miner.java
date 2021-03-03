@@ -13,7 +13,7 @@ public abstract class Miner extends  Movable{
                  int resourceCount, int actionPeriod,
                  int animationPeriod, int repeatCount)
     {
-        super(id, position, images,actionPeriod, animationPeriod, 0);
+        super(id, position, images,actionPeriod, animationPeriod, 0, new AStarPathingStrategy());
         this.resourceCount=resourceCount;
         this.resourceLimit=resourceLimit;
 

@@ -69,7 +69,7 @@ class AStarPathingStrategy
             ClosedListHash.put(PrierNode.getPosition(), PrierNode);
 
         }
-        return null;
+        return path;
     }
 
     private List<Point> makePath(Node neighborNode, Node startNode, LinkedList<Point> path) {
