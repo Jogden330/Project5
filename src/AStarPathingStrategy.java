@@ -47,7 +47,7 @@ class AStarPathingStrategy
 
 
 
-                    Node neighborNode = new Node(neighbor, PrierNode.getG() + 1, manhattanDistance(neighbor, end), PrierNode);
+                    Node neighborNode = new Node(neighbor, PrierNode.getG() + 1, neighbor.manhattanDistance(end), PrierNode);
 
                     if(neighborNode.getPosition().adjacent(end)){
 //                        makePath(neighborNode, StartNode, path);
@@ -81,10 +81,6 @@ class AStarPathingStrategy
 
     }
 
-    private int manhattanDistance(Point current, Point end){
-
-        return Math.abs(current.x - end.x) + Math.abs(current.y - end.y);
-   }
 }
 
 

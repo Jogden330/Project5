@@ -60,4 +60,9 @@ public final class Point
                 && Math.abs(this.x - target.x) == 1);
     }
 
+    public int manhattanDistance(Point end){
+
+        return Math.abs(this.x - end.x) + Math.abs(this.y - end.y);
+    }
+
 }
