@@ -49,9 +49,9 @@ class AStarPathingStrategy
 
                     Node neighborNode = new Node(neighbor, PrierNode.getG() + 1, neighbor.manhattanDistance(end), PrierNode);
 
-                    if(neighborNode.getPosition().adjacent(end)){
-//                        makePath(neighborNode, StartNode, path);
-//                        System.out.println(path);
+//                    if(neighborNode.getPosition().adjacent(end)){
+                    if(withinReach.test(neighborNode.getPosition(), end)){
+
                         return makePath(neighborNode, StartNode, path);
 
                     }
@@ -61,8 +61,9 @@ class AStarPathingStrategy
                         OpenListQueue.add(neighborNode);
 
                     } else if(OpenListHash.get(neighbor).getG() > neighborNode.getG()){
+//                        System.out.println(OpenListHash.get(neighbor).getG() + "  "  +  neighborNode.getG());
                         OpenListHash.get(neighbor).setG(neighborNode.getG(), PrierNode);
-
+//                        System.out.println(OpenListHash.get(neighbor).getG());
                     }
             }
 

@@ -5,7 +5,7 @@ import java.util.Optional;
 
 public abstract class Movable extends Animated{
 
-    private PathingStrategy pathStrat;
+    protected PathingStrategy pathStrat;
 
 
     public Movable(String id, Point position, List<PImage> images, int actionPeriod, int animationPeriod, int repeatCount) {
@@ -42,7 +42,7 @@ public abstract class Movable extends Animated{
     }
 
 
-    abstract boolean _Movehelper(
+    protected abstract boolean _Movehelper(
             WorldModel world,
             Entity target,
             EventScheduler scheduler);
