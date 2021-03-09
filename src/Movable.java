@@ -49,11 +49,26 @@ public abstract class Movable extends Animated{
             EventScheduler scheduler);
 
 
+//    public  Point nextPosition(WorldModel world, Point destPos)
+//    {
+//
+//        List<Point> Path = pathStrat.computePath(getPosition(), destPos,
+//                point -> world.withinBounds(point) && !world.isOccupied(point),
+//                (p1, p2) -> p1.adjacent(p2),
+//                PathingStrategy.CARDINAL_NEIGHBORS);
+//
+//
+//        return Path.isEmpty() ? getPosition() : Path.get(0);
+//
+//    }
+
     public  Point nextPosition(WorldModel world, Point destPos)
     {
+//        PathingStrategy pathStrat = new AStarPathingStrategy();
+
 
         List<Point> Path = pathStrat.computePath(getPosition(), destPos,
-                point -> world.withinBounds(point) && !world.isOccupied(point),
+                point -> world.withinBounds(point) && !( _nextPositionHelper(world, point)),
                 (p1, p2) -> p1.adjacent(p2),
                 PathingStrategy.CARDINAL_NEIGHBORS);
 
@@ -61,6 +76,8 @@ public abstract class Movable extends Animated{
         return Path.isEmpty() ? getPosition() : Path.get(0);
 
     }
+
+    protected abstract  boolean _nextPositionHelper(WorldModel world, Point nextPos);
 
 
 }

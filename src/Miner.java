@@ -13,7 +13,7 @@ public abstract class Miner extends  Movable{
                  int resourceCount, int actionPeriod,
                  int animationPeriod, int repeatCount)
     {
-        super(id, position, images,actionPeriod, animationPeriod, 0, new AStarPathingStrategy());
+        super(id, position, images,actionPeriod, animationPeriod, 0,  new AStarPathingStrategy());
         this.resourceCount=resourceCount;
         this.resourceLimit=resourceLimit;
 
@@ -31,6 +31,9 @@ public abstract class Miner extends  Movable{
 
     }
 
+    public  boolean _nextPositionHelper(WorldModel world, Point nextPos) {
+        return world.isOccupied(nextPos);
+    }
 
     public int getResourceLimit() {
         return resourceLimit;

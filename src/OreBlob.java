@@ -63,4 +63,15 @@ public class OreBlob extends  Movable{
                 nextPeriod);
     }
 
+
+
+    public  boolean _nextPositionHelper(WorldModel world, Point nextPos){
+        Optional<Entity> occupant = world.getOccupant(nextPos);
+
+        return  (((occupant.isPresent() && !(occupant.get() instanceof Ore))));
+
+    }
+
+
+
 }
