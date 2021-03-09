@@ -45,8 +45,6 @@ class AStarPathingStrategy
 
             for(Point neighbor: neighbors){
 
-
-
                     Node neighborNode = new Node(neighbor, PrierNode.getG() + 1, neighbor.manhattanDistance(end), PrierNode);
 
 //                    if(neighborNode.getPosition().adjacent(end)){
