@@ -71,4 +71,14 @@ public abstract class Miner extends  Movable{
     public int getResourceCount() {
         return resourceCount;
     }
+
+    public void executeActivity(WorldModel world,
+                                ImageStore imageStore,
+                                EventScheduler scheduler){
+
+      Optional<Entity> DynamiteTarget = world.findNearest(Dynamite.class, getPosition());
+      if(DynamiteTarget.isPresent() && this.getPosition().adjacent( DynamiteTarget.get().getPosition())) {
+          this.setAblaze(world, scheduler, imageStore);
+      }
+    }
 }

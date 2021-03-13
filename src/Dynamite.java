@@ -1,6 +1,7 @@
 import processing.core.PImage;
 
 import java.util.List;
+import java.util.Optional;
 
 public class Dynamite extends Animated {
 
@@ -22,6 +23,12 @@ public class Dynamite extends Animated {
 
     public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler)
     {
+//        Optional<Entity> DynamiteTarget = world.findNearest(Miner.class, getPosition());
+//
+//        if(this.getPosition().adjacent(DynamiteMiner.getPosition())) {
+//
+//            DynamiteMiner.setAblaze(world, scheduler, imageStore);
+//        }
         scheduler.unscheduleAllEvents(this);
         world.removeEntity(this);
 

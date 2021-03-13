@@ -55,6 +55,7 @@ public class MinerNotFull extends  Miner {
                                             ImageStore imageStore,
                                             EventScheduler scheduler)
     {
+        super.executeActivity(world, imageStore, scheduler);
         Optional<Entity> notFullTarget =
                 world.findNearest(Ore.class, getPosition());
 

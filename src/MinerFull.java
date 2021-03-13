@@ -44,6 +44,7 @@ public class MinerFull extends  Miner{
                                          ImageStore imageStore,
                                          EventScheduler scheduler)
     {
+        super.executeActivity(world, imageStore, scheduler);
         Optional<Entity> fullTarget =
                 world.findNearest(BlackSmith.class, getPosition());
 
