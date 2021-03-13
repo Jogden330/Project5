@@ -179,7 +179,7 @@ public final class VirtualWorld extends PApplet
 
         if (!world.isOccupied(pressed)) {
 
-            Entity OBS = EntityFactory.createObstacle("obstacle", pressed, imageStore.getImageList("obstacle"));
+            Entity OBS = EntityFactory.createDynamite( pressed, imageStore.getImageList( "dynamite"));
             world.tryAddEntity(OBS);
         }
 
