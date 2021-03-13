@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.List;
 import java.util.Scanner;
 
 import processing.core.*;
@@ -167,5 +168,31 @@ public final class VirtualWorld extends PApplet
     public static void main(String[] args) {
         parseCommandLine(args);
         PApplet.main(VirtualWorld.class);
+    }
+
+    public void mousePressed()
+    {
+        Point pressed = mouseToPoint(mouseX, mouseY);
+//        String id = "obstacle";
+//        Entity OBS = null;
+
+
+        if (!world.isOccupied(pressed)) {
+
+            Entity OBS = EntityFactory.createObstacle("obstacle", pressed, imageStore.getImageList("obstacle"));
+            world.tryAddEntity(OBS);
+        }
+
+//            world.getBackground()[pressed.y][pressed.x] =  new Background("obstacle", imageStore.getImageList("obstacle"));
+//        else if (grid[pressed.y][pressed.x] == GridValues.BACKGROUND)
+//            grid[pressed.y][pressed.x] = GridValues.OBSTACLE;
+//
+//        redraw();
+
+    }
+
+    private Point mouseToPoint(int x, int y)
+    {
+        return new Point(mouseX/ 32, mouseY/ 32);
     }
 }
