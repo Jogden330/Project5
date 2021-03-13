@@ -7,8 +7,8 @@ import java.util.Random;
 
 public class Ore extends HasAction {
 
-    private final String BLOB_KEY = "dynamite";
-    private final String BLOB_ID_SUFFIX = " -- dynamite";
+    private final String BLOB_KEY = "blob";
+    private final String BLOB_ID_SUFFIX = " -- blob";
     private final int BLOB_PERIOD_SCALE = 4;
     private final int BLOB_ANIMATION_MIN = 50;
     private final int BLOB_ANIMATION_MAX = 150;

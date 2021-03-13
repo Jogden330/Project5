@@ -22,6 +22,16 @@ public class EntityFactory {
         return new BlackSmith( id, position, images);
     }
 
+    public static Fire createFire(
+            String id,
+            Point position,
+            int actionPeriod,
+            int animationPeriod,
+            List<PImage> images)
+    {
+        return new Fire(id, position, images,  actionPeriod, animationPeriod);
+    }
+
     public static MinerFull createMinerFull(
             String id,
             int resourceLimit,
