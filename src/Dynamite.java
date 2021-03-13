@@ -24,6 +24,7 @@ public class Dynamite extends Animated {
     {
         scheduler.unscheduleAllEvents(this);
         world.removeEntity(this);
+
     }
 
 }
