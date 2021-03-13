@@ -184,6 +184,12 @@ public final class VirtualWorld extends PApplet
             dynamite.scheduleActions(scheduler,  world, imageStore);
         }
 
+/*
+        if (!world.isOccupied(new Point(pressed.x-1, pressed.y))) {
+            Entity OBS = EntityFactory.createObstacle("sand", pressed, imageStore.getImageList("sand"));
+            world.tryAddEntity(OBS);
+        }
+*/
 //            world.getBackground()[pressed.y][pressed.x] =  new Background("obstacle", imageStore.getImageList("obstacle"));
 //        else if (grid[pressed.y][pressed.x] == GridValues.BACKGROUND)
 //            grid[pressed.y][pressed.x] = GridValues.OBSTACLE;
