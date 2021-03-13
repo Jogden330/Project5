@@ -8,7 +8,7 @@ import java.util.Random;
 public class EntityFactory {
 
      public static final String QUAKE_ID = "quake";
-
+     public static final String DYNAMITE_ID = "dynamite";
 
     public static Action createActivityAction(
             HasAction entity, WorldModel world, ImageStore imageStore)
@@ -80,6 +80,12 @@ public class EntityFactory {
             Point position, List<PImage> images)
     {
         return new Quake(QUAKE_ID, position, images);
+    }
+
+    public static Dynamite createDynamite(
+            Point position, List<PImage> images)
+    {
+        return new Dynamite(DYNAMITE_ID, position, images);
     }
 
     public static Entity createVein(
