@@ -7,7 +7,8 @@ import java.util.Optional;
 public class OreBlob extends  Movable{
 
 
-    private  final String QUAKE_KEY = "quake";
+    private final String QUAKE_KEY = "quake";
+//    public static final String DYNAMITE_KEY = "dynamite";
 
 
 
@@ -51,6 +52,9 @@ public class OreBlob extends  Movable{
             if (moveTo( world, blobTarget.get(), scheduler)) {
                 Quake quake = EntityFactory.createQuake(tgtPos,
                         imageStore.getImageList(QUAKE_KEY));
+
+//                Dynamite quake = EntityFactory.createDynamite(tgtPos,
+//                        imageStore.getImageList(DYNAMITE_KEY));
 
                 world.addEntity(quake);
                 nextPeriod += getActionPeriod();
