@@ -193,6 +193,6 @@ public final class VirtualWorld extends PApplet
 
     private Point mouseToPoint(int x, int y)
     {
-        return new Point(mouseX/ 32, mouseY/ 32);
+        return view.getViewport().viewportToWorld(mouseX/ 32, mouseY/ 32);
     }
 }

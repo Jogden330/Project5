@@ -117,5 +117,8 @@ public final class WorldView
         }
     }
 
+    public Viewport getViewport(){
+        return viewport;
+    }
 
 }
