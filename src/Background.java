@@ -31,4 +31,6 @@ public final class Background
     {
         world.getBackground()[pos.y][pos.x] = this;
     }
+
+    public String getID(){return id;}
 }
