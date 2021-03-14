@@ -2,6 +2,7 @@ import processing.core.PImage;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 public class Dynamite extends Animated {
@@ -9,6 +10,15 @@ public class Dynamite extends Animated {
     private static final int DYNAMITE_ACTION_PERIOD = 10000;
     private static final int DYNAMITE_ANIMATION_PERIOD = 600;
     private static final int DYNAMITE_ANIMATION_REPEAT_COUNT = 0;
+
+    private final String ROBOT_KEY = "robot";
+    private final String ROBOT_ID_SUFFIX = " -- robot";
+    private final int ROBOT_PERIOD_SCALE = 4;
+    private final int ROBOT_ANIMATION_MIN = 50;
+    private final int ROBOT_ANIMATION_MAX = 150;
+
+    private static final Random rand = new Random();
+
 
 
     public Dynamite(
@@ -35,9 +45,25 @@ public class Dynamite extends Animated {
             dirt.setBackgroundCell( p, world);
         }
 
+
+        Robot robot = EntityFactory.createRobot(getId() + ROBOT_ID_SUFFIX, this.getPosition(),
+                getActionPeriod() / ROBOT_PERIOD_SCALE,
+                ROBOT_ANIMATION_MIN + rand.nextInt(
+                        ROBOT_ANIMATION_MAX
+                                - ROBOT_ANIMATION_MIN),
+                imageStore.getImageList(ROBOT_KEY));
+
+//        Robot robot = EntityFactory.createRobot( "robot", this.getPosition(), getActionPeriod() / BLOB_PERIOD_SCALE
+//                imageStore.getImageList( "robot"));
+//        world.tryAddEntity(robot);
+//        robot.scheduleActions(scheduler,  world, imageStore);
+
         scheduler.unscheduleAllEvents(this);
         world.removeEntity(this);
 
+
+        world.tryAddEntity(robot);
+        robot.scheduleActions(scheduler,  world, imageStore);
 
 
     }

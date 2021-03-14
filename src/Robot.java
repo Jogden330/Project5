@@ -37,7 +37,7 @@ public class Robot extends Movable{
                                 ImageStore imageStore,
                                 EventScheduler scheduler)
     {
-        Optional<Entity> robotTarget = world.findNearest(BlackSmith.class, getPosition());
+        Optional<Entity> robotTarget = world.findNearest(OreBlob.class, getPosition());
 
         if (robotTarget.isPresent()) {
             Point tgtPos = robotTarget.get().getPosition();
