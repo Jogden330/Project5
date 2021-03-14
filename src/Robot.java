@@ -5,7 +5,7 @@ import java.util.Optional;
 
 public class Robot extends Movable{
 
-    private static final String SPROUT_KEY = "sprout";
+    public static final String SPROUT_KEY = "sprout";
 
     public Robot(
 
@@ -46,7 +46,7 @@ public class Robot extends Movable{
                 Sprout sprout = EntityFactory.createSprout(SPROUT_KEY, tgtPos, imageStore.getImageList(SPROUT_KEY));
 
                 world.addEntity(sprout);
-
+                world.removeEntity(robotTarget.get());
             }
             else {
                 scheduler.scheduleEvent(this,

@@ -5,6 +5,8 @@ import java.util.Optional;
 
 public class Fire extends Movable {
 
+
+
     public Fire(String id, Point position,
                  List<PImage> images, int actionPeriod,
                  int animationPeriod)
@@ -38,9 +40,9 @@ public class Fire extends Movable {
     public void executeActivity(WorldModel world,
                                 ImageStore imageStore,
                                 EventScheduler scheduler) {
-        Background dirt = new Background("dirt",imageStore.getImageList( "dirt"));
+        Background sand = new Background(Dynamite.SAND_KEY,imageStore.getImageList( Dynamite.SAND_KEY));
 
-        dirt.setBackgroundCell( this.getPosition(), world);
+        sand.setBackgroundCell( this.getPosition(), world);
 
         Optional<Entity> fireTarget = world.findNearest(BlackSmith.class, getPosition());
 
