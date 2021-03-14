@@ -16,6 +16,7 @@ public class Dynamite extends Animated {
     private final int ROBOT_PERIOD_SCALE = 4;
     private final int ROBOT_ANIMATION_MIN = 50;
     private final int ROBOT_ANIMATION_MAX = 150;
+    public static final String SAND_KEY = "sand";
 
     private static final Random rand = new Random();
 
@@ -37,12 +38,12 @@ public class Dynamite extends Animated {
         List<Point> neighbors = PathingStrategy.ALL_NEIGHBORS_AND_SELF.apply(this.getPosition())
                 .filter(point -> world.withinBounds(point))
                 .collect(Collectors.toList());
-        Background dirt = new Background("dirt",imageStore.getImageList( "dirt"));
+        Background sand = new Background(SAND_KEY,imageStore.getImageList( SAND_KEY));
 
         for(Point p: neighbors) {
 
 
-            dirt.setBackgroundCell( p, world);
+            sand.setBackgroundCell( p, world);
         }
 
 
