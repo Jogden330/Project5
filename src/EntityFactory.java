@@ -16,10 +16,16 @@ public class EntityFactory {
         return new Activity(entity, world, imageStore);
     }
 
-    public static Entity createBlacksmith(
+    public static BlackSmith createBlacksmith(
             String id, Point position, List<PImage> images)
     {
         return new BlackSmith( id, position, images);
+    }
+
+    public static Sprout createSprout(
+            String id, Point position, List<PImage> images)
+    {
+        return new Sprout( id, position, images);
     }
 
     public static Fire createFire(
@@ -74,6 +80,16 @@ public class EntityFactory {
             List<PImage> images)
     {
         return new OreBlob(id, position, images,  actionPeriod, animationPeriod);
+    }
+
+    public static Robot createRobot(
+            String id,
+            Point position,
+            int actionPeriod,
+            int animationPeriod,
+            List<PImage> images)
+    {
+        return new Robot(id, position, images,  actionPeriod, animationPeriod);
     }
 
     public static Quake createQuake(

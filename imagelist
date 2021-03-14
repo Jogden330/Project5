@@ -39,6 +39,14 @@ quake images/quake4.bmp 255 255 255 0
 quake images/quake5.bmp 255 255 255 0
 quake images/quake6.bmp 255 255 255 0
 ore images/ore.bmp 201 26 26 0
+robot images/robot1.bmp 255 255 255 0
+robot images/robot2.bmp 255 255 255 0
+robot images/robot3.bmp 255 255 255 0
+robot images/robot4.bmp 255 255 255 0
+robot images/robot5.bmp 255 255 255 0
+robot images/robot6.bmp 255 255 255 0
+robot images/robot7.bmp 255 255 255 0
+sprout images/sprout.bmp 255 255 255 0
 obstacle images/obstacle.bmp
 grass images/grass.bmp
 rocks images/rock.bmp
