@@ -11,11 +11,11 @@ public class Dynamite extends Animated {
     private static final int DYNAMITE_ANIMATION_PERIOD = 600;
     private static final int DYNAMITE_ANIMATION_REPEAT_COUNT = 0;
 
-    private final String ROBOT_KEY = "robot";
-    private final String ROBOT_ID_SUFFIX = " -- robot";
-    private final int ROBOT_PERIOD_SCALE = 4;
-    private final int ROBOT_ANIMATION_MIN = 50;
-    private final int ROBOT_ANIMATION_MAX = 150;
+    private static final String ROBOT_KEY = "robot";
+    private static final String ROBOT_ID_SUFFIX = " -- robot";
+    private static final int ROBOT_PERIOD_SCALE = 4;
+    private static final int ROBOT_ANIMATION_MIN = 50;
+    private static final int ROBOT_ANIMATION_MAX = 150;
     public static final String SAND_KEY = "sand";
 
     private static final Random rand = new Random();

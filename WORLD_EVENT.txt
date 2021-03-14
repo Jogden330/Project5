@@ -1,0 +1,20 @@
+WORLD_EVENT.txt
+Project found at: github.com/Jogden330/Project5
+
+1) How to trigger the event:
+Click once on any open space to set down a dynamite that will begin to explode. 
+
+2)What should happen when the event is triggered:
+The dynamite will explode and if a miner steps into a space next to the dynamite while it is exploding, it will transform into a blazing fire. The dynamite will affect the background grass and dirt squares within a one-square radius by transforming them into sand. After the dynamite fully explodes, a new robot will form from the ashes.
+
+3)What the affected entities should do:
+The miners turned into fires will target the closest blacksmith shop and will set it on fire by transforming the shop into another fire entity. Any grass or dirt tile the fire goes through will turn into sand. The fires will only set one blacksmith on fire and then stay blazing in the same spot to avoid bunching up.
+
+4) What the new entity is and how it should behave:
+The new entity is a robot and it seeks after the ore blobs to turn them into sprouts, which are non-animated entities. The robots are faster than the ore blobs, so they will catch up to them. 
+
+5) The names of each partner and what each partner was responsible for:
+Katherine Chan (mostly responsible for making new entities)and Jonathan Ogden (mostly responsible for world changing event click function and stitching things together)
+More specifically....
+Katherine: Found and resized all bmp images. Wrote all of Robot and Sprout entity classes w/ methods. Wrote most of Fire class, wrote Dynamite constructor. Made corresponding create methods in EntityFactory. Wrote setAblaze() in Miner.
+Jonathan: Came up with base idea for the world changing event. Wrote all code to make the mouse press cause the event (mousePressed() and mouseToPoint() in VirtualWorld). Altered executeActivity() in Miner to be affected by Dynamite. Wrote sand background change for Fire in executeActivity() and all of executeActivity() in Dynamite. 

@@ -54,7 +54,8 @@ public class Fire extends Movable {
 
                 world.addEntity(fire);
                 fire.scheduleActions(scheduler, world, imageStore);
-            } else {
+            }
+            else {
                 scheduler.scheduleEvent(this,
                         EntityFactory.createActivityAction(this, world, imageStore),
                         getActionPeriod());
