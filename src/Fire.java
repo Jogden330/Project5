@@ -27,12 +27,21 @@ public class Fire extends Movable {
     }
 
     public  boolean _nextPositionHelper(WorldModel world, Point nextPos) {
+
         return world.isOccupied(nextPos);
+
+//        Background background = world.getBackground()[this.getPosition().x][this.getPosition().y];
+//
+//        return (world.isOccupied(nextPos) && (background.getID() != "dirt"));
     }
 
     public void executeActivity(WorldModel world,
                                 ImageStore imageStore,
                                 EventScheduler scheduler) {
+        Background dirt = new Background("dirt",imageStore.getImageList( "dirt"));
+
+        dirt.setBackgroundCell( this.getPosition(), world);
+
         Optional<Entity> fireTarget = world.findNearest(BlackSmith.class, getPosition());
 
         if (fireTarget.isPresent()) {

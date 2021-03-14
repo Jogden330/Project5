@@ -23,12 +23,7 @@ public class Dynamite extends Animated {
 
     public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler)
     {
-//        Optional<Entity> DynamiteTarget = world.findNearest(Miner.class, getPosition());
-//
-//        if(this.getPosition().adjacent(DynamiteMiner.getPosition())) {
-//
-//            DynamiteMiner.setAblaze(world, scheduler, imageStore);
-//        }
+
         scheduler.unscheduleAllEvents(this);
         world.removeEntity(this);
 
