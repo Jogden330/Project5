@@ -2,6 +2,7 @@ import processing.core.PImage;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class Dynamite extends Animated {
 
@@ -23,9 +24,21 @@ public class Dynamite extends Animated {
 
     public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler)
     {
+        List<Point> neighbors = PathingStrategy.ALL_NEIGHBORS_AND_SELF.apply(this.getPosition())
+                .filter(point -> world.withinBounds(point))
+                .collect(Collectors.toList());
+        Background dirt = new Background("dirt",imageStore.getImageList( "dirt"));
+
+        for(Point p: neighbors) {
+
+
+            dirt.setBackgroundCell( p, world);
+        }
 
         scheduler.unscheduleAllEvents(this);
         world.removeEntity(this);
+
+
 
     }
 
