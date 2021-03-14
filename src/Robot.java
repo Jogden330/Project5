@@ -51,13 +51,10 @@ public class Robot extends Movable{
             //    world.removeEntity(robotTarget.get());
             }
 
+        }
         scheduler.scheduleEvent(this,
                 EntityFactory.createActivityAction(this, world, imageStore),
                 nextPeriod);
-
-
-        }
-
     }
 
 

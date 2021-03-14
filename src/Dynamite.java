@@ -13,9 +13,9 @@ public class Dynamite extends Animated {
 
     private final String ROBOT_KEY = "robot";
     private final String ROBOT_ID_SUFFIX = " -- robot";
-    private final int ROBOT_PERIOD_SCALE = 2;
-    private final int ROBOT_ANIMATION_MIN = 5;
-    private final int ROBOT_ANIMATION_MAX = 15;
+    private final int ROBOT_PERIOD_SCALE = 4;
+    private final int ROBOT_ANIMATION_MIN = 50;
+    private final int ROBOT_ANIMATION_MAX = 150;
     public static final String SAND_KEY = "sand";
 
     private static final Random rand = new Random();
