@@ -38,6 +38,7 @@ public class Robot extends Movable{
                                 EventScheduler scheduler)
     {
         Optional<Entity> robotTarget = world.findNearest(OreBlob.class, getPosition());
+        long nextPeriod = getActionPeriod();
 
         if (robotTarget.isPresent()) {
             Point tgtPos = robotTarget.get().getPosition();
@@ -46,13 +47,14 @@ public class Robot extends Movable{
                 Sprout sprout = EntityFactory.createSprout(SPROUT_KEY, tgtPos, imageStore.getImageList(SPROUT_KEY));
 
                 world.addEntity(sprout);
-                world.removeEntity(robotTarget.get());
+                nextPeriod += getActionPeriod();
+            //    world.removeEntity(robotTarget.get());
             }
-            else {
-                scheduler.scheduleEvent(this,
-                        EntityFactory.createActivityAction(this, world, imageStore),
-                        getActionPeriod());
-            }
+
+        scheduler.scheduleEvent(this,
+                EntityFactory.createActivityAction(this, world, imageStore),
+                nextPeriod);
+
 
         }
 
@@ -60,9 +62,9 @@ public class Robot extends Movable{
 
 
     public  boolean _nextPositionHelper(WorldModel world, Point nextPos){
-        Optional<Entity> occupant = world.getOccupant(nextPos);
+     //   Optional<Entity> occupant = world.getOccupant(nextPos);
 
-        return  (((occupant.isPresent() && !(occupant.get() instanceof OreBlob))));
+        return world.isOccupied(nextPos);
 
     }
 
