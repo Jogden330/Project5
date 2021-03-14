@@ -5,7 +5,7 @@ import java.util.Optional;
 
 public class Robot extends Movable{
 
-    private static final String SPROUT_KEY = "sprout";
+    public static final String SPROUT_KEY = "sprout";
 
     public Robot(
 
@@ -37,7 +37,7 @@ public class Robot extends Movable{
                                 ImageStore imageStore,
                                 EventScheduler scheduler)
     {
-        Optional<Entity> robotTarget = world.findNearest(BlackSmith.class, getPosition());
+        Optional<Entity> robotTarget = world.findNearest(OreBlob.class, getPosition());
 
         if (robotTarget.isPresent()) {
             Point tgtPos = robotTarget.get().getPosition();
@@ -46,7 +46,7 @@ public class Robot extends Movable{
                 Sprout sprout = EntityFactory.createSprout(SPROUT_KEY, tgtPos, imageStore.getImageList(SPROUT_KEY));
 
                 world.addEntity(sprout);
-
+                world.removeEntity(robotTarget.get());
             }
             else {
                 scheduler.scheduleEvent(this,
